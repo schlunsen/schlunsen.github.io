@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rasmus Schlünsen — Developer & Creator</title>
+    <style>
+        :root {
+            --bg: #0f1117;
+            --surface: #1a1d27;
+            --border: #2a2d3a;
+            --text: #e4e4e7;
+            --muted: #9ca3af;
+            --accent: #6366f1;
+            --accent-hover: #818cf8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Header / Hero */
+        .hero {
+            text-align: center;
+            padding: 4rem 0 3rem;
+        }
+
+        .hero .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), #a855f7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .location {
+            font-size: 0.95rem;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .tagline {
+            font-size: 1.15rem;
+            color: var(--muted);
+            max-width: 540px;
+            margin: 0 auto;
+        }
+
+        /* Social links */
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .socials a {
+            color: var(--muted);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .socials a:hover {
+            color: var(--accent-hover);
+            border-color: var(--accent);
+        }
+
+        /* Section */
+        section {
+            margin: 3rem 0;
+        }
+
+        section h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        section p {
+            color: var(--muted);
+            margin-bottom: 1rem;
+        }
+
+        /* Skills */
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .skill {
+            font-size: 0.85rem;
+            padding: 0.3rem 0.8rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            color: var(--muted);
+        }
+
+        /* Projects grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .project-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            transition: border-color 0.2s;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent);
+        }
+
+        .project-card h3 {
+            font-size: 1.05rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .project-card h3 a {
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .project-card h3 a:hover {
+            color: var(--accent-hover);
+        }
+
+        .project-card p {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        .project-card .tags {
+            margin-top: 0.75rem;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            color: var(--muted);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            color: var(--muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.8rem; }
+            .container { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <header class="hero">
+            <div class="avatar">RS</div>
+            <h1>Rasmus Schlünsen</h1>
+            <p class="location">Barcelona, Spain</p>
+            <p class="tagline">Experienced software consultant & developer. Building things with code, curiosity, and coffee.</p>
+            <div class="socials">
+                <a href="https://github.com/schlunsen" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/rasmusbs/" target="_blank">LinkedIn</a>
+                <a href="https://x.com/schlunsen" target="_blank">X / Twitter</a>
+            </div>
+        </header>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <p>
+                Hi! I'm Rasmus — a software consultant based in Barcelona, currently working at Clovr Labs.
+                I have a background in C#, Java, and full-stack web development, and I love turning ideas into shipped products.
+            </p>
+            <p>
+                I speak Danish natively, English fluently, and I'm picking up Spanish along the way.
+                When I'm not coding, you'll find me exploring Barcelona, tinkering with side projects, or diving into whatever catches my curiosity.
+            </p>
+
+            <div class="skills-list">
+                <span class="skill">C#</span>
+                <span class="skill">Java</span>
+                <span class="skill">JavaScript</span>
+                <span class="skill">Python</span>
+                <span class="skill">SQL</span>
+                <span class="skill">Web Development</span>
+                <span class="skill">Agile</span>
+                <span class="skill">AI / ML</span>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="projects-grid">
+
+                <div class="project-card">
+                    <h3><a href="https://github.com/schlunsen/chordmaker" target="_blank">ChordMaker</a></h3>
+                    <p>A tool for creating and visualizing chords.</p>
+                    <div class="tags">
+                        <span class="tag">Music</span>
+                        <span class="tag">Web</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3><a href="https://github.com/schlunsen/openclaw" target="_blank">OpenClaw</a></h3>
+                    <p>Open-source project for claw machine enthusiasts.</p>
+                    <div class="tags">
+                        <span class="tag">Open Source</span>
+                        <span class="tag">Hardware</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3><a href="https://github.com/schlunsen/tidal-ai" target="_blank">Tidal AI</a></h3>
+                    <p>AI-powered experiments and explorations.</p>
+                    <div class="tags">
+                        <span class="tag">AI</span>
+                        <span class="tag">Experiments</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3><a href="https://github.com/schlunsen/web-presenter" target="_blank">Web Presenter</a></h3>
+                    <p>A lightweight web-based presentation tool.</p>
+                    <div class="tags">
+                        <span class="tag">Presentations</span>
+                        <span class="tag">Web</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3><a href="https://github.com/schlunsen/puracabra" target="_blank">Puracabra</a></h3>
+                    <p>Creative side project.</p>
+                    <div class="tags">
+                        <span class="tag">Side Project</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3><a href="https://github.com/schlunsen/donna" target="_blank">Donna</a></h3>
+                    <p>Personal assistant project.</p>
+                    <div class="tags">
+                        <span class="tag">Productivity</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Rasmus Schlünsen. Built with plain HTML & CSS.</p>
+    </footer>
+</body>
+</html>
