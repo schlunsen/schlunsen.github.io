@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rasmus Schlunsen - Developer & Creator</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌘</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
@@ -461,7 +462,7 @@
         .showcase-screenshots {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 0.6rem;
+            gap: 1rem;
             opacity: 0;
             transform: translateX(20px);
             transition: all 0.6s ease 0.3s;
@@ -472,29 +473,100 @@
             transform: translateX(0);
         }
 
+        /* Single screenshot gets full width */
+        .showcase-screenshots.single-shot {
+            grid-template-columns: 1fr;
+        }
+
         .screenshot-thumb {
             width: 100%;
-            aspect-ratio: 1 / 1;
             border-radius: 10px;
-            border: 1px solid var(--border);
             overflow: hidden;
             cursor: pointer;
             position: relative;
-            transition: all 0.3s;
-            background: rgba(20, 22, 35, 0.8);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #1a1b2e;
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.5),
+                0 2px 8px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(99, 102, 241, 0.1),
+                0 0 60px -10px rgba(99, 102, 241, 0.06);
+        }
+
+        /* macOS-style window titlebar */
+        .screenshot-titlebar {
+            height: 36px;
+            background: linear-gradient(180deg, #2d2e42 0%, #22233a 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            padding: 0 14px;
+            gap: 7px;
+            position: relative;
+        }
+
+        .screenshot-titlebar .traffic-light {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .screenshot-titlebar .traffic-light.red {
+            background: radial-gradient(circle at 30% 30%, #ff7b73, #ff5f57);
+            box-shadow: inset 0 -1px 1px rgba(0,0,0,0.15), 0 0 4px rgba(255, 95, 87, 0.2);
+        }
+        .screenshot-titlebar .traffic-light.yellow {
+            background: radial-gradient(circle at 30% 30%, #ffd04e, #febc2e);
+            box-shadow: inset 0 -1px 1px rgba(0,0,0,0.15), 0 0 4px rgba(254, 188, 46, 0.2);
+        }
+        .screenshot-titlebar .traffic-light.green {
+            background: radial-gradient(circle at 30% 30%, #4ade60, #28c840);
+            box-shadow: inset 0 -1px 1px rgba(0,0,0,0.15), 0 0 4px rgba(40, 200, 64, 0.2);
+        }
+
+        .screenshot-titlebar .titlebar-text {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.68rem;
+            color: rgba(255, 255, 255, 0.4);
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'JetBrains Mono', monospace;
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 60%;
+        }
+
+        .screenshot-thumb .img-wrap {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+            position: relative;
+            background: #0d0e18;
         }
 
         .screenshot-thumb img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.4s;
+            object-position: top center;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            display: block;
         }
 
         .screenshot-thumb:hover {
-            border-color: var(--accent);
-            box-shadow: 0 0 20px var(--glow);
-            transform: translateY(-2px);
+            box-shadow:
+                0 16px 48px rgba(99, 102, 241, 0.12),
+                0 4px 16px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(99, 102, 241, 0.25),
+                0 0 80px -10px rgba(99, 102, 241, 0.1);
+            transform: translateY(-5px) scale(1.01);
+        }
+
+        .screenshot-thumb:hover .screenshot-titlebar {
+            background: linear-gradient(180deg, #33344a 0%, #26273f 100%);
         }
 
         .screenshot-thumb:hover img {
@@ -507,8 +579,8 @@
             right: 0.5rem;
             width: 28px;
             height: 28px;
-            background: rgba(10, 11, 16, 0.7);
-            border: 1px solid var(--border);
+            background: rgba(10, 11, 16, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.2);
             border-radius: 6px;
             display: flex;
             align-items: center;
@@ -518,6 +590,7 @@
             opacity: 0;
             transition: opacity 0.3s;
             backdrop-filter: blur(8px);
+            z-index: 2;
         }
 
         .screenshot-thumb:hover .expand-icon {
@@ -1121,7 +1194,7 @@
             .showcase-name { font-size: 1.6rem; }
             .showcase-number { font-size: 3rem; display: none; }
             .showcase-screenshots { grid-template-columns: 1fr; }
-            .screenshot-thumb { aspect-ratio: 16 / 10; }
+            .screenshot-thumb .img-wrap { aspect-ratio: 16 / 10; }
 
             .about-section { padding: 4rem 1.25rem; }
             .about-inner { grid-template-columns: 1fr; gap: 2rem; }
@@ -1241,8 +1314,7 @@
                 </div>
             </div>
             <div class="about-photo" data-reveal>
-                <img src="https://media.licdn.com/dms/image/v2/D4D03AQGwFjH9RL_GhQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718636629498?e=1753920000&v=beta&t=placeholder" alt="Rasmus Schlunsen"
-                     onerror="this.src='https://avatars.githubusercontent.com/u/117190?v=4'">
+                <img src="https://avatars.githubusercontent.com/u/117190?v=4" alt="Rasmus Schlunsen">
             </div>
         </div>
     </section>
@@ -1510,20 +1582,42 @@
                 screenshotsEl.innerHTML = '';
                 screenshotsEl.className = 'showcase-screenshots';
                 if (p.screenshots && p.screenshots.length > 0) {
+                    if (p.screenshots.length === 1) {
+                        screenshotsEl.classList.add('single-shot');
+                    }
                     p.screenshots.forEach((src, si) => {
                         const thumb = document.createElement('div');
                         thumb.className = 'screenshot-thumb';
+
+                        // macOS-style titlebar
+                        const titlebar = document.createElement('div');
+                        titlebar.className = 'screenshot-titlebar';
+                        titlebar.innerHTML = `
+                            <span class="traffic-light red"></span>
+                            <span class="traffic-light yellow"></span>
+                            <span class="traffic-light green"></span>
+                            <span class="titlebar-text">${p.name}</span>
+                        `;
+
+                        const imgWrap = document.createElement('div');
+                        imgWrap.className = 'img-wrap';
+
                         const img = document.createElement('img');
                         img.src = src;
                         img.alt = `${p.name} screenshot ${si + 1}`;
+                        img.loading = 'lazy';
                         img.onerror = () => {
-                            thumb.innerHTML = `<div class="screenshot-placeholder">Screenshot ${si + 1}</div>`;
+                            imgWrap.innerHTML = `<div class="screenshot-placeholder">Screenshot ${si + 1}</div>`;
                         };
+
                         const icon = document.createElement('div');
                         icon.className = 'expand-icon';
                         icon.innerHTML = '&#x26F6;';
-                        thumb.appendChild(img);
-                        thumb.appendChild(icon);
+
+                        imgWrap.appendChild(img);
+                        imgWrap.appendChild(icon);
+                        thumb.appendChild(titlebar);
+                        thumb.appendChild(imgWrap);
                         thumb.addEventListener('click', () => openLightbox(p.screenshots, si));
                         screenshotsEl.appendChild(thumb);
                     });
@@ -1977,6 +2071,21 @@
                 }, 300);
             }, 600);
         });
+
+        // Console easter egg
+        console.log(
+            '%c ⌘ ',
+            'font-size:48px;color:#818cf8;font-weight:bold;'
+        );
+        console.log(
+            '%cYou opened devtools.%c\nThat already tells me something good about you.',
+            'color:#818cf8;font-size:14px;font-weight:600;line-height:1.8',
+            'color:#94a3b8;font-size:12px;font-weight:400;line-height:1.8'
+        );
+        console.log(
+            '%cLet\'s talk → https://linkedin.com/in/rasmusbs/',
+            'color:#64748b;font-size:11px;font-style:italic;line-height:2'
+        );
 
         // Intercept internal navigation links
         document.querySelectorAll('a[href$=".html"]').forEach(link => {
