@@ -20,7 +20,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -177,6 +177,7 @@
             animation: fadeUp 1.2s ease 0.6s forwards;
             position: relative;
             align-self: end;
+            overflow: hidden;
         }
 
         /* --- Overview: project list --- */
@@ -437,13 +438,24 @@
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .showcase-links {
+            display: flex;
+            gap: 1.5rem;
             opacity: 0;
             transform: translateY(10px);
             transition: all 0.5s ease 0.2s;
         }
 
+        .showcase-links.show { opacity: 1; transform: translateY(0); }
+
         .showcase-link.show { opacity: 1; transform: translateY(0); }
         .showcase-link:hover { color: var(--accent-hover); gap: 0.8rem; }
+
+        .showcase-site-link { display: none; }
+        .showcase-site-link.visible { display: inline-flex; }
 
         /* Screenshot gallery */
         .showcase-screenshots {
@@ -710,7 +722,39 @@
             border-top: 1px solid var(--border);
         }
 
-        .about-inner { max-width: 1000px; }
+        .about-inner {
+            max-width: 1100px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-content { grid-column: 1; }
+
+        .about-photo {
+            grid-column: 2;
+            grid-row: 1 / 5;
+            width: 280px;
+            height: 340px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 0 40px rgba(99, 102, 241, 0.08);
+            position: sticky;
+            top: 8rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease 0.3s;
+        }
+
+        .about-photo.visible { opacity: 1; transform: translateY(0); }
+
+        .about-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
         .section-label {
             font-size: 0.7rem;
@@ -1040,22 +1084,49 @@
         }
 
         @media (max-width: 900px) {
+            .top-nav { padding: 0.75rem 1.25rem; }
+            .nav-logo { font-size: 0.95rem; }
+            .nav-links a { font-size: 0.75rem; padding: 0.35rem 0.75rem; }
+            .nav-links a.nav-cta { padding: 0.35rem 0.9rem; margin-left: 0.25rem; }
+
             .hero-section {
                 grid-template-columns: 1fr;
                 align-items: flex-start;
-                padding-top: 12vh;
-                padding-bottom: 4rem;
-                gap: 3rem;
+                padding: 0 1.25rem;
+                padding-top: 8rem;
+                padding-bottom: 3rem;
+                gap: 2rem;
+                height: auto;
+                min-height: 100vh;
+                position: relative;
             }
-            .hero-left h1 { font-size: 2.5rem; }
-            .hero-left.compact h1 { font-size: 1.5rem; }
-            .showcase-layout { grid-template-columns: 1fr; }
-            .showcase-name { font-size: 1.8rem; }
-            .showcase-number { font-size: 4rem; }
-            .showcase-screenshots { grid-template-columns: 1fr 1fr; }
-            .about-section { padding: 4rem 1.5rem; }
-            .hire-section { padding: 4rem 1.5rem; }
-            .hero-section { height: auto; min-height: 100vh; position: relative; }
+            .hero-top { display: none; }
+            .hero-left h1 { font-size: 2.2rem; margin-bottom: 1rem; }
+            .hero-left .tagline { font-size: 0.9rem; margin-bottom: 1.5rem; }
+            .socials a { padding: 0.5rem 1.1rem; font-size: 0.8rem; }
+
+            /* On mobile, compact just hides — no position absolute weirdness */
+            .hero-left.compact {
+                display: none;
+                opacity: 1 !important;
+                transform: none !important;
+                position: static;
+            }
+            .hero-section.showcase-active {
+                padding-top: 5rem;
+                min-height: auto;
+            }
+
+            .showcase-layout { grid-template-columns: 1fr; gap: 1.5rem; }
+            .showcase-name { font-size: 1.6rem; }
+            .showcase-number { font-size: 3rem; display: none; }
+            .showcase-screenshots { grid-template-columns: 1fr; }
+            .screenshot-thumb { aspect-ratio: 16 / 10; }
+
+            .about-section { padding: 4rem 1.25rem; }
+            .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+            .about-photo { grid-column: 1; grid-row: auto; width: 100%; height: 280px; position: relative; top: 0; }
+            .hire-section { padding: 4rem 1.25rem; }
         }
     </style>
 </head>
@@ -1118,9 +1189,14 @@
                         <div class="showcase-name" id="showcaseName"><span class="typed-text"></span></div>
                         <p class="showcase-desc" id="showcaseDesc"></p>
                         <div class="showcase-tags" id="showcaseTags"></div>
-                        <a class="showcase-link" id="showcaseLink" href="#" target="_blank">
-                            View on GitHub <span>&rarr;</span>
-                        </a>
+                        <div class="showcase-links">
+                            <a class="showcase-link" id="showcaseLink" href="#" target="_blank">
+                                View on GitHub <span>&rarr;</span>
+                            </a>
+                            <a class="showcase-link showcase-site-link" id="showcaseSiteLink" href="#" target="_blank">
+                                Visit Site <span>&rarr;</span>
+                            </a>
+                        </div>
                     </div>
                     <div class="showcase-screenshots" id="showcaseScreenshots"></div>
                 </div>
@@ -1143,24 +1219,30 @@
 
     <section class="about-section" id="about">
         <div class="about-inner">
-            <span class="section-label" data-reveal>Background</span>
-            <h2 class="section-title" data-reveal>About Me</h2>
-            <div class="about-text" data-reveal>
-                <p>Hi! I'm Rasmus -- a software consultant based in Barcelona with over 14 years of professional experience, currently working at Clovr Labs. I'm a system architect at heart who equally loves the creative side of building products -- from designing robust backends to crafting the interactions that make software feel alive.</p>
-                <p>I work across the full stack with Python, Go, Rust, and JavaScript as my primary tools. I'm deeply into AI/ML and agentic systems, and I'm always exploring new ways to turn ideas into shipped products.</p>
-                <p>I speak Danish natively, English fluently, and I'm picking up Spanish along the way. When I'm not coding, you'll find me being a dad, exploring Barcelona, tinkering with side projects, or diving into whatever catches my curiosity.</p>
+            <div class="about-content">
+                <span class="section-label" data-reveal>Background</span>
+                <h2 class="section-title" data-reveal>About Me</h2>
+                <div class="about-text" data-reveal>
+                    <p>Hi! I'm Rasmus -- a software consultant based in Barcelona with over 14 years of professional experience, currently working at Clovr Labs. I'm a system architect at heart who equally loves the creative side of building products -- from designing robust backends to crafting the interactions that make software feel alive.</p>
+                    <p>I work across the full stack with Python, Go, Rust, and JavaScript as my primary tools. I'm deeply into AI/ML and agentic systems, and I'm always exploring new ways to turn ideas into shipped products.</p>
+                    <p>I speak Danish natively, English fluently, and I'm picking up Spanish along the way. When I'm not coding, you'll find me being a dad, exploring Barcelona, tinkering with side projects, or diving into whatever catches my curiosity.</p>
+                </div>
+                <div class="skills-grid" data-reveal>
+                    <span class="skill-chip">Python</span>
+                    <span class="skill-chip">Go</span>
+                    <span class="skill-chip">Rust</span>
+                    <span class="skill-chip">JavaScript</span>
+                    <span class="skill-chip">SQL</span>
+                    <span class="skill-chip">System Architecture</span>
+                    <span class="skill-chip">Full-Stack Web</span>
+                    <span class="skill-chip">AI / ML</span>
+                    <span class="skill-chip">Agentic Systems</span>
+                    <span class="skill-chip">Creative Development</span>
+                </div>
             </div>
-            <div class="skills-grid" data-reveal>
-                <span class="skill-chip">Python</span>
-                <span class="skill-chip">Go</span>
-                <span class="skill-chip">Rust</span>
-                <span class="skill-chip">JavaScript</span>
-                <span class="skill-chip">SQL</span>
-                <span class="skill-chip">System Architecture</span>
-                <span class="skill-chip">Full-Stack Web</span>
-                <span class="skill-chip">AI / ML</span>
-                <span class="skill-chip">Agentic Systems</span>
-                <span class="skill-chip">Creative Development</span>
+            <div class="about-photo" data-reveal>
+                <img src="https://media.licdn.com/dms/image/v2/D4D03AQGwFjH9RL_GhQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718636629498?e=1753920000&v=beta&t=placeholder" alt="Rasmus Schlunsen"
+                     onerror="this.src='https://avatars.githubusercontent.com/u/117190?v=4'">
             </div>
         </div>
     </section>
@@ -1179,18 +1261,18 @@
         // PROJECT DATA
         // ========================================
         const projects = [
-            { name: 'Wee', desc: 'The IDE for the agentic engineer. Run, monitor, and orchestrate AI agent sessions from a browser-based dashboard.', tags: ['AI', 'Developer Tools'], url: 'https://github.com/schlunsen/wee', short: 'IDE for the agentic engineer. Orchestrate AI agent sessions.', screenshots: [
+            { name: 'Wee', desc: 'The IDE for the agentic engineer. Run, monitor, and orchestrate AI agent sessions from a browser-based dashboard.', tags: ['AI', 'Developer Tools'], url: 'https://github.com/schlunsen/wee', homepage: 'https://schlunsen.github.io/wee', short: 'IDE for the agentic engineer. Orchestrate AI agent sessions.', screenshots: [
                 'https://raw.githubusercontent.com/schlunsen/wee/main/docs/wee-desktop.png',
                 'https://raw.githubusercontent.com/schlunsen/wee/main/docs/wee-zen.png',
                 'https://raw.githubusercontent.com/schlunsen/wee/main/docs/wee-connectors.png'
             ] },
-            { name: 'Donna', desc: 'Autonomous AI pentesting platform \u2014 orchestrates Claude Code agents via Temporal to find and exploit vulnerabilities.', tags: ['Security', 'AI'], url: 'https://github.com/schlunsen/donna', short: 'Autonomous AI pentesting via Claude Code agents + Temporal.', screenshots: [
+            { name: 'Donna', desc: 'Autonomous AI pentesting platform \u2014 orchestrates Claude Code agents via Temporal to find and exploit vulnerabilities.', tags: ['Security', 'AI'], url: 'https://github.com/schlunsen/donna', homepage: 'https://schlunsen.github.io/donna/', short: 'Autonomous AI pentesting via Claude Code agents + Temporal.', screenshots: [
                 'https://raw.githubusercontent.com/schlunsen/donna/main/assets/github-banner.png',
                 'https://raw.githubusercontent.com/schlunsen/donna/main/assets/donna-action.gif'
             ] },
-            { name: 'Claude Agent SDK Go', desc: 'Port of the official Claude Agent Python SDK to Go. Build AI agents with idiomatic Go.', tags: ['Go', 'AI', 'SDK'], url: 'https://github.com/schlunsen/claude-agent-sdk-go', short: 'Official Claude Agent SDK ported to idiomatic Go.', screenshots: [] },
+            { name: 'Claude Agent SDK Go', desc: 'Port of the official Claude Agent Python SDK to Go. Build AI agents with idiomatic Go.', tags: ['Go', 'AI', 'SDK'], url: 'https://github.com/schlunsen/claude-agent-sdk-go', homepage: 'https://schlunsen.github.io/claude-agent-sdk-go/', short: 'Official Claude Agent SDK ported to idiomatic Go.', screenshots: [] },
             { name: 'Awesome Claude Code', desc: 'A curated list of awesome commands, files, and workflows for Claude Code.', tags: ['AI', 'Resources'], url: 'https://github.com/schlunsen/awesome-claude-code', short: 'Curated commands, files, and workflows for Claude Code.', screenshots: [] },
-            { name: 'The Agentic Crew', desc: 'A book about how software engineers learn to build with AI agents.', tags: ['Book', 'AI'], url: 'https://github.com/schlunsen/theagenticcrew', short: 'A book about building with AI agents.', screenshots: [
+            { name: 'The Agentic Crew', desc: 'A book about how software engineers learn to build with AI agents.', tags: ['Book', 'AI'], url: 'https://github.com/schlunsen/theagenticcrew', homepage: 'https://theagenticcrew.com', short: 'A book about building with AI agents.', screenshots: [
                 'https://raw.githubusercontent.com/schlunsen/theagenticcrew/main/assets/wee-dashboard.png'
             ] },
             { name: 'Web Presenter', desc: 'Interactive presentation framework with Three.js backgrounds, audio narration, and CSS animations.', tags: ['Three.js', 'Web'], url: 'https://github.com/schlunsen/web-presenter', short: 'Presentation framework with Three.js and audio narration.', screenshots: [] },
@@ -1215,6 +1297,8 @@
         const descEl = document.getElementById('showcaseDesc');
         const tagsEl = document.getElementById('showcaseTags');
         const linkEl = document.getElementById('showcaseLink');
+        const siteLinkEl = document.getElementById('showcaseSiteLink');
+        const linksWrap = document.querySelector('.showcase-links');
         const numberEl = document.getElementById('showcaseNumber');
         const counterEl = document.getElementById('showcaseCounter');
         const navEl = document.getElementById('showcaseNav');
@@ -1317,6 +1401,9 @@
             heroLeft.classList.add('compact');
             document.querySelector('.hero-section').classList.add('showcase-active');
 
+            // Scroll to top so showcase is visible (especially on mobile)
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
             // After dismantle finishes, swap views
             setTimeout(() => {
                 overviewView.classList.add('hidden');
@@ -1401,7 +1488,7 @@
             // Hide elements
             descEl.classList.remove('show');
             tagsEl.classList.remove('show');
-            linkEl.classList.remove('show');
+            linksWrap.classList.remove('show');
             screenshotsEl.classList.remove('show');
 
             // Type name
@@ -1411,7 +1498,13 @@
                 tagsEl.innerHTML = p.tags.map(t => `<span class="stag">${t}</span>`).join('');
                 tagsEl.classList.add('show');
                 linkEl.href = p.url;
-                linkEl.classList.add('show');
+                if (p.homepage) {
+                    siteLinkEl.href = p.homepage;
+                    siteLinkEl.classList.add('visible');
+                } else {
+                    siteLinkEl.classList.remove('visible');
+                }
+                linksWrap.classList.add('show');
 
                 // Screenshots
                 screenshotsEl.innerHTML = '';
