@@ -1,0 +1,175 @@
+---
+interface Props {
+  showGlitchPreloader?: boolean;
+}
+
+const { showGlitchPreloader = false } = Astro.props;
+---
+
+<div class="page-transition preload" id="pageTransition">
+  <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+</div>
+<div class="preloader-content" id="preloaderContent">
+  {showGlitchPreloader ? (
+    <div class="preloader-logo-wrap">
+      <img class="preloader-logo" src="/rasmus-new-cyberpunk2.webp" alt="" id="preloader-logo-img">
+      <canvas id="preloader-glitch-canvas"></canvas>
+    </div>
+  ) : (
+    <img class="preloader-logo" src="https://avatars.githubusercontent.com/u/117190?v=4" alt="">
+  )}
+  <span class="preloader-text">Loading</span>
+  <div class="preloader-bar"><div class="preloader-bar-fill"></div></div>
+</div>
+
+<style>
+  .page-transition {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 200;
+    pointer-events: none;
+    display: flex;
+  }
+
+  .page-transition .bar {
+    flex: 1;
+    background: var(--accent);
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+
+  .page-transition.preload .bar {
+    transform: scaleY(1);
+    animation: none;
+  }
+
+  .page-transition.preload {
+    pointer-events: all;
+  }
+
+  .preloader-content {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 201;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.3s;
+  }
+
+  .preloader-content.hidden { opacity: 0; }
+
+  .preloader-logo-wrap {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 2.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid rgba(99, 102, 241, 0.4);
+    animation: preloaderPulse 2s ease infinite;
+    box-shadow: 0 0 80px rgba(99, 102, 241, 0.3), 0 0 160px rgba(99, 102, 241, 0.1), inset 0 0 40px rgba(99, 102, 241, 0.05);
+  }
+
+  .preloader-logo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  /* For the non-glitch version (hire page) */
+  .preloader-content > .preloader-logo {
+    width: 200px;
+    height: 200px;
+    border: 3px solid rgba(99, 102, 241, 0.4);
+    margin-bottom: 2.5rem;
+    animation: preloaderPulse 2s ease infinite;
+    box-shadow: 0 0 80px rgba(99, 102, 241, 0.3), 0 0 160px rgba(99, 102, 241, 0.1), inset 0 0 40px rgba(99, 102, 241, 0.05);
+  }
+
+  #preloader-glitch-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    z-index: 1;
+  }
+
+  .preloader-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+  }
+
+  .preloader-bar {
+    width: 200px;
+    height: 3px;
+    background: rgba(99, 102, 241, 0.15);
+    border-radius: 2px;
+    margin-top: 1.5rem;
+    overflow: hidden;
+  }
+
+  .preloader-bar-fill {
+    height: 100%;
+    width: 30%;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    border-radius: 2px;
+    animation: preloaderSlide 1.2s ease-in-out infinite;
+  }
+
+  @keyframes preloaderPulse {
+    0%, 100% { opacity: 0.8; transform: scale(1); box-shadow: 0 0 80px rgba(99, 102, 241, 0.3), 0 0 160px rgba(99, 102, 241, 0.1); }
+    50% { opacity: 1; transform: scale(1.04); box-shadow: 0 0 100px rgba(99, 102, 241, 0.4), 0 0 200px rgba(99, 102, 241, 0.15); }
+  }
+
+  @keyframes preloaderSlide {
+    0% { transform: translateX(-200px); }
+    100% { transform: translateX(660px); }
+  }
+
+  .page-transition.active .bar {
+    animation: barUp 0.5s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+  }
+
+  .page-transition .bar:nth-child(2) { animation-delay: 0.05s; }
+  .page-transition .bar:nth-child(3) { animation-delay: 0.1s; }
+  .page-transition .bar:nth-child(4) { animation-delay: 0.15s; }
+  .page-transition .bar:nth-child(5) { animation-delay: 0.2s; }
+
+  .page-transition.active .bar:nth-child(2) { animation-delay: 0.05s; }
+  .page-transition.active .bar:nth-child(3) { animation-delay: 0.1s; }
+  .page-transition.active .bar:nth-child(4) { animation-delay: 0.15s; }
+  .page-transition.active .bar:nth-child(5) { animation-delay: 0.2s; }
+
+  .page-transition.exit .bar {
+    transform: scaleY(1);
+    transform-origin: top;
+    animation: barDown 0.5s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+  }
+
+  .page-transition.exit .bar:nth-child(2) { animation-delay: 0.05s; }
+  .page-transition.exit .bar:nth-child(3) { animation-delay: 0.1s; }
+  .page-transition.exit .bar:nth-child(4) { animation-delay: 0.15s; }
+  .page-transition.exit .bar:nth-child(5) { animation-delay: 0.2s; }
+
+  @keyframes barUp {
+    0% { transform: scaleY(0); }
+    100% { transform: scaleY(1); }
+  }
+
+  @keyframes barDown {
+    0% { transform: scaleY(1); }
+    100% { transform: scaleY(0); }
+  }
+</style>

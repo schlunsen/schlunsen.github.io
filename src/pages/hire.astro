@@ -1,0 +1,301 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageTransition from '../components/PageTransition.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Hire Me - Rasmus Schlunsen" bodyClass="page-hire">
+  <PageTransition />
+  <Nav page="hire" />
+
+  <section class="hire-hero">
+    <div class="hire-grid">
+      <div class="hire-left">
+        <div class="hire-label">Available for Work</div>
+        <h1 class="hire-title">Let's Build<br>Something Great</h1>
+        <p class="hire-desc">I'm available for consulting, contract work, and interesting collaborations. Whether you need a system architect, a full-stack developer, or someone to bring an AI-powered product to life.</p>
+        <p class="hire-desc">14+ years of professional experience across startups and enterprise. I ship fast and build things that last.</p>
+        <div class="hire-cta-group">
+          <a href="https://www.linkedin.com/in/rasmusbs/" target="_blank" class="hire-cta primary">Connect on LinkedIn <span>&rarr;</span></a>
+          <a href="https://github.com/schlunsen" target="_blank" class="hire-cta secondary">View GitHub</a>
+        </div>
+      </div>
+
+      <div class="hire-right">
+        <div class="offer-list">
+          <div class="offer-item">
+            <h3>System Architecture</h3>
+            <p>Designing scalable, maintainable systems from the ground up. Microservices, event-driven architectures, and distributed systems.</p>
+            <span class="offer-tag">Architecture</span>
+          </div>
+          <div class="offer-item">
+            <h3>AI & Agentic Systems</h3>
+            <p>Building intelligent products with LLMs, autonomous agents, and AI-powered workflows. From prototyping to production.</p>
+            <span class="offer-tag">AI / ML</span>
+          </div>
+          <div class="offer-item">
+            <h3>Full-Stack Development</h3>
+            <p>End-to-end product development with Python, Go, Rust, and JavaScript. APIs, web apps, CLI tools, and everything in between.</p>
+            <span class="offer-tag">Development</span>
+          </div>
+          <div class="offer-item">
+            <h3>Creative & Interactive</h3>
+            <p>Bringing the creative vision to life. Three.js experiences, interactive presentations, and products that feel alive.</p>
+            <span class="offer-tag">Creative</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+
+  <script type="importmap">
+  { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js" } }
+  </script>
+  <script type="module" is:inline>
+    import * as THREE from 'three';
+
+    // Simplex noise
+    const F2=0.5*(Math.sqrt(3)-1),G2=(3-Math.sqrt(3))/6;
+    const grad3=[[1,1],[-1,1],[1,-1],[-1,-1],[1,0],[-1,0],[0,1],[0,-1]];
+    let perm=new Uint8Array(512),permMod8=new Uint8Array(512);
+    (function(){const p=new Uint8Array(256);for(let i=0;i<256;i++)p[i]=i;for(let i=255;i>0;i--){const j=Math.floor(Math.random()*(i+1));[p[i],p[j]]=[p[j],p[i]];}for(let i=0;i<512;i++){perm[i]=p[i&255];permMod8[i]=perm[i]%8;}})();
+    function simplex2(x,y){let s=(x+y)*F2;let i=Math.floor(x+s),j=Math.floor(y+s);let t=(i+j)*G2;let X0=i-t,Y0=j-t;let x0=x-X0,y0=y-Y0;let i1=x0>y0?1:0,j1=x0>y0?0:1;let x1=x0-i1+G2,y1=y0-j1+G2;let x2=x0-1+2*G2,y2=y0-1+2*G2;let ii=i&255,jj=j&255;let n0=0,n1=0,n2=0;let t0=0.5-x0*x0-y0*y0;if(t0>=0){t0*=t0;let g=grad3[permMod8[ii+perm[jj]]];n0=t0*t0*(g[0]*x0+g[1]*y0);}let t1=0.5-x1*x1-y1*y1;if(t1>=0){t1*=t1;let g=grad3[permMod8[ii+i1+perm[jj+j1]]];n1=t1*t1*(g[0]*x1+g[1]*y1);}let t2=0.5-x2*x2-y2*y2;if(t2>=0){t2*=t2;let g=grad3[permMod8[ii+1+perm[jj+1]]];n2=t2*t2*(g[0]*x2+g[1]*y2);}return 70*(n0+n1+n2);}
+    function fbm(x,y,o=4){let v=0,a=1,f=1,m=0;for(let i=0;i<o;i++){v+=simplex2(x*f,y*f)*a;m+=a;a*=0.5;f*=2;}return v/m;}
+
+    // Scene
+    const canvas=document.getElementById('three-bg');
+    const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+    renderer.setSize(window.innerWidth,window.innerHeight);
+    const scene=new THREE.Scene();
+    scene.fog=new THREE.FogExp2(0x0a0b10,0.032);
+    const camera=new THREE.PerspectiveCamera(60,window.innerWidth/window.innerHeight,0.1,200);
+    camera.position.set(0,3,12);camera.lookAt(0,1,0);
+
+    // Mountains
+    [{z:-10,s:0.12,h:7,c:0x1a1535},{z:-7,s:0.15,h:5.5,c:0x221d45},{z:-4,s:0.2,h:4,c:0x2a2455},{z:-1,s:0.25,h:3,c:0x332d65},{z:2,s:0.3,h:2.2,c:0x3d3675},{z:5,s:0.4,h:1.5,c:0x474085}].forEach((cfg,idx)=>{
+      const geo=new THREE.PlaneGeometry(80,12,160,24);geo.rotateX(-Math.PI/2.5);
+      const pos=geo.attributes.position;const sd=idx*7.3;
+      for(let i=0;i<pos.count;i++){const x=pos.getX(i),z=pos.getZ(i);pos.setY(i,pos.getY(i)+Math.max(0,fbm(x*cfg.s+sd,z*cfg.s+sd,5))*cfg.h*(1-Math.pow(Math.abs(x)/40,2)));}
+      geo.computeVertexNormals();
+      scene.add(new THREE.Mesh(geo,new THREE.MeshStandardMaterial({color:cfg.c,flatShading:true,transparent:true,opacity:1-idx*0.04,side:THREE.DoubleSide})));
+      const m=scene.children[scene.children.length-1];m.position.set(0,-2.5,cfg.z);
+    });
+
+    // Stars
+    const sc=document.createElement('canvas');sc.width=32;sc.height=32;
+    const sx=sc.getContext('2d');const sg=sx.createRadialGradient(16,16,0,16,16,14);
+    sg.addColorStop(0,'rgba(200,190,255,1)');sg.addColorStop(0.5,'rgba(150,140,220,0.4)');sg.addColorStop(1,'rgba(100,100,200,0)');
+    sx.fillStyle=sg;sx.beginPath();sx.arc(16,16,14,0,Math.PI*2);sx.fill();
+    const starTex=new THREE.CanvasTexture(sc);
+    const sGeo=new THREE.BufferGeometry();const sPos=new Float32Array(300*3);
+    for(let i=0;i<300;i++){sPos[i*3]=(Math.random()-0.5)*100;sPos[i*3+1]=Math.random()*30+4;sPos[i*3+2]=(Math.random()-0.5)*60-15;}
+    sGeo.setAttribute('position',new THREE.BufferAttribute(sPos,3));
+    const sMat=new THREE.PointsMaterial({color:0x9999dd,size:0.15,transparent:true,opacity:0.4,map:starTex,depthWrite:false,blending:THREE.AdditiveBlending});
+    scene.add(new THREE.Points(sGeo,sMat));
+
+    // Lighting
+    scene.add(new THREE.AmbientLight(0x223355,0.5));
+    const dl=new THREE.DirectionalLight(0x6366f1,0.9);dl.position.set(5,12,5);scene.add(dl);
+    const rl=new THREE.DirectionalLight(0x818cf8,0.3);rl.position.set(-8,6,-8);scene.add(rl);
+
+    let scrollY=0;
+    window.addEventListener('scroll',()=>{scrollY=window.scrollY;},{passive:true});
+    window.addEventListener('resize',()=>{camera.aspect=window.innerWidth/window.innerHeight;camera.updateProjectionMatrix();renderer.setSize(window.innerWidth,window.innerHeight);});
+
+    function animate(time){
+      requestAnimationFrame(animate);
+      const t=time*0.001;
+      camera.position.y=3-scrollY*0.002+Math.sin(t*0.12)*0.15;
+      camera.position.x=Math.sin(t*0.08)*0.4;
+      camera.position.z+=Math.cos(t*0.06)*0.003;
+      camera.lookAt(Math.sin(t*0.05)*0.2,1-scrollY*0.001+Math.cos(t*0.1)*0.1,0);
+      sMat.opacity=0.3+Math.sin(t*1.2)*0.1;
+      renderer.render(scene,camera);
+    }
+    animate(0);
+
+    // Page transition + preloader
+    const pageTrans=document.getElementById('pageTransition');
+    const preloaderContent=document.getElementById('preloaderContent');
+    window.addEventListener('load',()=>{
+      setTimeout(()=>{
+        preloaderContent.classList.add('hidden');
+        setTimeout(()=>{
+          pageTrans.classList.remove('preload');
+          pageTrans.classList.add('exit');
+          preloaderContent.style.display='none';
+          setTimeout(()=>pageTrans.classList.remove('exit'),700);
+        },300);
+      },400);
+    });
+    document.querySelectorAll('a[href="/"]').forEach(link=>{
+      link.addEventListener('click',(e)=>{
+        e.preventDefault();
+        const href=link.getAttribute('href');
+        pageTrans.classList.add('active');
+        setTimeout(()=>{window.location.href=href;},600);
+      });
+    });
+  </script>
+</Layout>
+
+<style>
+  .hire-hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem clamp(2rem, 5vw, 6rem) 4rem;
+  }
+
+  .hire-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(3rem, 6vw, 8rem);
+    max-width: 1200px;
+    width: 100%;
+  }
+
+  .hire-left {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeUp 1s ease 0.4s forwards;
+  }
+
+  .hire-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .hire-title {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, #ffffff 0%, #818cf8 60%, #6366f1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hire-desc {
+    font-size: 1.1rem;
+    color: var(--muted);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+
+  .hire-cta-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .hire-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s;
+  }
+
+  .hire-cta.primary {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  .hire-cta.primary:hover {
+    background: var(--accent-hover);
+    box-shadow: 0 0 30px var(--glow);
+    transform: translateY(-2px);
+  }
+
+  .hire-cta.secondary {
+    border: 1px solid var(--border);
+    color: var(--muted);
+    background: var(--surface);
+    backdrop-filter: blur(10px);
+  }
+
+  .hire-cta.secondary:hover {
+    border-color: var(--accent);
+    color: var(--text);
+    box-shadow: 0 0 20px var(--glow);
+    transform: translateY(-2px);
+  }
+
+  .hire-right {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeUp 1s ease 0.7s forwards;
+  }
+
+  .offer-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .offer-item {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .offer-item:first-child {
+    border-top: 1px solid var(--border);
+  }
+
+  .offer-item h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    transition: color 0.3s;
+  }
+
+  .offer-item:hover h3 {
+    color: var(--accent-hover);
+  }
+
+  .offer-item p {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .offer-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.2rem 0.6rem;
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--accent-hover);
+    margin-top: 0.5rem;
+    display: inline-block;
+  }
+
+  @media (max-width: 900px) {
+    .hire-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .hire-title { font-size: 2.5rem; }
+    .hire-hero { padding-top: 6rem; }
+  }
+</style>
