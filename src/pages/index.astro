@@ -129,15 +129,16 @@ import Footer from '../components/Footer.astro';
           'https://raw.githubusercontent.com/schlunsen/donna/main/assets/donna-action.gif'
       ] },
       { name: 'Claude Agent SDK Go', desc: 'Port of the official Claude Agent Python SDK to Go. Build AI agents with idiomatic Go.', tags: ['Go', 'AI', 'SDK'], url: 'https://github.com/schlunsen/claude-agent-sdk-go', homepage: 'https://schlunsen.github.io/claude-agent-sdk-go/', short: 'Official Claude Agent SDK ported to idiomatic Go.', screenshots: [] },
-      { name: 'Awesome Claude Code', desc: 'A curated list of awesome commands, files, and workflows for Claude Code.', tags: ['AI', 'Resources'], url: 'https://github.com/schlunsen/awesome-claude-code', short: 'Curated commands, files, and workflows for Claude Code.', screenshots: [] },
-      { name: 'The Agentic Crew', desc: 'A book about how software engineers learn to build with AI agents.', tags: ['Book', 'AI'], url: 'https://github.com/schlunsen/theagenticcrew', homepage: 'https://theagenticcrew.com', short: 'A book about building with AI agents.', screenshots: [
-          'https://raw.githubusercontent.com/schlunsen/theagenticcrew/main/assets/wee-dashboard.png'
+      { name: 'The Agentic Crew', desc: 'Three free books on agentic engineering — for developers, non-coders, and teams. Covers agent orchestration, guardrails, testing, and CI/CD. Available in 4 languages with interactive audiobook.', tags: ['Books', 'AI', 'Free'], url: 'https://github.com/schlunsen/theagenticcrew', homepage: 'https://theagenticcrew.com', short: 'Three free books on building with AI agents.', displayType: 'books', screenshots: [
+          'https://theagenticcrew.com/book-cover.png',
+          'https://theagenticcrew.com/book-cover-crew.png',
+          '/book-cover-handson.png'
       ] },
       { name: 'Web Presenter', desc: 'Interactive presentation framework with Three.js backgrounds, audio narration, and CSS animations.', tags: ['Three.js', 'Web'], url: 'https://github.com/schlunsen/web-presenter', short: 'Presentation framework with Three.js and audio narration.', screenshots: [] },
       { name: 'Radio CLI', desc: 'An icecast radio TUI built with Ratatui featuring visualization and metadata.', tags: ['Rust', 'TUI'], url: 'https://github.com/schlunsen/radio-cli', short: 'Icecast radio TUI with Ratatui visualization.', screenshots: [
           'https://raw.githubusercontent.com/schlunsen/radio-cli/main/pics/radio-cli-screenshot.png'
       ] },
-      { name: 'Maperick', desc: 'Show active TCP connections on a TUI world map.', tags: ['Networking', 'TUI'], url: 'https://github.com/schlunsen/maperick', homepage: 'https://schlunsen.github.io/maperick/', short: 'TCP connections on a TUI world map.', screenshots: [
+      { name: 'Maperick', desc: 'Visualize active TCP connections on a world map. Available as a TUI and a native Mac app.', tags: ['Networking', 'macOS', 'TUI'], url: 'https://github.com/schlunsen/maperick', homepage: 'https://schlunsen.github.io/maperick/', short: 'TCP connections on a world map. TUI + Mac app.', screenshots: [
           'https://raw.githubusercontent.com/schlunsen/maperick/main/screenshots/map.png',
           'https://raw.githubusercontent.com/schlunsen/maperick/main/screenshots/servers.png'
       ] },
@@ -175,6 +176,7 @@ import Footer from '../components/Footer.astro';
     let targetHue = 0;
     const CYCLE_DURATION = 10000;
     let isShowcaseMode = false;
+    let autoCycleEnabled = true;
 
     // ========================================
     // BUILD OVERVIEW LIST
@@ -201,7 +203,7 @@ import Footer from '../components/Footer.astro';
     const prevBtn = document.createElement('button');
     prevBtn.className = 'showcase-nav-btn';
     prevBtn.innerHTML = '&larr;';
-    prevBtn.addEventListener('click', () => showProject((currentProject - 1 + projects.length) % projects.length));
+    prevBtn.addEventListener('click', () => { autoCycleEnabled = false; showProject((currentProject - 1 + projects.length) % projects.length); });
     navEl.appendChild(prevBtn);
 
     const dotsWrap = document.createElement('div');
@@ -210,7 +212,7 @@ import Footer from '../components/Footer.astro';
     projects.forEach((_, i) => {
       const dot = document.createElement('button');
       dot.className = 'showcase-dot';
-      dot.addEventListener('click', () => showProject(i));
+      dot.addEventListener('click', () => { autoCycleEnabled = false; showProject(i); });
       dotsWrap.appendChild(dot);
     });
     navEl.appendChild(dotsWrap);
@@ -218,7 +220,7 @@ import Footer from '../components/Footer.astro';
     const nextBtn = document.createElement('button');
     nextBtn.className = 'showcase-nav-btn';
     nextBtn.innerHTML = '&rarr;';
-    nextBtn.addEventListener('click', () => showProject((currentProject + 1) % projects.length));
+    nextBtn.addEventListener('click', () => { autoCycleEnabled = false; showProject((currentProject + 1) % projects.length); });
     navEl.appendChild(nextBtn);
 
     // ========================================
@@ -242,6 +244,7 @@ import Footer from '../components/Footer.astro';
     function enterShowcase(startIndex) {
       if (isShowcaseMode) return;
       isShowcaseMode = true;
+      autoCycleEnabled = true;
 
       triggerGlitch();
 
@@ -349,38 +352,57 @@ import Footer from '../components/Footer.astro';
         screenshotsEl.innerHTML = '';
         screenshotsEl.className = 'showcase-screenshots';
         if (p.screenshots && p.screenshots.length > 0) {
-          if (p.screenshots.length === 1) {
+          const isBooks = p.displayType === 'books';
+          if (isBooks) {
+            screenshotsEl.classList.add('book-display');
+          } else if (p.screenshots.length === 1) {
             screenshotsEl.classList.add('single-shot');
           }
           p.screenshots.forEach((src, si) => {
-            const thumb = document.createElement('div');
-            thumb.className = 'screenshot-thumb';
-            const titlebar = document.createElement('div');
-            titlebar.className = 'screenshot-titlebar';
-            titlebar.innerHTML = `
-              <span class="traffic-light red"></span>
-              <span class="traffic-light yellow"></span>
-              <span class="traffic-light green"></span>
-              <span class="titlebar-text">${p.name}</span>
-            `;
-            const imgWrap = document.createElement('div');
-            imgWrap.className = 'img-wrap';
-            const img = document.createElement('img');
-            img.src = src;
-            img.alt = `${p.name} screenshot ${si + 1}`;
-            img.loading = 'lazy';
-            img.onerror = () => {
-              imgWrap.innerHTML = `<div class="screenshot-placeholder">Screenshot ${si + 1}</div>`;
-            };
-            const icon = document.createElement('div');
-            icon.className = 'expand-icon';
-            icon.innerHTML = '&#x26F6;';
-            imgWrap.appendChild(img);
-            imgWrap.appendChild(icon);
-            thumb.appendChild(titlebar);
-            thumb.appendChild(imgWrap);
-            thumb.addEventListener('click', () => openLightbox(p.screenshots, si));
-            screenshotsEl.appendChild(thumb);
+            if (isBooks) {
+              // Book cover display — no window chrome, just the cover with a book shadow
+              const bookEl = document.createElement('div');
+              bookEl.className = 'book-cover';
+              const img = document.createElement('img');
+              img.src = src;
+              img.alt = `${p.name} book ${si + 1}`;
+              img.loading = 'lazy';
+              img.onerror = () => {
+                bookEl.innerHTML = `<div class="screenshot-placeholder">Book ${si + 1}</div>`;
+              };
+              bookEl.appendChild(img);
+              bookEl.addEventListener('click', () => openLightbox(p.screenshots, si));
+              screenshotsEl.appendChild(bookEl);
+            } else {
+              const thumb = document.createElement('div');
+              thumb.className = 'screenshot-thumb';
+              const titlebar = document.createElement('div');
+              titlebar.className = 'screenshot-titlebar';
+              titlebar.innerHTML = `
+                <span class="traffic-light red"></span>
+                <span class="traffic-light yellow"></span>
+                <span class="traffic-light green"></span>
+                <span class="titlebar-text">${p.name}</span>
+              `;
+              const imgWrap = document.createElement('div');
+              imgWrap.className = 'img-wrap';
+              const img = document.createElement('img');
+              img.src = src;
+              img.alt = `${p.name} screenshot ${si + 1}`;
+              img.loading = 'lazy';
+              img.onerror = () => {
+                imgWrap.innerHTML = `<div class="screenshot-placeholder">Screenshot ${si + 1}</div>`;
+              };
+              const icon = document.createElement('div');
+              icon.className = 'expand-icon';
+              icon.innerHTML = '&#x26F6;';
+              imgWrap.appendChild(img);
+              imgWrap.appendChild(icon);
+              thumb.appendChild(titlebar);
+              thumb.appendChild(imgWrap);
+              thumb.addEventListener('click', () => openLightbox(p.screenshots, si));
+              screenshotsEl.appendChild(thumb);
+            }
           });
           screenshotsEl.classList.add('show');
         }
@@ -401,9 +423,11 @@ import Footer from '../components/Footer.astro';
       targetHue = (index / projects.length) * 0.15;
 
       clearTimeout(cycleTimeout);
-      cycleTimeout = setTimeout(() => {
-        if (isShowcaseMode) showProject((currentProject + 1) % projects.length);
-      }, CYCLE_DURATION);
+      if (autoCycleEnabled) {
+        cycleTimeout = setTimeout(() => {
+          if (isShowcaseMode) showProject((currentProject + 1) % projects.length);
+        }, CYCLE_DURATION);
+      }
     }
 
     // Lightbox
@@ -419,9 +443,11 @@ import Footer from '../components/Footer.astro';
     function closeLightbox() {
       lightbox.classList.remove('active');
       clearTimeout(cycleTimeout);
-      cycleTimeout = setTimeout(() => {
-        if (isShowcaseMode) showProject((currentProject + 1) % projects.length);
-      }, CYCLE_DURATION);
+      if (autoCycleEnabled) {
+        cycleTimeout = setTimeout(() => {
+          if (isShowcaseMode) showProject((currentProject + 1) % projects.length);
+        }, CYCLE_DURATION);
+      }
     }
 
     document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
@@ -457,8 +483,8 @@ import Footer from '../components/Footer.astro';
         return;
       }
       if (!isShowcaseMode) return;
-      if (e.key === 'ArrowRight') showProject((currentProject + 1) % projects.length);
-      if (e.key === 'ArrowLeft') showProject((currentProject - 1 + projects.length) % projects.length);
+      if (e.key === 'ArrowRight') { autoCycleEnabled = false; showProject((currentProject + 1) % projects.length); }
+      if (e.key === 'ArrowLeft') { autoCycleEnabled = false; showProject((currentProject - 1 + projects.length) % projects.length); }
       if (e.key === 'Escape') exitShowcase();
     });
 
@@ -1504,6 +1530,67 @@ import Footer from '../components/Footer.astro';
 
   :global(.showcase-screenshots.single-shot) {
     grid-template-columns: 1fr;
+  }
+
+  /* Book cover display */
+  :global(.showcase-screenshots.book-display) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    align-items: end;
+    justify-items: center;
+  }
+
+  :global(.book-cover) {
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow:
+      8px 8px 24px rgba(0, 0, 0, 0.6),
+      2px 2px 8px rgba(0, 0, 0, 0.4),
+      -1px 0 3px rgba(99, 102, 241, 0.08),
+      inset -2px 0 4px rgba(0, 0, 0, 0.3);
+  }
+
+  :global(.book-cover::after) {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0,0,0,0.35), rgba(0,0,0,0.1), rgba(255,255,255,0.05));
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  :global(.book-cover img) {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  :global(.book-cover:hover) {
+    transform: translateY(-8px) rotate(-1deg);
+    box-shadow:
+      12px 16px 40px rgba(0, 0, 0, 0.7),
+      4px 4px 16px rgba(0, 0, 0, 0.5),
+      0 0 30px rgba(99, 102, 241, 0.1),
+      inset -2px 0 4px rgba(0, 0, 0, 0.3);
+  }
+
+  :global(.book-cover:nth-child(2)) {
+    transform: translateY(-4px);
+  }
+
+  :global(.book-cover:nth-child(2):hover) {
+    transform: translateY(-12px) rotate(0.5deg);
+  }
+
+  :global(.book-cover:nth-child(3):hover) {
+    transform: translateY(-8px) rotate(1deg);
   }
 
   :global(.screenshot-thumb) {
