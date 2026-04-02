@@ -1,0 +1,371 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageTransition from '../components/PageTransition.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Links - Rasmus Schlunsen" bodyClass="page-links">
+  <PageTransition />
+  <Nav page="home" />
+
+  <section class="links-hero">
+    <div class="links-container">
+      <div class="links-header">
+        <div class="links-label">Sites I Like</div>
+        <h1 class="links-title">Daily Reads</h1>
+        <p class="links-subtitle">Where I find interesting projects, discussions, and ideas.</p>
+      </div>
+
+      <div class="links-grid">
+        <a href="https://news.ycombinator.com" target="_blank" class="link-card">
+          <div class="link-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+              <path d="M0 0v24h24V0H0zm12.3 13.3l-3.8-7h2.1l2.7 5.4 2.7-5.4h2.1l-3.8 7v4.7h-2v-4.7z"/>
+            </svg>
+          </div>
+          <div class="link-info">
+            <h3>Hacker News</h3>
+            <p>Tech news & thoughtful discussion. The comments are often better than the articles.</p>
+          </div>
+          <div class="link-tags">
+            <span class="link-tag">News</span>
+            <span class="link-tag">Discussion</span>
+          </div>
+          <span class="link-arrow">&rarr;</span>
+        </a>
+
+        <a href="https://reddit.com" target="_blank" class="link-card">
+          <div class="link-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6.066 13.967c.007.154.007.307 0 .461-.39 2.648-3.246 4.74-6.74 4.74s-6.35-2.092-6.74-4.74a3.25 3.25 0 010-.461c-.453-.294-.738-.795-.738-1.347 0-.89.722-1.612 1.612-1.612.43 0 .843.17 1.147.474 1.128-.794 2.68-1.307 4.399-1.374l.838-3.951a.304.304 0 01.363-.231l2.795.592a1.075 1.075 0 112.057.476l-2.942-.621-.754 3.553c1.69.075 3.214.585 4.326 1.373.304-.304.717-.474 1.147-.474.89 0 1.612.722 1.612 1.612 0 .552-.285 1.053-.738 1.347zM9.062 13.5a1.125 1.125 0 100 2.25 1.125 1.125 0 000-2.25zm5.876 0a1.125 1.125 0 100 2.25 1.125 1.125 0 000-2.25zm-5.4 3.713c-.143-.136-.016-.347.165-.273.874.357 1.834.536 2.3.536.462 0 1.422-.179 2.296-.536.181-.074.308.137.165.273-.72.684-1.574 1.037-2.461 1.037s-1.745-.353-2.465-1.037z"/>
+            </svg>
+          </div>
+          <div class="link-info">
+            <h3>Reddit</h3>
+            <p>Deep dives into niche communities. Great for Rust, Go, AI, and self-hosted discussions.</p>
+          </div>
+          <div class="link-tags">
+            <span class="link-tag">Communities</span>
+            <span class="link-tag">Discussion</span>
+          </div>
+          <span class="link-arrow">&rarr;</span>
+        </a>
+
+        <a href="https://github.com/trending" target="_blank" class="link-card">
+          <div class="link-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+              <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </div>
+          <div class="link-info">
+            <h3>GitHub Trending</h3>
+            <p>Discovering new open source projects before they blow up. Best way to stay current.</p>
+          </div>
+          <div class="link-tags">
+            <span class="link-tag">Open Source</span>
+            <span class="link-tag">Code</span>
+          </div>
+          <span class="link-arrow">&rarr;</span>
+        </a>
+
+        <a href="https://huggingface.co/spaces" target="_blank" class="link-card">
+          <div class="link-icon">
+            <span class="hf-emoji">🤗</span>
+          </div>
+          <div class="link-info">
+            <h3>Hugging Face Spaces</h3>
+            <p>Interactive AI demos and models you can try instantly. The playground for ML experimentation.</p>
+          </div>
+          <div class="link-tags">
+            <span class="link-tag">AI</span>
+            <span class="link-tag">Models</span>
+            <span class="link-tag">Demos</span>
+          </div>
+          <span class="link-arrow">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+
+  <script type="importmap">
+  { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js" } }
+  </script>
+  <script type="module" is:inline>
+    import * as THREE from 'three';
+
+    // Simplex noise
+    const F2=0.5*(Math.sqrt(3)-1),G2=(3-Math.sqrt(3))/6;
+    const grad3=[[1,1],[-1,1],[1,-1],[-1,-1],[1,0],[-1,0],[0,1],[0,-1]];
+    let perm=new Uint8Array(512),permMod8=new Uint8Array(512);
+    (function(){const p=new Uint8Array(256);for(let i=0;i<256;i++)p[i]=i;for(let i=255;i>0;i--){const j=Math.floor(Math.random()*(i+1));[p[i],p[j]]=[p[j],p[i]];}for(let i=0;i<512;i++){perm[i]=p[i&255];permMod8[i]=perm[i]%8;}})();
+    function simplex2(x,y){let s=(x+y)*F2;let i=Math.floor(x+s),j=Math.floor(y+s);let t=(i+j)*G2;let X0=i-t,Y0=j-t;let x0=x-X0,y0=y-Y0;let i1=x0>y0?1:0,j1=x0>y0?0:1;let x1=x0-i1+G2,y1=y0-j1+G2;let x2=x0-1+2*G2,y2=y0-1+2*G2;let ii=i&255,jj=j&255;let n0=0,n1=0,n2=0;let t0=0.5-x0*x0-y0*y0;if(t0>=0){t0*=t0;let g=grad3[permMod8[ii+perm[jj]]];n0=t0*t0*(g[0]*x0+g[1]*y0);}let t1=0.5-x1*x1-y1*y1;if(t1>=0){t1*=t1;let g=grad3[permMod8[ii+i1+perm[jj+j1]]];n1=t1*t1*(g[0]*x1+g[1]*y1);}let t2=0.5-x2*x2-y2*y2;if(t2>=0){t2*=t2;let g=grad3[permMod8[ii+1+perm[jj+1]]];n2=t2*t2*(g[0]*x2+g[1]*y2);}return 70*(n0+n1+n2);}
+    function fbm(x,y,o=4){let v=0,a=1,f=1,m=0;for(let i=0;i<o;i++){v+=simplex2(x*f,y*f)*a;m+=a;a*=0.5;f*=2;}return v/m;}
+
+    // Scene
+    const canvas=document.getElementById('three-bg');
+    const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+    renderer.setSize(window.innerWidth,window.innerHeight);
+    const scene=new THREE.Scene();
+    scene.fog=new THREE.FogExp2(0x0a0b10,0.032);
+    const camera=new THREE.PerspectiveCamera(60,window.innerWidth/window.innerHeight,0.1,200);
+    camera.position.set(0,3,12);camera.lookAt(0,1,0);
+
+    // Mountains
+    [{z:-10,s:0.12,h:7,c:0x1a1535},{z:-7,s:0.15,h:5.5,c:0x221d45},{z:-4,s:0.2,h:4,c:0x2a2455},{z:-1,s:0.25,h:3,c:0x332d65},{z:2,s:0.3,h:2.2,c:0x3d3675},{z:5,s:0.4,h:1.5,c:0x474085}].forEach((cfg,idx)=>{
+      const geo=new THREE.PlaneGeometry(80,12,160,24);geo.rotateX(-Math.PI/2.5);
+      const pos=geo.attributes.position;const sd=idx*7.3;
+      for(let i=0;i<pos.count;i++){const x=pos.getX(i),z=pos.getZ(i);pos.setY(i,pos.getY(i)+Math.max(0,fbm(x*cfg.s+sd,z*cfg.s+sd,5))*cfg.h*(1-Math.pow(Math.abs(x)/40,2)));}
+      geo.computeVertexNormals();
+      scene.add(new THREE.Mesh(geo,new THREE.MeshStandardMaterial({color:cfg.c,flatShading:true,transparent:true,opacity:1-idx*0.04,side:THREE.DoubleSide})));
+      const m=scene.children[scene.children.length-1];m.position.set(0,-2.5,cfg.z);
+    });
+
+    // Stars
+    const sc=document.createElement('canvas');sc.width=32;sc.height=32;
+    const sx=sc.getContext('2d');const sg=sx.createRadialGradient(16,16,0,16,16,14);
+    sg.addColorStop(0,'rgba(200,190,255,1)');sg.addColorStop(0.5,'rgba(150,140,220,0.4)');sg.addColorStop(1,'rgba(100,100,200,0)');
+    sx.fillStyle=sg;sx.beginPath();sx.arc(16,16,14,0,Math.PI*2);sx.fill();
+    const starTex=new THREE.CanvasTexture(sc);
+    const sGeo=new THREE.BufferGeometry();const sPos=new Float32Array(300*3);
+    for(let i=0;i<300;i++){sPos[i*3]=(Math.random()-0.5)*100;sPos[i*3+1]=Math.random()*30+4;sPos[i*3+2]=(Math.random()-0.5)*60-15;}
+    sGeo.setAttribute('position',new THREE.BufferAttribute(sPos,3));
+    const sMat=new THREE.PointsMaterial({color:0x9999dd,size:0.15,transparent:true,opacity:0.4,map:starTex,depthWrite:false,blending:THREE.AdditiveBlending});
+    scene.add(new THREE.Points(sGeo,sMat));
+
+    // Lighting
+    scene.add(new THREE.AmbientLight(0x223355,0.5));
+    const dl=new THREE.DirectionalLight(0x6366f1,0.9);dl.position.set(5,12,5);scene.add(dl);
+    const rl=new THREE.DirectionalLight(0x818cf8,0.3);rl.position.set(-8,6,-8);scene.add(rl);
+
+    let scrollY=0;
+    window.addEventListener('scroll',()=>{scrollY=window.scrollY;},{passive:true});
+    window.addEventListener('resize',()=>{camera.aspect=window.innerWidth/window.innerHeight;camera.updateProjectionMatrix();renderer.setSize(window.innerWidth,window.innerHeight);});
+
+    function animate(time){
+      requestAnimationFrame(animate);
+      const t=time*0.001;
+      camera.position.y=3-scrollY*0.002+Math.sin(t*0.12)*0.15;
+      camera.position.x=Math.sin(t*0.08)*0.4;
+      camera.position.z+=Math.cos(t*0.06)*0.003;
+      camera.lookAt(Math.sin(t*0.05)*0.2,1-scrollY*0.001+Math.cos(t*0.1)*0.1,0);
+      sMat.opacity=0.3+Math.sin(t*1.2)*0.1;
+      renderer.render(scene,camera);
+    }
+    animate(0);
+
+    // Page transition
+    const pageTrans=document.getElementById('pageTransition');
+    const preloaderContent=document.getElementById('preloaderContent');
+    window.addEventListener('load',()=>{
+      setTimeout(()=>{
+        preloaderContent.classList.add('hidden');
+        setTimeout(()=>{
+          pageTrans.classList.remove('preload');
+          pageTrans.classList.add('exit');
+          preloaderContent.style.display='none';
+          setTimeout(()=>pageTrans.classList.remove('exit'),700);
+        },300);
+      },400);
+    });
+    document.querySelectorAll('a[href="/"]').forEach(link=>{
+      link.addEventListener('click',(e)=>{
+        e.preventDefault();
+        const href=link.getAttribute('href');
+        pageTrans.classList.add('active');
+        setTimeout(()=>{window.location.href=href;},600);
+      });
+    });
+
+    // Stagger card animations
+    document.querySelectorAll('.link-card').forEach((card, i) => {
+      card.style.animationDelay = `${0.5 + i * 0.15}s`;
+    });
+  </script>
+</Layout>
+
+<style>
+  .links-hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    padding: 8rem clamp(2rem, 5vw, 6rem) 4rem;
+  }
+
+  .links-container {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .links-header {
+    margin-bottom: 3rem;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeUp 1s ease 0.3s forwards;
+  }
+
+  .links-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .links-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #ffffff 0%, #818cf8 60%, #6366f1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .links-subtitle {
+    font-size: 1.1rem;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .links-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .link-card {
+    display: grid;
+    grid-template-columns: 56px 1fr auto auto;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.5rem 1.75rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .link-card:hover {
+    border-color: var(--border-hover);
+    background: rgba(30, 33, 55, 0.7);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 40px rgba(99, 102, 241, 0.12), 0 0 0 1px rgba(99, 102, 241, 0.1);
+  }
+
+  .link-icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(99, 102, 241, 0.08);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    color: var(--accent-hover);
+    transition: all 0.35s;
+    flex-shrink: 0;
+  }
+
+  .link-card:hover .link-icon {
+    background: rgba(99, 102, 241, 0.15);
+    border-color: var(--border-hover);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
+  }
+
+  .hf-emoji {
+    font-size: 1.6rem;
+    line-height: 1;
+  }
+
+  .link-info h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    transition: color 0.3s;
+  }
+
+  .link-card:hover .link-info h3 {
+    color: var(--accent-hover);
+  }
+
+  .link-info p {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  .link-tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .link-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    padding: 0.2rem 0.55rem;
+    background: rgba(99, 102, 241, 0.08);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--accent-hover);
+    white-space: nowrap;
+  }
+
+  .link-arrow {
+    font-size: 1.2rem;
+    color: var(--muted);
+    transition: all 0.3s;
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+
+  .link-card:hover .link-arrow {
+    opacity: 1;
+    transform: translateX(0);
+    color: var(--accent-hover);
+  }
+
+  @media (max-width: 700px) {
+    .link-card {
+      grid-template-columns: 48px 1fr;
+      gap: 1rem;
+      padding: 1.25rem;
+    }
+
+    .link-tags {
+      grid-column: 1 / -1;
+    }
+
+    .link-arrow {
+      display: none;
+    }
+
+    .link-icon {
+      width: 48px;
+      height: 48px;
+    }
+
+    .links-hero {
+      padding-top: 6rem;
+    }
+  }
+</style>

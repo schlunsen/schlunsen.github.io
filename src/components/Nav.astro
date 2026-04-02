@@ -1,6 +1,6 @@
 ---
 interface Props {
-  page?: 'home' | 'hire';
+  page?: 'home';
 }
 
 const { page = 'home' } = Astro.props;
@@ -9,17 +9,8 @@ const { page = 'home' } = Astro.props;
 <nav class="top-nav" id="topNav">
   <a href="/" class="nav-logo">Rasmus Schlunsen</a>
   <div class="nav-links">
-    {page === 'hire' ? (
-      <>
-        <a href="/">Home</a>
-        <a href="https://www.linkedin.com/in/rasmusbs/" target="_blank" class="nav-cta">Connect</a>
-      </>
-    ) : (
-      <>
-        <a href="#about">About</a>
-        <a href="/hire" class="nav-cta">Hire Me</a>
-      </>
-    )}
+    <a href="/#about">About</a>
+    <a href="/likes">Likes</a>
   </div>
 </nav>
 
@@ -35,8 +26,7 @@ const { page = 'home' } = Astro.props;
     transition: all 0.4s;
   }
 
-  .top-nav.scrolled,
-  :global(.page-hire) .top-nav {
+  .top-nav.scrolled {
     background: rgba(10, 11, 16, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -79,22 +69,9 @@ const { page = 'home' } = Astro.props;
     background: rgba(99, 102, 241, 0.08);
   }
 
-  .nav-links a.nav-cta {
-    color: var(--bg);
-    background: var(--accent);
-    font-weight: 600;
-    margin-left: 0.5rem;
-  }
-
-  .nav-links a.nav-cta:hover {
-    background: var(--accent-hover);
-    box-shadow: 0 0 20px var(--glow);
-  }
-
   @media (max-width: 900px) {
     .top-nav { padding: 0.75rem 1.25rem; }
     .nav-logo { font-size: 0.95rem; }
     .nav-links a { font-size: 0.75rem; padding: 0.35rem 0.75rem; }
-    .nav-links a.nav-cta { padding: 0.35rem 0.9rem; margin-left: 0.25rem; }
   }
 </style>

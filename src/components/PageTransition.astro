@@ -1,24 +1,15 @@
 ---
-interface Props {
-  showGlitchPreloader?: boolean;
-}
-
-const { showGlitchPreloader = false } = Astro.props;
 ---
 
 <div class="page-transition preload" id="pageTransition">
   <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
 </div>
 <div class="preloader-content" id="preloaderContent">
-  {showGlitchPreloader ? (
-    <div class="preloader-logo-wrap">
-      <img class="preloader-logo" src="/rasmus-new-cyberpunk2.webp" alt="" id="preloader-logo-img">
-      <canvas id="preloader-glitch-canvas"></canvas>
-    </div>
-  ) : (
-    <img class="preloader-logo" src="https://avatars.githubusercontent.com/u/117190?v=4" alt="">
-  )}
-  <span class="preloader-text">Loading</span>
+  <div class="preloader-logo-wrap">
+    <img class="preloader-logo" src="/rasmus-new-cyberpunk2.webp" alt="" id="preloader-logo-img">
+    <canvas id="preloader-glitch-canvas"></canvas>
+  </div>
+  <span class="preloader-text" id="preloaderText">Loading</span>
   <div class="preloader-bar"><div class="preloader-bar-fill"></div></div>
 </div>
 
@@ -83,16 +74,6 @@ const { showGlitchPreloader = false } = Astro.props;
     object-fit: cover;
   }
 
-  /* For the non-glitch version (hire page) */
-  .preloader-content > .preloader-logo {
-    width: 200px;
-    height: 200px;
-    border: 3px solid rgba(99, 102, 241, 0.4);
-    margin-bottom: 2.5rem;
-    animation: preloaderPulse 2s ease infinite;
-    box-shadow: 0 0 80px rgba(99, 102, 241, 0.3), 0 0 160px rgba(99, 102, 241, 0.1), inset 0 0 40px rgba(99, 102, 241, 0.05);
-  }
-
   #preloader-glitch-canvas {
     position: absolute;
     inset: 0;
@@ -106,9 +87,32 @@ const { showGlitchPreloader = false } = Astro.props;
     font-family: 'Inter', sans-serif;
     font-size: 1.1rem;
     font-weight: 800;
-    color: rgba(255,255,255,0.7);
     letter-spacing: 0.35em;
     text-transform: uppercase;
+    position: relative;
+    color: transparent;
+    background: linear-gradient(
+      90deg,
+      rgba(255,255,255,0.4) 0%,
+      rgba(255,255,255,0.4) 35%,
+      rgba(255,255,255,1) 50%,
+      rgba(255,255,255,0.4) 65%,
+      rgba(255,255,255,0.4) 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: textBeam 2s ease-in-out infinite;
+    transition: opacity 0.2s;
+  }
+
+  .preloader-text.swap {
+    opacity: 0;
+  }
+
+  @keyframes textBeam {
+    0% { background-position: 200% center; }
+    100% { background-position: -200% center; }
   }
 
   .preloader-bar {
@@ -173,3 +177,27 @@ const { showGlitchPreloader = false } = Astro.props;
     100% { transform: scaleY(0); }
   }
 </style>
+
+<script is:inline>
+  (function() {
+    var messages = [
+      'Loading',
+      'Brewing Coffee',
+      'Hacking Matrix',
+      'Almost There',
+      'Cargando',
+      'Preparando Caf\u00e9',
+      'Desplegando Agentes',
+      'Casi Listo',
+      'Indl\u00e6ser',
+      'Brygger Kaffe',
+      'V\u00e6kker AI',
+      'N\u00e6sten Klar',
+      'Carregant',
+      'Pintant P\u00edxels',
+      'Gaireb\u00e9 Llest'
+    ];
+    var el = document.getElementById('preloaderText');
+    if (el) el.textContent = messages[Math.floor(Math.random() * messages.length)];
+  })();
+</script>
