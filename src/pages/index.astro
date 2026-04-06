@@ -119,10 +119,10 @@ import Footer from '../components/Footer.astro';
     // PROJECT DATA
     // ========================================
     const projects = [
-      { name: 'Wee', desc: 'The IDE for the agentic engineer. Run, monitor, and orchestrate AI agent sessions from a browser-based dashboard.', tags: ['AI', 'Developer Tools'], url: 'https://github.com/schlunsen/wee', homepage: 'https://schlunsen.github.io/wee', short: 'IDE for the agentic engineer. Orchestrate AI agent sessions.', screenshots: [
-          'https://raw.githubusercontent.com/schlunsen/wee/main/docs/wee-desktop.png',
-          'https://raw.githubusercontent.com/schlunsen/wee/main/docs/wee-zen.png',
-          'https://raw.githubusercontent.com/schlunsen/wee/main/docs/wee-connectors.png'
+      { name: 'Wee', desc: 'Hosted agent sandboxes for software development. Let AI coding agents do real work in isolated, on-demand cloud environments with real-time monitoring and multi-agent orchestration.', tags: ['AI', 'Developer Tools'], url: '', homepage: 'https://wee.cat', short: 'Hosted agent sandboxes for AI-powered software development.', screenshots: [
+          '/wee-hero.png',
+          '/wee-sandboxes.png',
+          '/wee-multi-agent.png'
       ] },
       { name: 'Donna', desc: 'Autonomous AI pentesting platform \u2014 orchestrates Claude Code agents via Temporal to find and exploit vulnerabilities.', tags: ['Security', 'AI'], url: 'https://github.com/schlunsen/donna', homepage: 'https://schlunsen.github.io/donna/', short: 'Autonomous AI pentesting via Claude Code agents + Temporal.', screenshots: [
           'https://raw.githubusercontent.com/schlunsen/donna/main/assets/github-banner.png',
@@ -344,7 +344,12 @@ import Footer from '../components/Footer.astro';
         descEl.classList.add('show');
         tagsEl.innerHTML = p.tags.map(t => `<span class="stag">${t}</span>`).join('');
         tagsEl.classList.add('show');
-        linkEl.href = p.url;
+        if (p.url) {
+          linkEl.href = p.url;
+          linkEl.style.display = 'inline-flex';
+        } else {
+          linkEl.style.display = 'none';
+        }
         if (p.homepage) {
           siteLinkEl.href = p.homepage;
           siteLinkEl.classList.add('visible');
