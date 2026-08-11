@@ -9,12 +9,36 @@ const skills = [
   'Docker', 'AWS', 'CI/CD', 'REST APIs', 'Linux',
   'Agile', 'TDD', 'Git', 'Architecture',
 ];
+
+const work = [
+  {
+    name: 'Clovr Labs',
+    role: 'Founder & Consultant',
+    place: 'Barcelona, ES',
+    desc: 'Software consultancy — technical strategy and hands-on development.',
+    now: true,
+  },
+  {
+    name: 'Consulting',
+    role: 'Senior Developer',
+    place: 'Barcelona, ES',
+    desc: 'Full-stack solutions, modernizing tech stacks and dev practices.',
+    now: false,
+  },
+  {
+    name: 'Copenhagen',
+    role: 'Software Developer',
+    place: 'Copenhagen, DK',
+    desc: 'Enterprise applications, agile cross-functional teams.',
+    now: false,
+  },
+];
 ---
 
 <Layout title="Rasmus Schlünsen — Software Consultant & Developer">
   <!-- NAV -->
   <nav class="site-nav">
-    <a href="/" class="site-logo">
+    <a href="/" class="site-logo" aria-label="Home">
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
         <circle cx="14" cy="14" r="13" stroke="#f3f3f3" stroke-width="1"/>
         <circle cx="14" cy="14" r="4" fill="#e7c59a"/>
@@ -29,7 +53,7 @@ const skills = [
 
   <!-- HERO -->
   <section class="hero">
-    <svg class="hero-geo" viewBox="0 0 1200 800" fill="none" preserveAspectRatio="xMidYMid slice">
+    <svg class="hero-geo" viewBox="0 0 1200 800" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <circle cx="820" cy="300" r="220" stroke="#333" stroke-width="1.5"/>
       <circle cx="820" cy="300" r="120" stroke="#2a2a2a" stroke-width="1"/>
       <circle cx="720" cy="200" r="50" fill="#e7c59a" opacity="0.08"/>
@@ -67,7 +91,7 @@ const skills = [
   <section class="about" id="about">
     <div class="section-wrap about-grid">
       <div class="about-art">
-        <svg viewBox="0 0 400 400" fill="none" style="width: 100%; max-width: 300px;">
+        <svg viewBox="0 0 400 400" fill="none" style="width: 100%; max-width: 300px;" aria-hidden="true">
           <circle cx="200" cy="200" r="180" stroke="#2a2a2a" stroke-width="1"/>
           <circle cx="200" cy="200" r="120" stroke="#2a2a2a" stroke-width="1"/>
           <circle cx="200" cy="200" r="60" stroke="#333" stroke-width="1"/>
@@ -79,7 +103,6 @@ const skills = [
         </svg>
       </div>
       <div class="about-text">
-        <span class="mono-label">// about</span>
         <h2>Building software<br/>with precision<br/>and purpose.</h2>
         <p>15+ years crafting solutions across the full stack. From Copenhagen to Barcelona — always focused on what matters: clean architecture, real impact.</p>
         <p>Currently running Clovr Labs. Fluent in English, Danish, and Spanish. 2× DIA Award winner.</p>
@@ -94,33 +117,19 @@ const skills = [
   <!-- WORK -->
   <section class="work" id="work">
     <div class="section-wrap">
-      <span class="mono-label">// experience</span>
       <h2>Work</h2>
-      <div class="work-grid">
-        <div class="work-card">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" fill="none" stroke="#e7c59a" stroke-width="1.5"/><circle cx="24" cy="24" r="6" fill="#e7c59a"/></svg>
-          <div class="work-card-body">
-            <div class="work-card-top"><h3>Clovr Labs</h3><span class="now-badge">NOW</span></div>
-            <span class="work-role">Founder & Consultant — Barcelona, ES</span>
-            <p>Software consultancy — technical strategy and hands-on development.</p>
+      <div class="work-ledger">
+        {work.map((w) => (
+          <div class="work-row">
+            <div class="work-name">
+              <h3>{w.name}</h3>
+              {w.now && <span class="now-badge">NOW</span>}
+            </div>
+            <span class="work-role">{w.role}</span>
+            <span class="work-place">{w.place}</span>
+            <p class="work-desc">{w.desc}</p>
           </div>
-        </div>
-        <div class="work-card">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><polygon points="24,6 42,42 6,42" fill="none" stroke="#555" stroke-width="1.5"/></svg>
-          <div class="work-card-body">
-            <div class="work-card-top"><h3>Consulting</h3></div>
-            <span class="work-role">Senior Developer — Barcelona, ES</span>
-            <p>Full-stack solutions, modernizing tech stacks and dev practices.</p>
-          </div>
-        </div>
-        <div class="work-card">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="8" y="8" width="32" height="32" fill="none" stroke="#555" stroke-width="1.5" transform="rotate(12 24 24)"/></svg>
-          <div class="work-card-body">
-            <div class="work-card-top"><h3>Copenhagen</h3></div>
-            <span class="work-role">Software Developer — Copenhagen, DK</span>
-            <p>Enterprise applications, agile cross-functional teams.</p>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
@@ -129,9 +138,8 @@ const skills = [
   <section class="stack" id="stack">
     <div class="section-wrap stack-grid">
       <div class="stack-left">
-        <span class="mono-label">// stack</span>
         <h2>Tools &<br/>technologies</h2>
-        <svg viewBox="0 0 280 280" fill="none" style="width: 100%; max-width: 220px; margin-top: 12px;">
+        <svg viewBox="0 0 280 280" fill="none" style="width: 100%; max-width: 220px; margin-top: 12px;" aria-hidden="true">
           <circle cx="140" cy="140" r="130" stroke="#2a2a2a" stroke-width="1"/>
           <circle cx="80" cy="100" r="35" stroke="#333" stroke-width="1"/>
           <circle cx="210" cy="85" r="18" fill="#e7c59a" opacity="0.08"/>
@@ -153,7 +161,7 @@ const skills = [
   <section class="contact" id="contact">
     <div class="section-wrap contact-grid">
       <div class="contact-art">
-        <svg viewBox="0 0 200 200" fill="none" style="width: 100%; max-width: 180px; opacity: 0.7;">
+        <svg viewBox="0 0 200 200" fill="none" style="width: 100%; max-width: 180px; opacity: 0.7;" aria-hidden="true">
           <circle cx="100" cy="100" r="90" stroke="#2a2a2a" stroke-width="1"/>
           <circle cx="100" cy="100" r="30" fill="#e7c59a" opacity="0.06"/>
           <line x1="10" y1="100" x2="190" y2="100" stroke="#2a2a2a" stroke-width="1"/>
@@ -162,7 +170,6 @@ const skills = [
         </svg>
       </div>
       <div class="contact-body">
-        <span class="mono-label">// contact</span>
         <h2>Let's<br/>connect.</h2>
         <p>Open to projects, collaborations, and interesting challenges.</p>
         <div class="contact-links">
@@ -184,7 +191,7 @@ const skills = [
   <!-- FOOTER -->
   <footer class="site-footer">
     <div class="section-wrap footer-inner">
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
         <circle cx="10" cy="10" r="9" stroke="#333" stroke-width="1"/>
         <circle cx="10" cy="10" r="3" fill="#333"/>
       </svg>
@@ -194,6 +201,11 @@ const skills = [
 </Layout>
 
 <style is:global>
+  /* Hallmark · redesign pass · theme: studied-DNA (source: DESIGN.md — Hyperstudio)
+   * display: Archivo · body: Inter · mono: JetBrains Mono · accent: amber #e7c59a
+   * work section: typographic ledger (no icon-tile grid) · eyebrows: off
+   */
+
   /* === SHARED === */
   .section-wrap {
     max-width: 1100px;
@@ -202,17 +214,17 @@ const skills = [
   }
 
   .mono-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: -0.037em;
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    letter-spacing: var(--track-mono);
     text-transform: uppercase;
-    color: #666;
+    color: var(--color-faint);
     display: block;
   }
 
   .meta-val {
     font-size: 14px;
-    color: #c1c1c1;
+    color: var(--color-meta);
     line-height: 1.5;
   }
 
@@ -224,37 +236,37 @@ const skills = [
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 40px;
-    background: rgba(16, 16, 16, 0.85);
+    padding: var(--space-md) 40px;
+    background: var(--color-paper-veil);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid #212121;
+    border-bottom: 1px solid var(--color-line);
   }
 
-  .site-logo { display: block; transition: transform 0.3s; }
+  .site-logo { display: block; transition: transform var(--dur-med) var(--ease-out); }
   .site-logo:hover { transform: rotate(90deg); }
 
-  .site-nav-links { display: flex; gap: 32px; }
+  .site-nav-links { display: flex; gap: var(--space-xl); }
   .site-nav-links a {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: -0.037em;
-    color: #949494;
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    letter-spacing: var(--track-mono);
+    color: var(--color-body);
     text-transform: uppercase;
-    transition: color 0.2s;
+    white-space: nowrap;
+    transition: color var(--dur-short) var(--ease-out);
   }
-  .site-nav-links a:hover { color: #f3f3f3; }
+  .site-nav-links a:hover { color: var(--color-ink); }
 
   /* === HERO === */
   .hero {
     position: relative;
-    height: 100vh;
-    min-height: 600px;
+    min-height: min(92svh, 900px);
     display: flex;
     align-items: flex-end;
     padding: 80px 40px;
     overflow: hidden;
-    background: #101010;
+    background: var(--color-paper);
   }
 
   .hero-geo {
@@ -272,20 +284,21 @@ const skills = [
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    gap: 64px;
+    gap: var(--space-3xl);
   }
 
   .hero-title { flex: 1; }
 
   .hero-l1, .hero-l2 {
     display: block;
+    font-family: var(--font-display);
     font-size: clamp(56px, 10vw, 120px);
     font-weight: 800;
     line-height: 0.88;
     letter-spacing: -0.04em;
   }
-  .hero-l1 { color: #f3f3f3; }
-  .hero-l2 { color: #606060; padding-left: 0.5em; }
+  .hero-l1 { color: var(--color-ink); }
+  .hero-l2 { color: var(--color-faint); padding-left: 0.5em; }
 
   .hero-info {
     display: flex;
@@ -293,28 +306,28 @@ const skills = [
     gap: 20px;
     flex-shrink: 0;
     width: 220px;
-    padding-bottom: 8px;
+    padding-bottom: var(--space-xs);
   }
 
   .hero-info-item {
-    border-top: 1px solid #333;
+    border-top: 1px solid var(--color-line-strong);
     padding-top: 10px;
   }
-  .hero-info-item .mono-label { margin-bottom: 4px; }
+  .hero-info-item .mono-label { margin-bottom: var(--space-2xs); }
   .hero-info-item p {
     font-size: 15px;
-    color: #f3f3f3;
+    color: var(--color-ink);
     line-height: 1.4;
   }
 
-  .hero-status { display: flex; align-items: center; gap: 8px; }
+  .hero-status { display: flex; align-items: center; gap: var(--space-xs); }
 
   .green-dot {
     width: 6px; height: 6px;
-    background: #00ac5c;
+    background: var(--color-positive);
     border-radius: 50%;
     display: inline-block;
-    animation: pulse 2.5s ease-in-out infinite;
+    animation: pulse 2.5s var(--ease-in-out) infinite;
   }
 
   @keyframes pulse {
@@ -324,8 +337,8 @@ const skills = [
 
   /* === ABOUT === */
   .about {
-    padding: 96px 40px;
-    border-top: 1px solid #212121;
+    padding: var(--space-5xl) 40px var(--space-4xl);
+    border-top: 1px solid var(--color-line);
   }
 
   .about-grid {
@@ -359,98 +372,96 @@ const skills = [
   .about-meta {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    padding-top: 16px;
-    border-top: 1px solid #212121;
+    gap: var(--space-sm);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--color-line);
   }
 
   .meta-row {
     display: flex;
-    gap: 24px;
+    gap: var(--space-lg);
     align-items: baseline;
   }
   .meta-row .mono-label { min-width: 80px; flex-shrink: 0; }
 
-  /* === WORK === */
+  /* === WORK — typographic ledger === */
   .work {
-    padding: 96px 40px;
-    border-top: 1px solid #212121;
+    padding: var(--space-4xl) 40px var(--space-5xl);
+    border-top: 1px solid var(--color-line);
   }
 
   .work h2 {
     font-size: clamp(32px, 5vw, 48px);
     line-height: 0.95;
-    margin-top: 16px;
-    margin-bottom: 64px;
+    margin-bottom: var(--space-2xl);
   }
 
-  .work-grid {
+  .work-ledger {
+    border-top: 1px solid var(--color-line);
+  }
+
+  .work-row {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: #212121;
-    border: 1px solid #212121;
-    border-radius: 8px;
-    overflow: hidden;
+    grid-template-columns: 1.1fr 1fr 0.7fr 1.4fr;
+    gap: var(--space-lg);
+    align-items: baseline;
+    padding: var(--space-lg) var(--space-md);
+    border-bottom: 1px solid var(--color-line);
+    transition: background-color var(--dur-med) var(--ease-out);
   }
+  .work-row:hover { background: var(--color-surface-raised); }
 
-  .work-card {
-    background: #0c0c0c;
-    padding: 32px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    transition: background 0.3s;
-  }
-  .work-card:hover { background: #141414; }
-
-  .work-card-body {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .work-card-top {
+  .work-name {
     display: flex;
     align-items: center;
     gap: 10px;
+    min-width: 0;
   }
 
-  .work-card-top h3 {
+  .work-name h3 {
     font-size: 20px;
     font-weight: 700;
     letter-spacing: -0.01em;
   }
 
   .now-badge {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-mono);
     font-size: 9px;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: #e7c59a;
-    background: rgba(231, 197, 154, 0.1);
-    border: 1px solid rgba(231, 197, 154, 0.2);
-    padding: 2px 8px;
-    border-radius: 99px;
+    color: var(--color-accent);
+    background: var(--color-accent-wash);
+    border: 1px solid var(--color-accent-line);
+    padding: 2px var(--space-xs);
+    border-radius: var(--radius-pill);
+    white-space: nowrap;
   }
 
   .work-role {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: #666;
-    letter-spacing: -0.037em;
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    color: var(--color-faint);
+    letter-spacing: var(--track-mono);
+    text-transform: uppercase;
   }
 
-  .work-card p {
+  .work-place {
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    color: var(--color-dim);
+    letter-spacing: var(--track-mono);
+  }
+
+  .work-desc {
     font-size: 14px;
     line-height: 1.6;
   }
 
   /* === STACK === */
   .stack {
-    padding: 96px 40px;
-    border-top: 1px solid #212121;
-    background: #0a0a0a;
+    padding: var(--space-5xl) 40px;
+    border-top: 1px solid var(--color-line);
+    background: var(--color-paper-shade);
   }
 
   .stack-grid {
@@ -463,7 +474,7 @@ const skills = [
   .stack-left {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: var(--space-md);
   }
 
   .stack-left h2 {
@@ -475,28 +486,29 @@ const skills = [
   .stack-right {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: var(--space-xs);
   }
 
   .skill-tag {
     padding: 10px 18px;
-    border: 1px solid #2a2a2a;
-    border-radius: 8px;
+    border: 1px solid var(--color-line-soft);
+    border-radius: var(--radius);
     font-size: 14px;
-    color: #c1c1c1;
-    transition: all 0.25s ease;
+    color: var(--color-meta);
     cursor: default;
+    transition:
+      border-color var(--dur-short) var(--ease-out),
+      color var(--dur-short) var(--ease-out);
   }
   .skill-tag:hover {
-    border-color: #e7c59a;
-    color: #e7c59a;
-    transform: translateY(-2px);
+    border-color: var(--color-accent);
+    color: var(--color-accent);
   }
 
   /* === CONTACT === */
   .contact {
-    padding: 96px 40px;
-    border-top: 1px solid #212121;
+    padding: var(--space-4xl) 40px var(--space-3xl);
+    border-top: 1px solid var(--color-line);
   }
 
   .contact-grid {
@@ -528,67 +540,78 @@ const skills = [
   .contact-links {
     display: flex;
     flex-direction: column;
-    border-top: 1px solid #212121;
+    border-top: 1px solid var(--color-line);
   }
 
   .contact-link {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 0;
-    border-bottom: 1px solid #212121;
-    transition: padding-left 0.2s;
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--color-line);
     text-decoration: none;
   }
-  .contact-link:hover { padding-left: 12px; }
   .contact-link span:first-child {
     font-size: 18px;
     font-weight: 600;
-    color: #f3f3f3;
+    color: var(--color-ink);
+    transition: transform var(--dur-short) var(--ease-out);
   }
+  .contact-link:hover span:first-child { transform: translateX(var(--space-sm)); }
   .link-arrow {
     font-size: 20px;
-    color: #666;
-    transition: color 0.2s;
+    color: var(--color-faint);
+    transition: color var(--dur-short) var(--ease-out);
   }
-  .contact-link:hover .link-arrow { color: #e7c59a; }
+  .contact-link:hover .link-arrow { color: var(--color-accent); }
 
   .contact-langs {
     display: flex;
-    gap: 24px;
+    gap: var(--space-lg);
     align-items: baseline;
-    padding-top: 8px;
+    padding-top: var(--space-xs);
   }
 
   /* === FOOTER === */
   .site-footer {
-    padding: 24px 40px;
-    border-top: 1px solid #212121;
+    padding: var(--space-lg) 40px;
+    border-top: 1px solid var(--color-line);
   }
 
   .footer-inner {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: var(--space-sm);
   }
 
   .footer-inner span {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: -0.037em;
-    color: #444;
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    letter-spacing: var(--track-mono);
+    color: var(--color-dim);
   }
 
   /* === RESPONSIVE === */
   @media (max-width: 768px) {
-    .hero { padding: 48px 24px; }
+    .hero { padding: 48px 24px; min-height: 88svh; }
     .hero-content { flex-direction: column; align-items: flex-start; gap: 40px; }
     .hero-info { width: 100%; }
     .hero-l2 { padding-left: 0.25em; }
 
-    .about, .work, .stack, .contact { padding: 64px 24px; }
+    .about, .work, .stack, .contact { padding-left: 24px; padding-right: 24px; }
+    .about { padding-top: var(--space-4xl); padding-bottom: var(--space-3xl); }
+    .work { padding-top: var(--space-3xl); padding-bottom: var(--space-4xl); }
+    .stack { padding-top: var(--space-4xl); padding-bottom: var(--space-4xl); }
+    .contact { padding-top: var(--space-3xl); padding-bottom: var(--space-2xl); }
+
     .about-grid, .stack-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
-    .work-grid { grid-template-columns: 1fr; }
+
+    .work-row {
+      grid-template-columns: 1fr;
+      gap: var(--space-2xs);
+      padding: var(--space-lg) var(--space-2xs);
+    }
+    .work-desc { margin-top: var(--space-xs); }
 
     .site-nav { padding: 12px 24px; }
     .site-footer { padding: 24px; }

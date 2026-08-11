@@ -1,0 +1,59 @@
+/* Hallmark · redesign pass (in-place) · theme: studied-DNA (source: DESIGN.md — Hyperstudio)
+ * paper: #101010 (dark band) · accent: #e7c59a amber · status: #00ac5c
+ * display: Archivo (Aeonik stand-in) · body: Inter · mono: JetBrains Mono (Input stand-in)
+ * nav: minimal 3-anchor · footer: inline single line
+ */
+
+:root {
+  /* color — locked palette from DESIGN.md */
+  --color-paper: #101010;
+  --color-paper-veil: rgba(16, 16, 16, 0.85);
+  --color-paper-deep: #080808;
+  --color-paper-shade: #0a0a0a;
+  --color-surface: #0c0c0c;
+  --color-surface-raised: #141414;
+  --color-ink: #f3f3f3;
+  --color-ink-bright: #ffffff;
+  --color-ink-near-black: #101010;
+  --color-body: #949494;
+  --color-meta: #c1c1c1;
+  --color-faint: #666666;
+  --color-dim: #444444;
+  --color-line: #212121;
+  --color-line-strong: #333333;
+  --color-line-soft: #2a2a2a;
+  --color-accent: #e7c59a;
+  --color-accent-wash: rgba(231, 197, 154, 0.1);
+  --color-accent-line: rgba(231, 197, 154, 0.2);
+  --color-positive: #00ac5c;
+
+  /* type */
+  --font-display: 'Archivo', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --text-label: 11px;
+  --track-mono: -0.037em;
+
+  /* space — 4pt scale */
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
+  --space-5xl: 128px;
+
+  /* motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-short: 150ms;
+  --dur-med: 300ms;
+
+  /* shape */
+  --radius: 8px;
+  --radius-pill: 99px;
+}
