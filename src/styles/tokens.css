@@ -1,31 +1,33 @@
-/* Hallmark · redesign pass (in-place) · theme: studied-DNA (source: DESIGN.md — Hyperstudio)
- * paper: #101010 (dark band) · accent: #e7c59a amber · status: #00ac5c
+/* Hallmark · redesign pass (in-place) · theme: studied-DNA (source: DESIGN.md — Hyperstudio,
+ * flipped to a warm light band at the owner's request — same accent hue, same geometry)
+ * paper: #faf7f2 (warm light) · accent: #a06b2c deep amber · status: #00874a
  * display: Archivo (Aeonik stand-in) · body: Inter · mono: JetBrains Mono (Input stand-in)
  * nav: minimal 3-anchor · footer: inline single line
  */
 
 :root {
-  /* color — locked palette from DESIGN.md */
-  --color-paper: #101010;
-  --color-paper-veil: rgba(16, 16, 16, 0.85);
-  --color-paper-deep: #080808;
-  --color-paper-shade: #0a0a0a;
-  --color-surface: #0c0c0c;
-  --color-surface-raised: #141414;
-  --color-ink: #f3f3f3;
-  --color-ink-bright: #ffffff;
-  --color-ink-near-black: #101010;
-  --color-body: #949494;
-  --color-meta: #c1c1c1;
-  --color-faint: #666666;
-  --color-dim: #444444;
-  --color-line: #212121;
-  --color-line-strong: #333333;
-  --color-line-soft: #2a2a2a;
-  --color-accent: #e7c59a;
-  --color-accent-wash: rgba(231, 197, 154, 0.1);
-  --color-accent-line: rgba(231, 197, 154, 0.2);
-  --color-positive: #00ac5c;
+  /* color — Hyperstudio palette, light adaptation */
+  --color-paper: #faf7f2;
+  --color-paper-veil: rgba(250, 247, 242, 0.85);
+  --color-paper-deep: #f3efe7;
+  --color-paper-shade: #f5f1ea;
+  --color-surface: #fdfbf7;
+  --color-surface-raised: #f1ece2;
+  --color-ink: #181614;
+  --color-ink-bright: #000000;
+  --color-ink-near-black: #181614;
+  --color-body: #5f5a52;
+  --color-meta: #4a463f;
+  --color-faint: #8a8478;
+  --color-dim: #a39c8e;
+  --color-line: #e6e0d4;
+  --color-line-strong: #d5cdbe;
+  --color-line-soft: #ddd6c8;
+  --color-accent: #a06b2c;
+  --color-accent-wash: rgba(160, 107, 44, 0.08);
+  --color-accent-line: rgba(160, 107, 44, 0.28);
+  --color-positive: #00874a;
+  --color-signal: #f74f39;
 
   /* type */
   --font-display: 'Archivo', 'Inter', system-ui, sans-serif;
