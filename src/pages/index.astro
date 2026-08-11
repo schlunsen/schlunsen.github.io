@@ -116,17 +116,23 @@ const work = [
 
   <!-- HERO -->
   <section class="hero">
-    <svg class="hero-geo" viewBox="0 0 1200 800" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <circle cx="820" cy="300" r="220" stroke="#cfc7b6" stroke-width="1.5"/>
-      <circle cx="820" cy="300" r="120" stroke="#e0d9ca" stroke-width="1"/>
-      <circle cx="720" cy="200" r="50" fill="#c89355" opacity="0.18"/>
-      <circle cx="920" cy="180" r="12" fill="#c89355" opacity="0.5"/>
-      <line x1="600" y1="0" x2="900" y2="800" stroke="#cfc7b6" stroke-width="1"/>
-      <line x1="0" y1="520" x2="700" y2="520" stroke="#e0d9ca" stroke-width="1"/>
-      <polygon points="950,450 1010,570 890,570" fill="none" stroke="#f74f39" stroke-width="1.5" opacity="0.35"/>
-      <circle cx="200" cy="300" r="8" fill="#00ac5c" opacity="0.6"/>
-      <path d="M 50 650 A 120 120 0 0 1 170 530" stroke="#f74f39" stroke-width="2" opacity="0.25" fill="none"/>
-      <line x1="500" y1="80" x2="500" y2="720" stroke="#ece5d7" stroke-width="1"/>
+    <svg class="hero-geo geo-glitch" viewBox="0 0 1200 800" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g class="geo-layer geo-deep">
+        <line x1="600" y1="0" x2="900" y2="800" stroke="#cfc7b6" stroke-width="1"/>
+        <line x1="0" y1="520" x2="700" y2="520" stroke="#e0d9ca" stroke-width="1"/>
+        <line x1="500" y1="80" x2="500" y2="720" stroke="#ece5d7" stroke-width="1"/>
+      </g>
+      <g class="geo-layer geo-mid">
+        <circle cx="820" cy="300" r="220" stroke="#cfc7b6" stroke-width="1.5"/>
+        <circle cx="820" cy="300" r="120" stroke="#e0d9ca" stroke-width="1"/>
+        <circle cx="720" cy="200" r="50" fill="#c89355" opacity="0.18"/>
+      </g>
+      <g class="geo-layer geo-near">
+        <circle cx="920" cy="180" r="12" fill="#c89355" opacity="0.5"/>
+        <polygon points="950,450 1010,570 890,570" fill="none" stroke="#f74f39" stroke-width="1.5" opacity="0.35"/>
+        <circle cx="200" cy="300" r="8" fill="#00ac5c" opacity="0.6"/>
+        <path d="M 50 650 A 120 120 0 0 1 170 530" stroke="#f74f39" stroke-width="2" opacity="0.25" fill="none"/>
+      </g>
     </svg>
     <div class="hero-content">
       <h1 class="hero-title">
@@ -150,11 +156,19 @@ const work = [
     </div>
   </section>
 
+  <!-- TICKER -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Available for projects ◦ Barcelona, ES ◦ 15+ years shipping ◦ Python · Go · Rust · TypeScript ◦ Clovr Labs ◦ 2× DIA Award ◦ AI &amp; agentic systems ◦&nbsp;</span>
+      <span>Available for projects ◦ Barcelona, ES ◦ 15+ years shipping ◦ Python · Go · Rust · TypeScript ◦ Clovr Labs ◦ 2× DIA Award ◦ AI &amp; agentic systems ◦&nbsp;</span>
+    </div>
+  </div>
+
   <!-- ABOUT -->
   <section class="about" id="about">
     <div class="section-wrap about-grid">
-      <div class="about-art">
-        <svg viewBox="0 0 400 400" fill="none" style="width: 100%; max-width: 300px;" aria-hidden="true">
+      <div class="about-art" data-spin="1">
+        <svg class="geo-glitch art-draw" viewBox="0 0 400 400" fill="none" style="width: 100%; max-width: 300px;" aria-hidden="true">
           <circle cx="200" cy="200" r="180" stroke="#e0d9ca" stroke-width="1"/>
           <circle cx="200" cy="200" r="120" stroke="#e0d9ca" stroke-width="1"/>
           <circle cx="200" cy="200" r="60" stroke="#cfc7b6" stroke-width="1"/>
@@ -247,7 +261,8 @@ const work = [
     <div class="section-wrap stack-grid">
       <div class="stack-left">
         <h2>Tools &<br/>technologies</h2>
-        <svg viewBox="0 0 280 280" fill="none" style="width: 100%; max-width: 220px; margin-top: 12px;" aria-hidden="true">
+        <div class="stack-art" data-spin="-1">
+        <svg class="geo-glitch art-draw" viewBox="0 0 280 280" fill="none" style="width: 100%; max-width: 220px; margin-top: 12px;" aria-hidden="true">
           <circle cx="140" cy="140" r="130" stroke="#e0d9ca" stroke-width="1"/>
           <circle cx="80" cy="100" r="35" stroke="#cfc7b6" stroke-width="1"/>
           <circle cx="210" cy="85" r="18" fill="#c89355" opacity="0.18"/>
@@ -256,6 +271,7 @@ const work = [
           <circle cx="190" cy="210" r="7" fill="#00ac5c" opacity="0.5"/>
           <rect x="55" y="190" width="45" height="45" fill="none" stroke="#e0d9ca" stroke-width="1" transform="rotate(18 78 213)"/>
         </svg>
+        </div>
       </div>
       <div class="stack-right">
         {skills.map((s) => (
@@ -268,8 +284,8 @@ const work = [
   <!-- CONTACT -->
   <section class="contact" id="contact">
     <div class="section-wrap contact-grid">
-      <div class="contact-art">
-        <svg viewBox="0 0 200 200" fill="none" style="width: 100%; max-width: 180px; opacity: 0.7;" aria-hidden="true">
+      <div class="contact-art" data-spin="1">
+        <svg class="geo-glitch art-draw" viewBox="0 0 200 200" fill="none" style="width: 100%; max-width: 180px; opacity: 0.7;" aria-hidden="true">
           <circle cx="100" cy="100" r="90" stroke="#e0d9ca" stroke-width="1"/>
           <circle cx="100" cy="100" r="30" fill="#c89355" opacity="0.14"/>
           <line x1="10" y1="100" x2="190" y2="100" stroke="#e0d9ca" stroke-width="1"/>
@@ -331,6 +347,49 @@ const work = [
       a.addEventListener('click', triggerGlitch)
     );
     window.addEventListener('load', () => setTimeout(triggerGlitch, 400));
+
+    // === MOTION ENGINE — pointer + scroll parallax, art rotation ===
+    if (!reduceMotion.matches) {
+      const deep = document.querySelector('.geo-deep');
+      const mid = document.querySelector('.geo-mid');
+      const near = document.querySelector('.geo-near');
+      const spinners = document.querySelectorAll('[data-spin]');
+      let mx = 0, my = 0, tx = 0, ty = 0;
+
+      window.addEventListener('pointermove', (e) => {
+        mx = e.clientX / window.innerWidth - 0.5;
+        my = e.clientY / window.innerHeight - 0.5;
+      }, { passive: true });
+
+      function loop() {
+        tx += (mx - tx) * 0.05;
+        ty += (my - ty) * 0.05;
+        const y = window.scrollY;
+        if (deep) deep.style.transform = `translate(${tx * 8}px, ${ty * 6 + y * 0.04}px)`;
+        if (mid) mid.style.transform = `translate(${tx * 18}px, ${ty * 12 + y * 0.09}px)`;
+        if (near) near.style.transform = `translate(${tx * 32}px, ${ty * 22 + y * 0.16}px)`;
+        spinners.forEach((el) => {
+          const dir = Number(el.dataset.spin) || 1;
+          el.style.transform = `rotate(${y * 0.02 * dir}deg)`;
+        });
+        requestAnimationFrame(loop);
+      }
+      requestAnimationFrame(loop);
+
+      // draw section art in when it enters the viewport, with a line flash
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('drawn');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+      document.querySelectorAll('.art-draw').forEach((el) => observer.observe(el));
+    } else {
+      // reduced motion: show section art immediately, fully drawn
+      document.querySelectorAll('.art-draw').forEach((el) => el.classList.add('drawn'));
+    }
   </script>
 </Layout>
 
@@ -507,6 +566,91 @@ const work = [
     96.7% { opacity: 0.7; transform: translate(3px, -1px); clip-path: inset(44% 0 30% 0); }
     97.2%, 100% { opacity: 0; transform: none; clip-path: inset(0 0 100% 0); }
   }
+
+  /* === CHOREOGRAPHY — orchestrated entrance === */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: none; }
+  }
+  .hero-l1 { animation: fade-up 0.8s var(--ease-out) 0.2s backwards; }
+  .hero-l2 { animation: fade-up 0.8s var(--ease-out) 0.35s backwards; }
+  .hero-info-item { animation: fade-up 0.7s var(--ease-out) backwards; }
+  .hero-info-item:nth-child(1) { animation-delay: 0.7s; }
+  .hero-info-item:nth-child(2) { animation-delay: 0.85s; }
+  .hero-info-item:nth-child(3) { animation-delay: 1s; }
+
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes pop {
+    from { opacity: 0; transform: scale(0); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .hero-geo [stroke] {
+    stroke-dasharray: 1600;
+    stroke-dashoffset: 1600;
+    animation: draw 1.8s var(--ease-out) forwards;
+  }
+  .hero-geo .geo-deep [stroke] { animation-delay: 0.1s; }
+  .hero-geo .geo-mid [stroke] { animation-delay: 0.35s; }
+  .hero-geo .geo-near [stroke] { animation-delay: 0.7s; }
+  .hero-geo [fill]:not([fill="none"]) {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: pop 0.7s var(--ease-out) 0.9s backwards;
+  }
+
+  /* section art draws itself in when scrolled into view */
+  .art-draw [stroke] {
+    stroke-dasharray: 1200;
+    stroke-dashoffset: 1200;
+  }
+  .art-draw [fill]:not([fill="none"]) { opacity: 0; }
+  .art-draw.drawn [stroke] { animation: draw 1.5s var(--ease-out) forwards; }
+  .art-draw.drawn [fill]:not([fill="none"]) {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: pop 0.6s var(--ease-out) 0.9s forwards;
+  }
+
+  /* parallax layers — driven by JS via transform */
+  .geo-layer { will-change: transform; }
+  .about-art, .stack-art, .contact-art { will-change: transform; }
+
+  /* === GLITCH — periodic RGB-split burst on the geometry === */
+  .geo-glitch { animation: art-glitch 9s steps(1, end) infinite; }
+  .about-art .geo-glitch { animation-delay: 2s; }
+  .stack-art .geo-glitch { animation-delay: 4.5s; }
+  .contact-art .geo-glitch { animation-delay: 6.5s; }
+  @keyframes art-glitch {
+    0%, 92.5% { filter: none; }
+    93% { filter: drop-shadow(6px 0 rgba(247, 79, 57, 0.55)) drop-shadow(-6px 0 rgba(160, 107, 44, 0.5)); }
+    94% { filter: drop-shadow(-5px 0 rgba(247, 79, 57, 0.45)) drop-shadow(4px 0 rgba(0, 135, 74, 0.4)); }
+    95% { filter: drop-shadow(3px 0 rgba(160, 107, 44, 0.5)); }
+    95.5%, 100% { filter: none; }
+  }
+
+  /* === TICKER === */
+  .ticker {
+    border-top: 1px solid var(--color-line);
+    background: var(--color-paper-deep);
+    overflow: hidden;
+    padding: 10px 0;
+  }
+  .ticker-track {
+    display: flex;
+    width: max-content;
+    animation: ticker 40s linear infinite;
+  }
+  .ticker:hover .ticker-track { animation-play-state: paused; }
+  .ticker-track span {
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    letter-spacing: var(--track-mono);
+    text-transform: uppercase;
+    color: var(--color-faint);
+    white-space: nowrap;
+  }
+  @keyframes ticker { to { transform: translateX(-50%); } }
 
   /* === GLITCH — full-screen line flash on load + nav jumps === */
   .glitch-overlay {
