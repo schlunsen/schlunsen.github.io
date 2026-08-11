@@ -1,0 +1,61 @@
+/* Hallmark · redesign pass (in-place) · theme: studied-DNA (source: DESIGN.md — Hyperstudio,
+ * flipped to a warm light band at the owner's request — same accent hue, same geometry)
+ * paper: #faf7f2 (warm light) · accent: #a06b2c deep amber · status: #00874a
+ * display: Archivo (Aeonik stand-in) · body: Inter · mono: JetBrains Mono (Input stand-in)
+ * nav: minimal 3-anchor · footer: inline single line
+ */
+
+:root {
+  /* color — Hyperstudio palette, light adaptation */
+  --color-paper: #faf7f2;
+  --color-paper-veil: rgba(250, 247, 242, 0.85);
+  --color-paper-deep: #f3efe7;
+  --color-paper-shade: #f5f1ea;
+  --color-surface: #fdfbf7;
+  --color-surface-raised: #f1ece2;
+  --color-ink: #181614;
+  --color-ink-bright: #000000;
+  --color-ink-near-black: #181614;
+  --color-body: #5f5a52;
+  --color-meta: #4a463f;
+  --color-faint: #8a8478;
+  --color-dim: #a39c8e;
+  --color-line: #e6e0d4;
+  --color-line-strong: #d5cdbe;
+  --color-line-soft: #ddd6c8;
+  --color-accent: #a06b2c;
+  --color-accent-wash: rgba(160, 107, 44, 0.08);
+  --color-accent-line: rgba(160, 107, 44, 0.28);
+  --color-positive: #00874a;
+  --color-signal: #f74f39;
+
+  /* type */
+  --font-display: 'Archivo', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --text-label: 11px;
+  --track-mono: -0.037em;
+
+  /* space — 4pt scale */
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
+  --space-5xl: 128px;
+
+  /* motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-short: 150ms;
+  --dur-med: 300ms;
+
+  /* shape */
+  --radius: 8px;
+  --radius-pill: 99px;
+}
