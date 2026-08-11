@@ -1,0 +1,138 @@
+---
+---
+
+<section class="hero">
+  <svg class="geo" viewBox="0 0 1200 800" fill="none" preserveAspectRatio="xMidYMid slice">
+    <circle cx="820" cy="300" r="220" stroke="#333" stroke-width="1.5"/>
+    <circle cx="820" cy="300" r="120" stroke="#2a2a2a" stroke-width="1"/>
+    <circle cx="720" cy="200" r="50" fill="#e7c59a" opacity="0.08"/>
+    <circle cx="920" cy="180" r="12" fill="#e7c59a" opacity="0.3"/>
+    <line x1="600" y1="0" x2="900" y2="800" stroke="#333" stroke-width="1"/>
+    <line x1="0" y1="520" x2="700" y2="520" stroke="#2a2a2a" stroke-width="1"/>
+    <polygon points="950,450 1010,570 890,570" fill="none" stroke="#f74f39" stroke-width="1.5" opacity="0.35"/>
+    <circle cx="200" cy="300" r="8" fill="#00ac5c" opacity="0.6"/>
+    <path d="M 50 650 A 120 120 0 0 1 170 530" stroke="#f74f39" stroke-width="2" opacity="0.25" fill="none"/>
+    <line x1="500" y1="80" x2="500" y2="720" stroke="#1e1e1e" stroke-width="1"/>
+  </svg>
+
+  <div class="content">
+    <h1>
+      <span class="l1">Rasmus</span>
+      <span class="l2">Schlünsen</span>
+    </h1>
+    <div class="info">
+      <div class="info-item">
+        <span class="lbl">role</span>
+        <p>Software Consultant<br/>& Developer</p>
+      </div>
+      <div class="info-item">
+        <span class="lbl">base</span>
+        <p>Barcelona, ES</p>
+      </div>
+      <div class="info-item">
+        <span class="lbl">status</span>
+        <p><span class="dot"></span> Available</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: flex-end;
+    padding: 80px 40px;
+    overflow: hidden;
+    background: #101010;
+  }
+
+  .geo {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 64px;
+  }
+
+  h1 { flex: 1; }
+
+  .l1, .l2 {
+    display: block;
+    font-size: clamp(56px, 10vw, 120px);
+    font-weight: 800;
+    line-height: 0.88;
+    letter-spacing: -0.04em;
+  }
+
+  .l1 { color: #f3f3f3; }
+  .l2 { color: #707070; padding-left: 0.5em; }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-shrink: 0;
+    width: 220px;
+    padding-bottom: 8px;
+  }
+
+  .info-item {
+    border-top: 1px solid #333;
+    padding-top: 10px;
+  }
+
+  .lbl {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: -0.037em;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 4px;
+  }
+
+  .info-item p {
+    font-size: 15px;
+    color: #f3f3f3;
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    background: #00ac5c;
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  @media (max-width: 768px) {
+    .hero { padding: 48px 24px; }
+    .content { flex-direction: column; align-items: flex-start; gap: 40px; }
+    .info { width: 100%; }
+    .l2 { padding-left: 0.25em; }
+  }
+</style>

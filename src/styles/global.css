@@ -1,0 +1,35 @@
+/* Hyperstudio × Kandinsky */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #101010;
+  color: #f3f3f3;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+
+h1, h2, h3 {
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #f3f3f3;
+  font-weight: 700;
+}
+
+p {
+  color: #949494;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+::selection { background: #e7c59a; color: #000; }
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #101010; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }

@@ -1,17 +1,596 @@
 ---
+import Layout from '../layouts/Layout.astro';
 
+const year = new Date().getFullYear();
+
+const skills = [
+  'C#', 'Java', 'JavaScript', 'TypeScript', 'Python',
+  '.NET', 'Node.js', 'React', 'MySQL', 'PostgreSQL',
+  'Docker', 'AWS', 'CI/CD', 'REST APIs', 'Linux',
+  'Agile', 'TDD', 'Git', 'Architecture',
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Rasmus Schlünsen — Software Consultant & Developer">
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a href="/" class="site-logo">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="14" r="13" stroke="#f3f3f3" stroke-width="1"/>
+        <circle cx="14" cy="14" r="4" fill="#e7c59a"/>
+      </svg>
+    </a>
+    <div class="site-nav-links">
+      <a href="#work">Work</a>
+      <a href="#stack">Stack</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <svg class="hero-geo" viewBox="0 0 1200 800" fill="none" preserveAspectRatio="xMidYMid slice">
+      <circle cx="820" cy="300" r="220" stroke="#333" stroke-width="1.5"/>
+      <circle cx="820" cy="300" r="120" stroke="#2a2a2a" stroke-width="1"/>
+      <circle cx="720" cy="200" r="50" fill="#e7c59a" opacity="0.08"/>
+      <circle cx="920" cy="180" r="12" fill="#e7c59a" opacity="0.3"/>
+      <line x1="600" y1="0" x2="900" y2="800" stroke="#333" stroke-width="1"/>
+      <line x1="0" y1="520" x2="700" y2="520" stroke="#2a2a2a" stroke-width="1"/>
+      <polygon points="950,450 1010,570 890,570" fill="none" stroke="#f74f39" stroke-width="1.5" opacity="0.35"/>
+      <circle cx="200" cy="300" r="8" fill="#00ac5c" opacity="0.6"/>
+      <path d="M 50 650 A 120 120 0 0 1 170 530" stroke="#f74f39" stroke-width="2" opacity="0.25" fill="none"/>
+      <line x1="500" y1="80" x2="500" y2="720" stroke="#1e1e1e" stroke-width="1"/>
+    </svg>
+    <div class="hero-content">
+      <h1 class="hero-title">
+        <span class="hero-l1">Rasmus</span>
+        <span class="hero-l2">Schlünsen</span>
+      </h1>
+      <div class="hero-info">
+        <div class="hero-info-item">
+          <span class="mono-label">role</span>
+          <p>Software Consultant<br/>& Developer</p>
+        </div>
+        <div class="hero-info-item">
+          <span class="mono-label">base</span>
+          <p>Barcelona, ES</p>
+        </div>
+        <div class="hero-info-item">
+          <span class="mono-label">status</span>
+          <p class="hero-status"><span class="green-dot"></span> Available</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="section-wrap about-grid">
+      <div class="about-art">
+        <svg viewBox="0 0 400 400" fill="none" style="width: 100%; max-width: 300px;">
+          <circle cx="200" cy="200" r="180" stroke="#2a2a2a" stroke-width="1"/>
+          <circle cx="200" cy="200" r="120" stroke="#2a2a2a" stroke-width="1"/>
+          <circle cx="200" cy="200" r="60" stroke="#333" stroke-width="1"/>
+          <line x1="20" y1="200" x2="380" y2="200" stroke="#2a2a2a" stroke-width="1"/>
+          <line x1="200" y1="20" x2="200" y2="380" stroke="#2a2a2a" stroke-width="1"/>
+          <circle cx="200" cy="80" r="8" fill="#e7c59a" opacity="0.5"/>
+          <circle cx="320" cy="200" r="5" fill="#00ac5c" opacity="0.6"/>
+          <polygon points="200,140 230,190 170,190" fill="none" stroke="#f74f39" stroke-width="1" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="about-text">
+        <span class="mono-label">// about</span>
+        <h2>Building software<br/>with precision<br/>and purpose.</h2>
+        <p>15+ years crafting solutions across the full stack. From Copenhagen to Barcelona — always focused on what matters: clean architecture, real impact.</p>
+        <p>Currently running Clovr Labs. Fluent in English, Danish, and Spanish. 2× DIA Award winner.</p>
+        <div class="about-meta">
+          <div class="meta-row"><span class="mono-label">education</span><span class="meta-val">Business Academy West</span></div>
+          <div class="meta-row"><span class="mono-label">focus</span><span class="meta-val">C#, Java, Databases, CCNA, Agile, TDD</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="work" id="work">
+    <div class="section-wrap">
+      <span class="mono-label">// experience</span>
+      <h2>Work</h2>
+      <div class="work-grid">
+        <div class="work-card">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" fill="none" stroke="#e7c59a" stroke-width="1.5"/><circle cx="24" cy="24" r="6" fill="#e7c59a"/></svg>
+          <div class="work-card-body">
+            <div class="work-card-top"><h3>Clovr Labs</h3><span class="now-badge">NOW</span></div>
+            <span class="work-role">Founder & Consultant — Barcelona, ES</span>
+            <p>Software consultancy — technical strategy and hands-on development.</p>
+          </div>
+        </div>
+        <div class="work-card">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><polygon points="24,6 42,42 6,42" fill="none" stroke="#555" stroke-width="1.5"/></svg>
+          <div class="work-card-body">
+            <div class="work-card-top"><h3>Consulting</h3></div>
+            <span class="work-role">Senior Developer — Barcelona, ES</span>
+            <p>Full-stack solutions, modernizing tech stacks and dev practices.</p>
+          </div>
+        </div>
+        <div class="work-card">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="8" y="8" width="32" height="32" fill="none" stroke="#555" stroke-width="1.5" transform="rotate(12 24 24)"/></svg>
+          <div class="work-card-body">
+            <div class="work-card-top"><h3>Copenhagen</h3></div>
+            <span class="work-role">Software Developer — Copenhagen, DK</span>
+            <p>Enterprise applications, agile cross-functional teams.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section class="stack" id="stack">
+    <div class="section-wrap stack-grid">
+      <div class="stack-left">
+        <span class="mono-label">// stack</span>
+        <h2>Tools &<br/>technologies</h2>
+        <svg viewBox="0 0 280 280" fill="none" style="width: 100%; max-width: 220px; margin-top: 12px;">
+          <circle cx="140" cy="140" r="130" stroke="#2a2a2a" stroke-width="1"/>
+          <circle cx="80" cy="100" r="35" stroke="#333" stroke-width="1"/>
+          <circle cx="210" cy="85" r="18" fill="#e7c59a" opacity="0.08"/>
+          <line x1="0" y1="170" x2="280" y2="110" stroke="#2a2a2a" stroke-width="1"/>
+          <polygon points="140,45 170,105 110,105" fill="none" stroke="#f74f39" stroke-width="1" opacity="0.3"/>
+          <circle cx="190" cy="210" r="7" fill="#00ac5c" opacity="0.5"/>
+          <rect x="55" y="190" width="45" height="45" fill="none" stroke="#2a2a2a" stroke-width="1" transform="rotate(18 78 213)"/>
+        </svg>
+      </div>
+      <div class="stack-right">
+        {skills.map((s) => (
+          <span class="skill-tag">{s}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="section-wrap contact-grid">
+      <div class="contact-art">
+        <svg viewBox="0 0 200 200" fill="none" style="width: 100%; max-width: 180px; opacity: 0.7;">
+          <circle cx="100" cy="100" r="90" stroke="#2a2a2a" stroke-width="1"/>
+          <circle cx="100" cy="100" r="30" fill="#e7c59a" opacity="0.06"/>
+          <line x1="10" y1="100" x2="190" y2="100" stroke="#2a2a2a" stroke-width="1"/>
+          <line x1="100" y1="10" x2="100" y2="190" stroke="#2a2a2a" stroke-width="1"/>
+          <circle cx="100" cy="10" r="4" fill="#00ac5c"/>
+        </svg>
+      </div>
+      <div class="contact-body">
+        <span class="mono-label">// contact</span>
+        <h2>Let's<br/>connect.</h2>
+        <p>Open to projects, collaborations, and interesting challenges.</p>
+        <div class="contact-links">
+          <a href="https://www.linkedin.com/in/rasmusbs/" target="_blank" rel="noopener noreferrer" class="contact-link">
+            <span>LinkedIn</span><span class="link-arrow">→</span>
+          </a>
+          <a href="https://github.com/schlunsen" target="_blank" rel="noopener noreferrer" class="contact-link">
+            <span>GitHub</span><span class="link-arrow">→</span>
+          </a>
+        </div>
+        <div class="contact-langs">
+          <span class="mono-label">languages</span>
+          <span class="meta-val">English · Danish · Spanish</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="section-wrap footer-inner">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <circle cx="10" cy="10" r="9" stroke="#333" stroke-width="1"/>
+        <circle cx="10" cy="10" r="3" fill="#333"/>
+      </svg>
+      <span>&copy; {year} Rasmus Schlünsen</span>
+    </div>
+  </footer>
+</Layout>
+
+<style is:global>
+  /* === SHARED === */
+  .section-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .mono-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: -0.037em;
+    text-transform: uppercase;
+    color: #666;
+    display: block;
+  }
+
+  .meta-val {
+    font-size: 14px;
+    color: #c1c1c1;
+    line-height: 1.5;
+  }
+
+  /* === NAV === */
+  .site-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 40px;
+    background: rgba(16, 16, 16, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid #212121;
+  }
+
+  .site-logo { display: block; transition: transform 0.3s; }
+  .site-logo:hover { transform: rotate(90deg); }
+
+  .site-nav-links { display: flex; gap: 32px; }
+  .site-nav-links a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: -0.037em;
+    color: #949494;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .site-nav-links a:hover { color: #f3f3f3; }
+
+  /* === HERO === */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: flex-end;
+    padding: 80px 40px;
+    overflow: hidden;
+    background: #101010;
+  }
+
+  .hero-geo {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 64px;
+  }
+
+  .hero-title { flex: 1; }
+
+  .hero-l1, .hero-l2 {
+    display: block;
+    font-size: clamp(56px, 10vw, 120px);
+    font-weight: 800;
+    line-height: 0.88;
+    letter-spacing: -0.04em;
+  }
+  .hero-l1 { color: #f3f3f3; }
+  .hero-l2 { color: #606060; padding-left: 0.5em; }
+
+  .hero-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-shrink: 0;
+    width: 220px;
+    padding-bottom: 8px;
+  }
+
+  .hero-info-item {
+    border-top: 1px solid #333;
+    padding-top: 10px;
+  }
+  .hero-info-item .mono-label { margin-bottom: 4px; }
+  .hero-info-item p {
+    font-size: 15px;
+    color: #f3f3f3;
+    line-height: 1.4;
+  }
+
+  .hero-status { display: flex; align-items: center; gap: 8px; }
+
+  .green-dot {
+    width: 6px; height: 6px;
+    background: #00ac5c;
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* === ABOUT === */
+  .about {
+    padding: 96px 40px;
+    border-top: 1px solid #212121;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-art {
+    display: flex;
+    justify-content: center;
+  }
+
+  .about-text {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .about-text h2 {
+    font-size: clamp(28px, 4vw, 40px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+
+  .about-text p {
+    max-width: 44ch;
+  }
+
+  .about-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid #212121;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 24px;
+    align-items: baseline;
+  }
+  .meta-row .mono-label { min-width: 80px; flex-shrink: 0; }
+
+  /* === WORK === */
+  .work {
+    padding: 96px 40px;
+    border-top: 1px solid #212121;
+  }
+
+  .work h2 {
+    font-size: clamp(32px, 5vw, 48px);
+    line-height: 0.95;
+    margin-top: 16px;
+    margin-bottom: 64px;
+  }
+
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: #212121;
+    border: 1px solid #212121;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .work-card {
+    background: #0c0c0c;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    transition: background 0.3s;
+  }
+  .work-card:hover { background: #141414; }
+
+  .work-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .work-card-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .work-card-top h3 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .now-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #e7c59a;
+    background: rgba(231, 197, 154, 0.1);
+    border: 1px solid rgba(231, 197, 154, 0.2);
+    padding: 2px 8px;
+    border-radius: 99px;
+  }
+
+  .work-role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #666;
+    letter-spacing: -0.037em;
+  }
+
+  .work-card p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* === STACK === */
+  .stack {
+    padding: 96px 40px;
+    border-top: 1px solid #212121;
+    background: #0a0a0a;
+  }
+
+  .stack-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .stack-left {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .stack-left h2 {
+    font-size: clamp(28px, 4.5vw, 44px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+
+  .stack-right {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .skill-tag {
+    padding: 10px 18px;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #c1c1c1;
+    transition: all 0.25s ease;
+    cursor: default;
+  }
+  .skill-tag:hover {
+    border-color: #e7c59a;
+    color: #e7c59a;
+    transform: translateY(-2px);
+  }
+
+  /* === CONTACT === */
+  .contact {
+    padding: 96px 40px;
+    border-top: 1px solid #212121;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .contact-art {
+    display: flex;
+    justify-content: center;
+  }
+
+  .contact-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .contact-body h2 {
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+  }
+
+  .contact-body > p { max-width: 36ch; }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid #212121;
+  }
+
+  .contact-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid #212121;
+    transition: padding-left 0.2s;
+    text-decoration: none;
+  }
+  .contact-link:hover { padding-left: 12px; }
+  .contact-link span:first-child {
+    font-size: 18px;
+    font-weight: 600;
+    color: #f3f3f3;
+  }
+  .link-arrow {
+    font-size: 20px;
+    color: #666;
+    transition: color 0.2s;
+  }
+  .contact-link:hover .link-arrow { color: #e7c59a; }
+
+  .contact-langs {
+    display: flex;
+    gap: 24px;
+    align-items: baseline;
+    padding-top: 8px;
+  }
+
+  /* === FOOTER === */
+  .site-footer {
+    padding: 24px 40px;
+    border-top: 1px solid #212121;
+  }
+
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .footer-inner span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: -0.037em;
+    color: #444;
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 768px) {
+    .hero { padding: 48px 24px; }
+    .hero-content { flex-direction: column; align-items: flex-start; gap: 40px; }
+    .hero-info { width: 100%; }
+    .hero-l2 { padding-left: 0.25em; }
+
+    .about, .work, .stack, .contact { padding: 64px 24px; }
+    .about-grid, .stack-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    .work-grid { grid-template-columns: 1fr; }
+
+    .site-nav { padding: 12px 24px; }
+    .site-footer { padding: 24px; }
+  }
+</style>

@@ -1,0 +1,35 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <div class="wrap">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <circle cx="10" cy="10" r="9" stroke="#333" stroke-width="1"/>
+      <circle cx="10" cy="10" r="3" fill="#333"/>
+    </svg>
+    <span>&copy; {year} Rasmus Schlünsen</span>
+  </div>
+</footer>
+
+<style>
+  footer {
+    padding: 24px 40px;
+    border-top: 1px solid #212121;
+  }
+
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: -0.037em;
+    color: #444;
+  }
+</style>
