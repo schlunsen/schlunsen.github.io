@@ -10,6 +10,66 @@ const skills = [
   'Agile', 'TDD', 'Git', 'Architecture',
 ];
 
+const projects = [
+  {
+    name: 'Wee',
+    desc: 'Hosted agent sandboxes for software development. Let AI coding agents do real work in isolated, on-demand cloud environments with real-time monitoring and multi-agent orchestration.',
+    tags: ['AI', 'Developer Tools'],
+    href: 'https://wee.cat',
+    linkLabel: 'wee.cat',
+    featured: true,
+  },
+  {
+    name: 'Donna',
+    desc: 'Autonomous AI pentesting platform — orchestrates Claude Code agents via Temporal to find and exploit vulnerabilities.',
+    tags: ['Security', 'AI'],
+    href: 'https://github.com/schlunsen/donna',
+    linkLabel: 'GitHub',
+  },
+  {
+    name: 'Claude Agent SDK Go',
+    desc: 'Port of the official Claude Agent Python SDK to Go. Build AI agents with idiomatic Go.',
+    tags: ['Go', 'AI', 'SDK'],
+    href: 'https://github.com/schlunsen/claude-agent-sdk-go',
+    linkLabel: 'GitHub',
+  },
+  {
+    name: 'The Agentic Crew',
+    desc: 'Three free books on agentic engineering — for developers, non-coders, and teams. Available in 4 languages with interactive audiobook.',
+    tags: ['Books', 'AI', 'Free'],
+    href: 'https://theagenticcrew.com',
+    linkLabel: 'theagenticcrew.com',
+  },
+  {
+    name: 'Web Presenter',
+    desc: 'Interactive presentation framework with Three.js backgrounds, audio narration, and CSS animations.',
+    tags: ['Three.js', 'Web'],
+    href: 'https://github.com/schlunsen/web-presenter',
+    linkLabel: 'GitHub',
+  },
+  {
+    name: 'Maperick',
+    desc: 'Visualize active TCP connections on a world map. Available as a TUI and a native Mac app.',
+    tags: ['Networking', 'macOS', 'TUI'],
+    href: 'https://github.com/schlunsen/maperick',
+    linkLabel: 'GitHub',
+  },
+  {
+    name: 'Hefty',
+    desc: 'A fast disk usage analyzer inspired by GrandPerspective — CLI tool and native macOS app. Find the hefty files hogging your disk.',
+    tags: ['Rust', 'macOS', 'TUI'],
+    href: 'https://github.com/schlunsen/hefty',
+    linkLabel: 'GitHub',
+  },
+  {
+    name: 'Radio CLI',
+    desc: 'Internet radio player — Rust terminal UI plus a native macOS menu bar app. Audio visualization and station discovery.',
+    tags: ['Rust', 'macOS', 'TUI'],
+    href: 'https://github.com/schlunsen/radio-cli',
+    linkLabel: 'GitHub',
+  },
+];
+
 const work = [
   {
     name: 'Clovr Labs',
@@ -46,6 +106,7 @@ const work = [
     </a>
     <div class="site-nav-links">
       <a href="#work">Work</a>
+      <a href="#projects">Projects</a>
       <a href="#stack">Stack</a>
       <a href="#contact">Contact</a>
     </div>
@@ -129,6 +190,51 @@ const work = [
             <span class="work-place">{w.place}</span>
             <p class="work-desc">{w.desc}</p>
           </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="projects" id="projects">
+    <div class="section-wrap">
+      <div class="projects-head">
+        <h2>Projects</h2>
+        <span class="meta-val projects-count">{projects.length} open builds</span>
+      </div>
+
+      {projects.filter((p) => p.featured).map((p) => (
+        <a href={p.href} target="_blank" rel="noopener noreferrer" class="project-featured">
+          <div class="project-featured-info">
+            <div class="project-title">
+              <h3>{p.name}</h3>
+              <span class="link-arrow">↗</span>
+            </div>
+            <p>{p.desc}</p>
+            <div class="project-tags">
+              {p.tags.map((t) => <span class="project-tag">{t}</span>)}
+              <span class="project-link-label">{p.linkLabel}</span>
+            </div>
+          </div>
+          <figure class="project-shot">
+            <img src="/wee-hero.png" alt="Wee — hosted agent sandboxes, product screenshot" loading="lazy" width="1200" height="675" />
+          </figure>
+        </a>
+      ))}
+
+      <div class="project-grid">
+        {projects.filter((p) => !p.featured).map((p, i) => (
+          <a href={p.href} target="_blank" rel="noopener noreferrer" class={`project-card project-card-${i < 3 ? 's' : 'w'}`}>
+            <div class="project-title">
+              <h3>{p.name}</h3>
+              <span class="link-arrow">↗</span>
+            </div>
+            <p>{p.desc}</p>
+            <div class="project-tags">
+              {p.tags.map((t) => <span class="project-tag">{t}</span>)}
+              <span class="project-link-label">{p.linkLabel}</span>
+            </div>
+          </a>
         ))}
       </div>
     </div>
@@ -457,6 +563,149 @@ const work = [
     line-height: 1.6;
   }
 
+  /* === PROJECTS — featured + asymmetric index grid === */
+  .projects {
+    padding: var(--space-4xl) 40px var(--space-5xl);
+    border-top: 1px solid var(--color-line);
+    background: var(--color-paper-deep);
+  }
+
+  .projects-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .projects-head h2 {
+    font-size: clamp(32px, 5vw, 48px);
+    line-height: 0.95;
+  }
+
+  .projects-count {
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    letter-spacing: var(--track-mono);
+    text-transform: uppercase;
+    color: var(--color-faint);
+    white-space: nowrap;
+  }
+
+  .project-featured {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 1.2fr);
+    gap: var(--space-2xl);
+    align-items: center;
+    padding: var(--space-xl);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    background: var(--color-surface);
+    margin-bottom: var(--space-lg);
+    transition: background-color var(--dur-med) var(--ease-out), border-color var(--dur-med) var(--ease-out);
+  }
+  .project-featured:hover {
+    background: var(--color-surface-raised);
+    border-color: var(--color-line-strong);
+  }
+
+  .project-featured-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    min-width: 0;
+  }
+
+  .project-shot {
+    margin: 0;
+    min-width: 0;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    line-height: 0;
+  }
+  .project-shot img { width: 100%; height: auto; display: block; }
+
+  .project-title {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .project-title h3 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .project-featured .project-title h3 { font-size: clamp(24px, 3vw, 32px); }
+  .project-title .link-arrow {
+    font-size: 16px;
+    color: var(--color-faint);
+    transition: color var(--dur-short) var(--ease-out);
+  }
+  .project-featured:hover .link-arrow,
+  .project-card:hover .link-arrow { color: var(--color-accent); }
+
+  .project-featured p,
+  .project-card p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-xs);
+    margin-top: var(--space-2xs);
+  }
+
+  .project-tag {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-body);
+    border: 1px solid var(--color-line-soft);
+    padding: 2px var(--space-xs);
+    border-radius: var(--radius-pill);
+    white-space: nowrap;
+  }
+
+  .project-link-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    letter-spacing: var(--track-mono);
+    color: var(--color-dim);
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--space-lg);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    background: var(--color-surface);
+    min-width: 0;
+    transition: background-color var(--dur-med) var(--ease-out), border-color var(--dur-med) var(--ease-out);
+  }
+  .project-card:hover {
+    background: var(--color-surface-raised);
+    border-color: var(--color-line-strong);
+  }
+  .project-card p { flex: 1; }
+
+  .project-card-s { grid-column: span 2; }
+  .project-card-w { grid-column: span 3; }
+
   /* === STACK === */
   .stack {
     padding: var(--space-5xl) 40px;
@@ -598,7 +847,13 @@ const work = [
     .hero-info { width: 100%; }
     .hero-l2 { padding-left: 0.25em; }
 
-    .about, .work, .stack, .contact { padding-left: 24px; padding-right: 24px; }
+    .about, .work, .projects, .stack, .contact { padding-left: 24px; padding-right: 24px; }
+    .projects { padding-top: var(--space-3xl); padding-bottom: var(--space-4xl); }
+
+    .projects-head { flex-direction: column; gap: var(--space-xs); }
+    .project-featured { grid-template-columns: 1fr; padding: var(--space-lg); gap: var(--space-lg); }
+    .project-grid { grid-template-columns: 1fr; gap: var(--space-sm); }
+    .project-card-s, .project-card-w { grid-column: auto; }
     .about { padding-top: var(--space-4xl); padding-bottom: var(--space-3xl); }
     .work { padding-top: var(--space-3xl); padding-bottom: var(--space-4xl); }
     .stack { padding-top: var(--space-4xl); padding-bottom: var(--space-4xl); }
