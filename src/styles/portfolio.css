@@ -787,7 +787,7 @@ footer {
   }
 }
 
-.gource-screenshot {
+.gource-screenshot,.feature-screenshot {
   display: block;
   width: 100%;
   height: auto;
@@ -796,7 +796,16 @@ footer {
 .graph-visual {
   background: #101e2b;
 }
-.graph-visual:hover .gource-screenshot {
+.weecat-visual {
+  background: #f6f4ee;
+  color: #303a2c;
+  border-right: 1px solid #cbcabe;
+}
+.weecat-visual .feature-screenshot {
+  border-top: 1px solid #dcdad0;
+  border-bottom: 1px solid #dcdad0;
+}
+.graph-visual:hover .gource-screenshot,.weecat-visual:hover .feature-screenshot {
   transform: scale(1.025);
 }
 .gource-links {
