@@ -787,16 +787,6 @@ footer {
   }
 }
 
-.wee-editor-name {
-  display: block;
-  font-size: .7em;
-  margin-top: 8px;
-}
-.wee-links {
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
 .gource-screenshot {
   display: block;
   width: 100%;
