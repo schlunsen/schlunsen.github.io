@@ -814,7 +814,7 @@ footer {
   gap: 16px;
 }
 
-@media (max-width:600px) {
+@media (max-width:760px) {
   body { padding-top:152px; }
   .nav-inner { height:152px; flex-wrap:wrap; gap:0; padding-top:14px; }
   .wordmark { gap:12px; }
