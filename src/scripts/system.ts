@@ -51,7 +51,10 @@ if (canvas && toggle) {
       return { x: p.x * s, y: p.y * s, z: p.z * s };
     },
   ];
-  const HOLD = 6500, MORPH = 3800, STAGE = HOLD + MORPH;
+  const HOLD = 4200, MORPH = 2600, STAGE = HOLD + MORPH;
+  // Start on a random shape each load (stages alternate shape/sphere, so pick a non-sphere stage).
+  const startStage = 1 + 2 * Math.floor(Math.random() * (shapes.length / 2));
+  time = startStage * STAGE;
   const ease = (x: number) => x * x * (3 - 2 * x);
 
   function morphed(): Vec[] {
