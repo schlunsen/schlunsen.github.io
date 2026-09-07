@@ -70,13 +70,19 @@ const year = new Date().getFullYear();
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="nav" id="site-header">
     <div class="nav-inner">
-      <a class="wordmark" href="#" aria-label="Rasmus Schlünsen, home"><span class="wm-l">r</span><span class="wm-reveal">asmus&nbsp;</span><span class="wm-l">s</span><span class="wm-reveal">chlünsen</span><span class="wm-reg" aria-hidden="true">®</span></a>
-      <span class="nav-caption">Independent developer<br/>Copenhagen → Barcelona<span class="clock" aria-label="Local time in Barcelona"><span data-hh>––</span><span class="colon">:</span><span data-mm>––</span></span></span>
+      <a class="wordmark" href="#" aria-label="Rasmus Schlünsen, home">
+        <svg class="identity-mark" viewBox="0 0 72 72" fill="none" aria-hidden="true">
+          <g stroke="currentColor" stroke-width="1.3">
+            {[0,1,2,3,4,5,6].map(i => <ellipse cx="36" cy="36" rx={10+i*3.3} ry="30" transform={`rotate(${i*15-45} 36 36)`} />)}
+          </g><circle cx="36" cy="36" r="3" fill="currentColor" />
+        </svg>
+        <span class="identity-name"><span class="identity-first">Rasmus</span><span class="identity-last">Schlünsen<span class="identity-dot">.</span></span></span>
+      </a>
+      <div class="nav-caption"><span>Independent by design.</span><span>Software, systems & a little curiosity.</span><span class="nav-location">Based in Barcelona <span aria-hidden="true">↗</span></span></div>
       <nav aria-label="Main navigation">
-        <a href="#projects" data-section="projects"><span class="roll"><span>Selected work</span><span aria-hidden="true">Selected work</span></span><span class="count">09</span></a>
-        <a href="#about" data-section="about"><span class="roll"><span>About</span><span aria-hidden="true">About</span></span></a>
-        <a class="nav-contact" href="#contact" data-section="contact"><span class="roll"><span>Let’s talk</span><span aria-hidden="true">Let’s talk</span></span><span class="arrow">↗</span></a>
-        <i class="nav-indicator" aria-hidden="true"></i>
+        <a href="#projects" data-section="projects"><span class="nav-index">01 / 09 projects</span><span class="nav-label">Work <span aria-hidden="true">↘</span></span></a>
+        <a href="#about" data-section="about"><span class="nav-index">02 / The person</span><span class="nav-label">About <span aria-hidden="true">↘</span></span></a>
+        <a href="#contact" data-section="contact"><span class="nav-index">03 / Say hello</span><span class="nav-label">Let’s talk <span aria-hidden="true">↗</span></span></a>
       </nav>
     </div>
     <i class="nav-progress" aria-hidden="true"></i>
