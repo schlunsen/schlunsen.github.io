@@ -68,10 +68,18 @@ const year = new Date().getFullYear();
 ---
 <Layout title="Rasmus Schlünsen — Independent developer & creative technologist" description="Independent software consultant and developer in Barcelona. 15+ years building thoughtful software, developer tools, and agentic systems. Explore selected work by Rasmus Schlünsen.">
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="nav">
-    <a class="wordmark" href="#" aria-label="Rasmus Schlünsen, home">rs<span>®</span></a>
-    <span class="nav-caption">Independent developer<br/>Copenhagen → Barcelona</span>
-    <nav aria-label="Main navigation"><a href="#projects">Selected work <span>09</span></a><a href="#about">About</a><a class="nav-contact" href="#contact">Let’s talk ↗</a></nav>
+  <header class="nav" id="site-header">
+    <div class="nav-inner">
+      <a class="wordmark" href="#" aria-label="Rasmus Schlünsen, home"><span class="wm-l">r</span><span class="wm-reveal">asmus&nbsp;</span><span class="wm-l">s</span><span class="wm-reveal">chlünsen</span><span class="wm-reg" aria-hidden="true">®</span></a>
+      <span class="nav-caption">Independent developer<br/>Copenhagen → Barcelona<span class="clock" aria-label="Local time in Barcelona"><span data-hh>––</span><span class="colon">:</span><span data-mm>––</span></span></span>
+      <nav aria-label="Main navigation">
+        <a href="#projects" data-section="projects"><span class="roll"><span>Selected work</span><span aria-hidden="true">Selected work</span></span><span class="count">09</span></a>
+        <a href="#about" data-section="about"><span class="roll"><span>About</span><span aria-hidden="true">About</span></span></a>
+        <a class="nav-contact" href="#contact" data-section="contact"><span class="roll"><span>Let’s talk</span><span aria-hidden="true">Let’s talk</span></span><span class="arrow">↗</span></a>
+        <i class="nav-indicator" aria-hidden="true"></i>
+      </nav>
+    </div>
+    <i class="nav-progress" aria-hidden="true"></i>
   </header>
   <main id="main">
     <section class="intro" aria-labelledby="intro-title">
@@ -115,5 +123,5 @@ const year = new Date().getFullYear();
     <section class="contact-section section" id="contact"><div class="contact-top"><span class="eyebrow">03 / Start a conversation</span><span class="availability"><i></i> Open to interesting challenges</span></div><h2>What are you<br/><a href="https://www.linkedin.com/in/rasmusbs/" target="_blank" rel="noopener noreferrer">thinking<span>↗</span></a>?</h2><div class="contact-bottom"><p>A new product, a thorny problem, or an idea<br/>you can’t stop thinking about. Let’s talk.</p><div><a href="https://www.linkedin.com/in/rasmusbs/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/schlunsen" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></section>
   </main>
   <footer><span>© {year} Rasmus Schlünsen</span><span>Built with curiosity. Based in Barcelona.</span><a href="#">Back to top ↑</a></footer>
-  <script>import '../scripts/system';</script>
+  <script>import '../scripts/system';import '../scripts/header';</script>
 </Layout>
