@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import gourceScreenshot from '../assets/gource-viewer.png';
 import '../styles/portfolio.css';
 const archive = [
   {
@@ -82,20 +84,20 @@ const year = new Date().getFullYear();
     <section class="selected section" id="projects" aria-labelledby="projects-title">
       <div class="section-heading"><span class="eyebrow">01 / Selected work</span><h2 id="projects-title">Ideas, made real<span class="accent">.</span></h2><p>Independent builds. Open explorations.<br/>Useful things that needed to exist.</p></div>
       <article class="feature gource-feature">
-        <div class="feature-visual graph-visual" aria-label="Illustration of a branching source code tree">
-          <div class="visual-top"><span>GOURCE VIEWER</span><span class="live-dot">Repository in motion</span></div>
-          <svg viewBox="0 0 800 440" fill="none" aria-hidden="true" class="repo-tree">
-            <g stroke="#b29b78" stroke-opacity=".4">
-              {[0,1,2,3,4,5,6,7,8,9,10,11].map(i => {
-                const angle=i*Math.PI/6;const x=400+Math.cos(angle)*145;const y=220+Math.sin(angle)*110;
-                return <g><path d={`M400 220 Q${400+Math.cos(angle+.3)*75} ${220+Math.sin(angle+.3)*60} ${x} ${y}`}/>{Array.from({length:9},(_,j)=>{const a=angle+(j-4)*.15;const xx=x+Math.cos(a)*(55+j%3*20);const yy=y+Math.sin(a)*(45+j%3*15);return <g><path d={`M${x} ${y} L${xx} ${yy}`}/><circle cx={xx} cy={yy} r={2+j%3} fill={i%3===0?'#e7c59a':i%3===1?'#78a88b':'#ded8c9'} stroke="none"/></g>})}<circle cx={x} cy={y} r="4" fill="#e7c59a"/></g>
-              })}
-            </g><circle cx="400" cy="220" r="8" fill="#e7c59a"/><circle class="tree-pulse" cx="400" cy="220" r="22" stroke="#e7c59a" stroke-opacity=".4"/>
-            <g fill="#aca89e" font-size="10" font-family="monospace"><text x="419" y="209">root</text><text x="550" y="205">src/</text><text x="212" y="220">components/</text><text x="414" y="357">public/</text></g>
-          </svg>
-          <div class="visual-bottom"><span>COMMIT. CONNECT. EVOLVE.</span><span>Concept illustration / 001</span></div>
+        <a class="feature-visual graph-visual" href="https://schlunsen.github.io/gource-view/" target="_blank" rel="noopener noreferrer" aria-label="Try the Gource Viewer live demo">
+          <div class="visual-top"><span>GOURCE VIEWER</span><span>REPOSITORY HISTORY, ALIVE ↗</span></div>
+          <Image src={gourceScreenshot} alt="Gource View visualizing the Express repository, with branching files, contributor activity, and a commit timeline" widths={[560, 840, 1400]} sizes="(max-width: 600px) 90vw, 52vw" format="webp" loading="lazy" class="gource-screenshot" />
+          <div class="visual-bottom"><span>EXPRESS / 300 COMMITS / 76 AUTHORS</span><span>Actual product capture</span></div>
+        </a>
+        <div class="feature-info">
+          <div class="project-index"><span>01 / Developer tools</span><span class="new-label">Latest project</span></div>
+          <h3>Gource Viewer</h3>
+          <p>Watch a codebase come to life. Explore repository history as an animated world of files, folders, and contributors. Try curated repositories in the browser, or self-host to explore your own and export MP4 films.</p>
+          <div class="feature-bottom gource-links">
+            <a href="https://schlunsen.github.io/gource-view/" target="_blank" rel="noopener noreferrer" class="text-link" id="gource-link">Try the live demo ↗</a>
+            <a href="https://github.com/schlunsen/gource-view" target="_blank" rel="noopener noreferrer" class="text-link">View source ↗</a>
+          </div>
         </div>
-        <div class="feature-info"><div class="project-index"><span>01 / Developer tools</span><span class="new-label">Latest project</span></div><h3>Gource Viewer</h3><p>A new perspective on code. An exploration of software, its history, and the connections that bring it to life.</p><div class="feature-bottom"><span class="tag">Visualization</span><a href="#contact" class="text-link" id="gource-link">Ask me about it ↗</a></div></div>
       </article>
       <article class="feature wee-feature">
         <a class="feature-visual wee-visual" href="https://wee.cat" target="_blank" rel="noopener noreferrer" aria-label="Explore Wee"><span class="visual-top">WEE / AGENT INFRASTRUCTURE <span>↗</span></span><img src="/wee-hero.png" alt="Wee mascot: a cat riding a rocket" width="1200" height="675" loading="lazy"/><span class="visual-bottom">A LITTLE SPACE. A LOT OF POSSIBILITY.</span></a>

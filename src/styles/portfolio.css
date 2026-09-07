@@ -810,3 +810,20 @@ footer {
   flex-wrap: wrap;
   gap: 16px;
 }
+
+.gource-screenshot {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform .5s;
+}
+.graph-visual {
+  background: #101e2b;
+}
+.graph-visual:hover .gource-screenshot {
+  transform: scale(1.025);
+}
+.gource-links {
+  flex-wrap: wrap;
+  gap: 16px;
+}
