@@ -831,3 +831,39 @@ footer {
   .nav.is-scrolled .nav nav { margin-top:4px; }
   .section,.intro,#contact { scroll-margin-top:128px; }
 }
+
+.gitcity-visual {
+  background: #121c26;
+  color: #e8e7d9;
+}
+.gitcity-hero {
+  overflow: hidden;
+  border-top: 1px solid #2a3642;
+}
+.gitcity-visual:hover .feature-screenshot {
+  transform: scale(1.025);
+}
+.gitcity-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: #2a3642;
+  border-top: 1px solid #2a3642;
+  border-bottom: 1px solid #2a3642;
+}
+.gitcity-thumb {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  opacity: .8;
+  transition: opacity .3s;
+}
+.gitcity-visual:hover .gitcity-thumb {
+  opacity: 1;
+}
+.gitcity-links {
+  flex-wrap: wrap;
+  gap: 16px;
+}

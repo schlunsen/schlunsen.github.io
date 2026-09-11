@@ -3,8 +3,20 @@ import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import gourceScreenshot from '../assets/gource-viewer.png';
 import weeCatScreenshot from '../assets/wee-cat.png';
+import gitCityHero from '../assets/git-city-hero.jpg';
+import gitCityNight from '../assets/git-city-night.jpg';
+import gitCityCloseup from '../assets/git-city-closeup.jpg';
+import gitCityIsland from '../assets/git-city-island.jpg';
 import '../styles/portfolio.css';
 const archive = [
+  {
+    name: 'Git City',
+    desc: 'Turn any GitHub profile into a living cartoon city. Repositories become buildings, stars make them tall, languages paint them, and 90 days of activity play back across the skyline.',
+    tags: ['Three.js', 'Visualization'],
+    href: 'https://schlunsen.github.io/git-city/',
+    linkLabel: 'Live demo',
+    featured: true,
+  },
   {
     name: 'wee.cat',
     desc: 'Supermarket price aggregator for Catalonia. Daily offers from Bonpreu/Esclat, Consum, Lidl, Mercadona and bonÀrea, price history, AI shopping lists, and home delivery in parts of Spain.',
@@ -88,6 +100,8 @@ const archive = [
 
 
 const year = new Date().getFullYear();
+// Featured archive entries plus Gource Viewer are numbered first; the archive list continues after them.
+const firstArchiveNumber = archive.filter(p => p.featured).length + 2;
 ---
 <Layout title="Rasmus Schlünsen — Independent developer & creative technologist" description="Independent software consultant and developer in Barcelona. 15+ years building thoughtful software, developer tools, and agentic systems. Explore selected work by Rasmus Schlünsen.">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -120,6 +134,27 @@ const year = new Date().getFullYear();
     </section>
     <section class="selected section" id="projects" aria-labelledby="projects-title">
       <div class="section-heading"><span class="eyebrow">01 / Selected work</span><h2 id="projects-title">Ideas, made real<span class="accent">.</span></h2><p>Independent builds. Open explorations.<br/>Useful things that needed to exist.</p></div>
+      <article class="feature gitcity-feature">
+        <a class="feature-visual gitcity-visual" href="https://schlunsen.github.io/git-city/" target="_blank" rel="noopener noreferrer" aria-label="Open the Git City live demo">
+          <div class="visual-top"><span>GIT CITY</span><span>GITHUB PROFILES, AS CITIES ↗</span></div>
+          <div class="gitcity-hero"><Image src={gitCityHero} alt="Git City rendering sindresorhus: a dense cel-shaded city of yellow JavaScript, pink CSS and blue TypeScript towers on a grass island, with profile stats and an activity timeline" widths={[560, 840, 1440]} sizes="(max-width: 600px) 90vw, 52vw" format="webp" loading="lazy" class="feature-screenshot" /></div>
+          <div class="gitcity-gallery">
+            <Image src={gitCityNight} alt="Git City at night: windows glow, streetlamps and stars come out" widths={[320, 480]} sizes="(max-width: 600px) 30vw, 17vw" format="webp" loading="lazy" class="gitcity-thumb" />
+            <Image src={gitCityCloseup} alt="Close-up of painted facades, helipads and rooftop solar panels" widths={[320, 480]} sizes="(max-width: 600px) 30vw, 17vw" format="webp" loading="lazy" class="gitcity-thumb" />
+            <Image src={gitCityIsland} alt="Zoomed out: the city on its own grass island, with hills, villages and hot-air balloons" widths={[320, 480]} sizes="(max-width: 600px) 30vw, 17vw" format="webp" loading="lazy" class="gitcity-thumb" />
+          </div>
+          <div class="visual-bottom"><span>SINDRESORHUS / 97 REPOS / 861K STARS</span><span>Actual product capture</span></div>
+        </a>
+        <div class="feature-info">
+          <div class="project-index"><span>01 / Visualization</span><span class="new-label">Latest project</span></div>
+          <h3>Git City</h3>
+          <p>Turn any GitHub profile into a living cartoon city. Every repository becomes a building: stars make it tall, the language paints it. The last 90 days of activity play back as the developer flies across the skyline, beaming pushes, pull requests and stars onto the rooftops. Cel-shaded Three.js, no build step.</p>
+          <div class="feature-bottom gitcity-links">
+            <a href="https://schlunsen.github.io/git-city/" target="_blank" rel="noopener noreferrer" class="text-link">Open Git City ↗</a>
+            <a href="https://github.com/schlunsen/git-city" target="_blank" rel="noopener noreferrer" class="text-link">View source ↗</a>
+          </div>
+        </div>
+      </article>
       <article class="feature gource-feature">
         <a class="feature-visual graph-visual" href="https://schlunsen.github.io/gource-view/" target="_blank" rel="noopener noreferrer" aria-label="Try the Gource Viewer live demo">
           <div class="visual-top"><span>GOURCE VIEWER</span><span>REPOSITORY HISTORY, ALIVE ↗</span></div>
@@ -127,7 +162,7 @@ const year = new Date().getFullYear();
           <div class="visual-bottom"><span>EXPRESS / 300 COMMITS / 76 AUTHORS</span><span>Actual product capture</span></div>
         </a>
         <div class="feature-info">
-          <div class="project-index"><span>01 / Developer tools</span><span class="new-label">Latest project</span></div>
+          <div class="project-index"><span>02 / Developer tools</span><span>Open source</span></div>
           <h3>Gource Viewer</h3>
           <p>Watch a codebase come to life. Explore repository history as an animated world of files, folders, and contributors. Try curated repositories in the browser, or self-host to explore your own and export MP4 films.</p>
           <div class="feature-bottom gource-links">
@@ -142,7 +177,7 @@ const year = new Date().getFullYear();
           <Image src={weeCatScreenshot} alt="wee.cat showing this week's supermarket offers, staples at the best price, and an AI shopping-list builder" widths={[560, 840, 1400]} sizes="(max-width: 600px) 90vw, 52vw" format="webp" loading="lazy" class="feature-screenshot" />
           <div class="visual-bottom"><span>BONPREU / CONSUM / LIDL / MERCADONA / BONÀREA</span><span>Actual product capture</span></div>
         </a>
-        <div class="feature-info"><div class="project-index"><span>02 / Consumer & data</span><span>Featured</span></div><h3>wee.cat</h3>
+        <div class="feature-info"><div class="project-index"><span>03 / Consumer & data</span><span>Featured</span></div><h3>wee.cat</h3>
           <p>Know what groceries really cost. wee.cat collects the offers from Bonpreu/Esclat, Consum, Lidl, Mercadona and bonÀrea every morning, keeps the price history, builds your shopping list with AI, and delivers to your door in parts of Spain.</p>
           <div class="feature-bottom">
             <a class="text-link" href="https://wee.cat" target="_blank" rel="noopener noreferrer">Compare prices on wee.cat ↗</a>
@@ -150,14 +185,14 @@ const year = new Date().getFullYear();
       </article>
       <article class="feature wee-editor-feature">
         <a class="feature-visual wee-visual" href="https://github.com/schlunsen/wee-editor" target="_blank" rel="noopener noreferrer" aria-label="Wee Editor on GitHub"><span class="visual-top">WEE EDITOR / AGENT WORKSPACE <span>↗</span></span><img src="/wee-hero.png" alt="Wee Editor mascot: a cat riding a rocket" width="1200" height="675" loading="lazy"/><span class="visual-bottom">A LITTLE SPACE. A LOT OF POSSIBILITY.</span></a>
-        <div class="feature-info"><div class="project-index"><span>03 / AI & infrastructure</span><span>Open source</span></div><h3>Wee Editor</h3>
+        <div class="feature-info"><div class="project-index"><span>04 / AI & infrastructure</span><span>Open source</span></div><h3>Wee Editor</h3>
           <p>Give your agents room to work. A self-hosted AI workspace with hosted agent sandboxes, terminal access, live usage metrics, and support for multiple AI providers. The product that lived at wee.cat before the domain became a supermarket price tracker.</p>
           <div class="feature-bottom">
             <a class="text-link" href="https://github.com/schlunsen/wee-editor" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a>
           </div></div>
       </article>
       <div class="archive-heading"><h3>More from the workshop</h3><span class="eyebrow">Always building. Always shipping.</span></div>
-      <div class="archive">{archive.filter(p=>!p.featured).map((p,i)=><a href={p.href} target="_blank" rel="noopener noreferrer" class="archive-row"><span class="archive-number">{String(i+4).padStart(2,'0')}</span><div><h3>{p.name}</h3><p>{p.desc}</p></div><span class="archive-tags">{p.tags.join(' / ')}</span><span class="archive-arrow" aria-hidden="true">↗</span></a>)}</div>
+      <div class="archive">{archive.filter(p=>!p.featured).map((p,i)=><a href={p.href} target="_blank" rel="noopener noreferrer" class="archive-row"><span class="archive-number">{String(i+firstArchiveNumber).padStart(2,'0')}</span><div><h3>{p.name}</h3><p>{p.desc}</p></div><span class="archive-tags">{p.tags.join(' / ')}</span><span class="archive-arrow" aria-hidden="true">↗</span></a>)}</div>
     </section>
     <section class="about-section section" id="about"><div class="about-top"><span class="eyebrow">02 / The person behind the code</span><span class="eyebrow">Danish roots. Barcelona base.</span></div><div class="about-grid"><h2>Good software<br/>starts with<br/><em>good questions.</em></h2><div class="about-copy"><p>I’m Rasmus, a software consultant and developer with 15+ years of turning complex challenges into things people can actually use.</p><p>From Copenhagen to Barcelona, my approach has stayed the same: understand the problem, question the obvious, and build with care. Today, I run Clovr Labs and explore what’s possible with AI and agentic systems.</p><div class="facts"><div><strong>15+</strong><span>Years shipping</span></div><div><strong>2×</strong><span>DIA Award winner</span></div><div><strong>3</strong><span>Languages spoken</span></div></div></div></div><div class="practice"><span class="eyebrow">My practice</span><p>Software architecture <b>·</b> Full-stack development <b>·</b> AI & agentic systems <b>·</b> Developer tools</p></div><div class="practice" id="stack"><span class="eyebrow">Tools of the trade</span><p>Python / Go / Rust / TypeScript / C# / .NET / React / PostgreSQL / Docker / AWS</p></div><div class="experience" id="work"><span class="eyebrow">The journey</span><div><span>Clovr Labs</span><span>Founder & Consultant</span><span>Barcelona · Now</span></div><div><span>Consulting</span><span>Senior Developer</span><span>Barcelona</span></div><div><span>Copenhagen</span><span>Software Developer</span><span>Denmark</span></div></div></section>
     <section class="contact-section section" id="contact"><div class="contact-top"><span class="eyebrow">03 / Start a conversation</span><span class="availability"><i></i> Open to interesting challenges</span></div><h2>What are you<br/><a href="https://www.linkedin.com/in/rasmusbs/" target="_blank" rel="noopener noreferrer">thinking<span>↗</span></a>?</h2><div class="contact-bottom"><p>A new product, a thorny problem, or an idea<br/>you can’t stop thinking about. Let’s talk.</p><div><a href="https://www.linkedin.com/in/rasmusbs/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/schlunsen" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></section>
