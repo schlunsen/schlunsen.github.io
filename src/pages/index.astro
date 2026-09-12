@@ -3,18 +3,18 @@ import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import gourceScreenshot from '../assets/gource-viewer.png';
 import weeCatScreenshot from '../assets/wee-cat.png';
-import gitCityHero from '../assets/git-city-hero.jpg';
-import gitCityNight from '../assets/git-city-night.jpg';
-import gitCityCloseup from '../assets/git-city-closeup.jpg';
-import gitCityIsland from '../assets/git-city-island.jpg';
+import gitillaHero from '../assets/gitilla-hero.jpg';
+import gitillaNight from '../assets/gitilla-night.jpg';
+import gitillaCloseup from '../assets/gitilla-closeup.jpg';
+import gitillaIsland from '../assets/gitilla-island.jpg';
 import '../styles/portfolio.css';
 const archive = [
   {
-    name: 'Git City',
+    name: 'Gitilla',
     desc: 'Turn any GitHub profile into a living cartoon city. Repositories become buildings, stars make them tall, languages paint them, and 90 days of activity play back across the skyline.',
     tags: ['Three.js', 'Visualization'],
-    href: 'https://schlunsen.github.io/git-city/',
-    linkLabel: 'Live demo',
+    href: 'https://gitilla.com/',
+    linkLabel: 'gitilla.com',
     featured: true,
   },
   {
@@ -134,23 +134,23 @@ const firstArchiveNumber = archive.filter(p => p.featured).length + 2;
     </section>
     <section class="selected section" id="projects" aria-labelledby="projects-title">
       <div class="section-heading"><span class="eyebrow">01 / Selected work</span><h2 id="projects-title">Ideas, made real<span class="accent">.</span></h2><p>Independent builds. Open explorations.<br/>Useful things that needed to exist.</p></div>
-      <article class="feature gitcity-feature">
-        <a class="feature-visual gitcity-visual" href="https://schlunsen.github.io/git-city/" target="_blank" rel="noopener noreferrer" aria-label="Open the Git City live demo">
-          <div class="visual-top"><span>GIT CITY</span><span>GITHUB PROFILES, AS CITIES ↗</span></div>
-          <div class="gitcity-hero"><Image src={gitCityHero} alt="Git City rendering sindresorhus by day: cel-shaded towers in yellow JavaScript, blue TypeScript, green shell and pink CSS districts on a palm-lined island, with profile stats and an activity timeline" widths={[560, 840, 1440]} sizes="(max-width: 600px) 90vw, 52vw" format="webp" loading="lazy" class="feature-screenshot" /></div>
-          <div class="gitcity-gallery">
-            <Image src={gitCityNight} alt="Git City at night: lit windows across the towers and a moonlit sea around the island" widths={[320, 480]} sizes="(max-width: 600px) 30vw, 17vw" format="webp" loading="lazy" class="gitcity-thumb" />
-            <Image src={gitCityCloseup} alt="Close-up among the towers: repository name signs on every building, rooftop pools and spires" widths={[320, 480]} sizes="(max-width: 600px) 30vw, 17vw" format="webp" loading="lazy" class="gitcity-thumb" />
-            <Image src={gitCityIsland} alt="Zoomed out: the city on its own island, with a roller coaster, villages, mountains and open sea" widths={[320, 480]} sizes="(max-width: 600px) 30vw, 17vw" format="webp" loading="lazy" class="gitcity-thumb" />
+      <article class="feature gitilla-feature">
+        <a class="feature-visual gitilla-visual" href="https://gitilla.com/" target="_blank" rel="noopener noreferrer" aria-label="Open the Gitilla live demo">
+          <div class="visual-top"><span>GITILLA</span><span>GITHUB PROFILES, AS CITIES ↗</span></div>
+          <div class="gitilla-hero"><Image src={gitillaHero} alt="Gitilla rendering sindresorhus by day: cel-shaded towers in yellow JavaScript, blue TypeScript, green shell and pink CSS districts on a palm-lined island, with profile stats and an activity timeline" widths={[560, 840, 1440]} sizes="(max-width: 600px) 90vw, 52vw" format="webp" loading="lazy" class="feature-screenshot" /></div>
+          <div class="gitilla-gallery">
+            <Image src={gitillaNight} alt="Gitilla at night: lit windows across the towers and a moonlit sea around the island" widths={[320, 480]} sizes="(max-width: 600px) 30vw, 17vw" format="webp" loading="lazy" class="gitilla-thumb" />
+            <Image src={gitillaCloseup} alt="Close-up among the towers: repository name signs on every building, rooftop pools and spires" widths={[320, 480]} sizes="(max-width: 600px) 30vw, 17vw" format="webp" loading="lazy" class="gitilla-thumb" />
+            <Image src={gitillaIsland} alt="Zoomed out: the city on its own island, with a roller coaster, villages, mountains and open sea" widths={[320, 480]} sizes="(max-width: 600px) 30vw, 17vw" format="webp" loading="lazy" class="gitilla-thumb" />
           </div>
           <div class="visual-bottom"><span>SINDRESORHUS / 97 REPOS / 864K STARS</span><span>Actual product capture</span></div>
         </a>
         <div class="feature-info">
           <div class="project-index"><span>01 / Visualization</span><span class="new-label">Latest project</span></div>
-          <h3>Git City</h3>
+          <h3>Gitilla</h3>
           <p>Turn any GitHub profile into a living cartoon city. Every repository becomes a building: stars make it tall, the language paints it. The last 90 days of activity play back as the developer flies across the skyline, beaming pushes, pull requests and stars onto the rooftops. Cel-shaded Three.js, no build step.</p>
-          <div class="feature-bottom gitcity-links">
-            <a href="https://schlunsen.github.io/git-city/" target="_blank" rel="noopener noreferrer" class="text-link">Open Git City ↗</a>
+          <div class="feature-bottom gitilla-links">
+            <a href="https://gitilla.com/" target="_blank" rel="noopener noreferrer" class="text-link">Open Gitilla ↗</a>
             <a href="https://github.com/schlunsen/git-city" target="_blank" rel="noopener noreferrer" class="text-link">View source ↗</a>
           </div>
         </div>
