@@ -839,29 +839,33 @@ footer {
 .gitilla-hero {
   overflow: hidden;
   border-top: 1px solid #2a3642;
+  position: relative;
+}
+/* The live city, over its own screenshot. It only ever loads when the section
+   is near the viewport (loading="lazy"), and it fades in when it has something
+   to show, so the panel is never blank. pointer-events stay off: the whole
+   feature is one link to gitilla.com, and a frame in the middle of it would
+   swallow the click -- the embed has nothing to click anyway. */
+.gitilla-live {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.2s ease;
+}
+.gitilla-live.ready {
+  opacity: 1;
+}
+/* Asked not to be moved: keep the still picture and never load the frame. */
+@media (prefers-reduced-motion: reduce) {
+  .gitilla-live { display: none; }
 }
 .gitilla-visual:hover .feature-screenshot {
   transform: scale(1.025);
-}
-.gitilla-gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: #2a3642;
-  border-top: 1px solid #2a3642;
-  border-bottom: 1px solid #2a3642;
-}
-.gitilla-thumb {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  opacity: .8;
-  transition: opacity .3s;
-}
-.gitilla-visual:hover .gitilla-thumb {
-  opacity: 1;
 }
 .gitilla-links {
   flex-wrap: wrap;
