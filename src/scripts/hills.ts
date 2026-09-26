@@ -76,9 +76,11 @@ export function paintHills(canvas: HTMLCanvasElement, avoid: string[] = [], fron
   let sun = { x: 0, y: 0, r: 0 };
   let stars: { x: number; y: number; s: number; k: number }[] = [];
 
+  let shiftY = 0;      // px: pushes the hills down so the front ridge meets my shoulders
+  let freqK = 1;       // < 1 on narrow screens so the ridges aren't spiky
   const yOf = (i: number, x: number) => {
     const R = RIDGES[i];
-    return H * (R.base - R.amp * profiles[i]((x / Math.max(W, 1)) * R.freq + R.seed));
+    return shiftY + H * (R.base - R.amp * profiles[i]((x / Math.max(W, 1)) * R.freq * freqK + R.seed));
   };
 
   function layout() {
@@ -103,6 +105,16 @@ export function paintHills(canvas: HTMLCanvasElement, avoid: string[] = [], fron
     const free = (x: number, y: number) => !boxes.some((q) => x > q.l && x < q.r && y > q.t && y < q.b);
     // on phones the text column spans the width: tuck the sun behind the portrait's corner
     const port = document.querySelector('.portrait')?.getBoundingClientRect();
+    freqK = narrow ? Math.max(0.45, W / 1100) : 1;
+    shiftY = 0;
+    if (port && fctx) {
+      // the front ridge's highest point should sit around my collarbones, never over my face
+      const want = port.top - rect.top + port.height * 0.8;
+      let top = Infinity;
+      const pl = port.left - rect.left, pr = port.right - rect.left;
+      for (let x = pl; x <= pr; x += 4) top = Math.min(top, yOf(FRONT_FROM, x));
+      shiftY = Math.max(0, want - top);
+    }
     if (port) {
       // tuck the sun just behind my head (head sits around 27–65% across, top ~12% down)
       const px = port.left - rect.left, py = port.top - rect.top;
