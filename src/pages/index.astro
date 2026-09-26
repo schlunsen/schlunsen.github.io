@@ -157,7 +157,7 @@ const repoSlug = (url?: string) => url?.replace('https://github.com/', '') ?? ''
 
         <ol class="timeline">
           {story.map((s, i) => (
-            <li style={`--t: var(--${s.tint}); --r:${i % 2 ? 0.6 : -0.6}deg`} data-reveal>
+            <li class:list={[{ brief: s.brief }]} style={`--t: var(--${s.tint}); --r:${i % 2 ? 0.6 : -0.6}deg`} data-reveal>
               <span class="dot" aria-hidden="true"></span>
               <p class="kicker">{s.when}</p>
               <h3><span class="marker">{s.title}</span> <em>{s.em}</em></h3>
@@ -178,7 +178,8 @@ const repoSlug = (url?: string) => url?.replace('https://github.com/', '') ?? ''
         <div class="about-text" data-reveal>
           <p>Software consultant in Barcelona, fifteen years in, currently at <strong>Clovr Labs</strong>. A system architect at heart who loves the creative side just as much: robust backends, and interactions that make software feel alive.</p>
           <p>Python, Go, Rust and JavaScript across the stack. Deep into AI and agentic systems.</p>
-          <p>Danish by birth, English at work, Spanish in progress. Off the keyboard: dad, Barcelona, side projects.</p>
+          <p>Danish by birth, English at work, Spanish in progress.</p>
+          <p class="off"><span class="kicker">Off the clock</span> Making creative things, playing with my kids, and playing music.</p>
           <p class="sig marker" aria-hidden="true">— Rasmus</p>
         </div>
         <ul class="skills" data-reveal aria-label="Skills">
@@ -699,6 +700,12 @@ const repoSlug = (url?: string) => url?.replace('https://github.com/', '') ?? ''
   /* ================= ABOUT ================= */
   .about-inner { max-width: 820px; margin: 0 auto; }
   .about-text p { margin-bottom: 1.15rem; font-size: 1.1rem; }
+  .about-text .off { padding: .7rem 1rem; border: 2px dashed var(--ink); border-radius: 10px 4px 12px 6px; background: color-mix(in srgb, var(--ochre) 18%, transparent); }
+  .about-text .off .kicker { display: block; color: var(--clay-dk); margin-bottom: .15rem; }
+  .timeline li.brief { padding-bottom: 1.6rem; }
+  .timeline li.brief h3 .marker { font-size: clamp(1.15rem, 2vw, 1.35rem); }
+  .timeline li.brief h3 em { font-size: 1rem; }
+  .timeline li.brief .dot { width: 14px; height: 14px; left: calc(-2.2rem + 3px); top: .3rem; }
   .about-text strong { background: linear-gradient(transparent 58%, color-mix(in srgb, var(--ochre) 70%, transparent) 58%); }
   .sig { font-size: 1.9rem; color: var(--clay-dk); transform: rotate(-4deg); display: inline-block; }
   .skills { list-style: none; display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.8rem; }

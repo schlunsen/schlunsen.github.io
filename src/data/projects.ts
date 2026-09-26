@@ -113,9 +113,9 @@ export const bench: { name: string; note: string; url?: string }[] = [
   { name: 'Straw Draw', note: 'iPad · Swift' },
 ];
 
-export const story: { when: string; title: string; em: string; body: string; tint: Project['tint']; link?: { href: string; label: string } }[] = [
-  { when: '2008–2011', title: 'School,', em: 'the useful kind.', body: 'Business Academy West: C#, Java, databases, networking, agile and TDD.', tint: 'sky' },
-  { when: '2010', title: 'It started', em: 'with security.', body: 'My first job: an internship at a security company.', tint: 'rose' },
+export const story: { when: string; title: string; em: string; body: string; tint: Project['tint']; link?: { href: string; label: string }; brief?: boolean }[] = [
+  { when: '2008–2011 · Esbjerg', title: 'Computer science.', em: 'Three years.', body: 'Business Academy West, now SEA.', tint: 'sky', brief: true, link: { href: 'https://www.s-e-a.dk/', label: 's-e-a.dk' } },
+  { when: '2010', title: 'It started', em: 'with security.', body: 'My first job, while still studying: an internship at a security company, 45 minutes away. I had to buy a car to get there, so it cost more than it paid. Worth every krone for what I learned.', tint: 'rose' },
   { when: 'Final project', title: 'Built in Unity3D,', em: 'while it was brand new.', body: 'My final project, in a young Danish engine that had only just reached Windows and gone free.', tint: 'violet' },
   { when: 'Agency', title: 'Full stack,', em: 'full speed.', body: 'Front to back at a young agency.', tint: 'ochre' },
   { when: 'Freelance · 5 yrs', title: 'OrbiSCADA.', em: 'Wind, at scale.', body: 'Drove the SCADA system for wind turbines: from one in Denmark to 1,500+ across Denmark, the UK, the USA and Japan. Along the way, Orbital won Børsen Gazelle’s 2018 manufacturing prize for Central Jutland.', tint: 'teal' },
