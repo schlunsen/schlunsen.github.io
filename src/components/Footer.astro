@@ -1,13 +1,40 @@
-<footer class="site-footer"><p>&copy; 2026 Rasmus Schlunsen</p></footer>
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="foot">
+  <div class="foot-inner">
+    <p class="big marker">Serious code.<br><em>Clear thinking.</em></p>
+    <div class="foot-side">
+      <p class="kicker">Say hi</p>
+      <ul>
+        <li><a href="https://github.com/schlunsen" rel="me noopener" target="_blank">GitHub ↗</a></li>
+        <li><a href="https://www.linkedin.com/in/rasmusbs/" rel="me noopener" target="_blank">LinkedIn ↗</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="fine kicker">&copy; {year} Rasmus Schlünsen · Barcelona</p>
+</footer>
 
 <style>
-  .site-footer {
-    position: relative; z-index: 2;
-    background: var(--bg);
-    text-align: center;
-    padding: 3rem 2rem;
-    border-top: 1px solid var(--border);
-    color: var(--muted);
-    font-size: 0.8rem;
+  .foot {
+    position: relative;
+    background: var(--ink);
+    color: var(--cream);
+    padding: clamp(3.5rem, 8vw, 6rem) var(--gutter) 2rem;
+    margin-top: 2rem;
+    /* torn top edge */
+    clip-path: polygon(0 18px, 4% 6px, 9% 16px, 15% 4px, 22% 14px, 30% 2px, 37% 13px, 45% 5px, 52% 16px, 60% 3px, 68% 12px, 75% 4px, 83% 15px, 90% 5px, 96% 13px, 100% 4px, 100% 100%, 0 100%);
   }
+  .foot-inner {
+    max-width: 1180px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; flex-wrap: wrap;
+  }
+  .big { font-size: clamp(2.4rem, 7vw, 5rem); line-height: .98; }
+  .big em { font-style: normal; color: var(--clay-lt); }
+  .foot-side .kicker { color: var(--clay-lt); margin-bottom: .5rem; }
+  ul { list-style: none; display: flex; gap: 1.25rem; font-family: var(--marker); font-size: 1.25rem; }
+  a { text-decoration: none; background: linear-gradient(var(--clay), var(--clay)) 0 100% / 0 3px no-repeat; transition: background-size .25s; }
+  a:hover { background-size: 100% 3px; }
+  .fine { max-width: 1180px; margin: 3rem auto 0; color: #a99fae; text-transform: none; letter-spacing: .04em; }
 </style>

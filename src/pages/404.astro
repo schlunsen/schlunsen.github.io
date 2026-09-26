@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+---
+
+<Layout title="No page for you! · Rasmus Schlünsen" description="This page doesn't exist.">
+  <Nav page="other" />
+  <main id="main" class="lost">
+    <p class="kicker"><b>404</b> — Page not found</p>
+    <h1 class="marker">No page<br>for you!</h1>
+    <p>Whatever you were looking for isn't here. Maybe it never was. Serenity now.</p>
+    <a class="btn primary" href="/">Take me home <span aria-hidden="true">→</span></a>
+  </main>
+</Layout>
+
+<style>
+  .lost {
+    min-height: 100svh;
+    display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 1.2rem;
+    max-width: 900px; margin: 0 auto;
+    padding: 7rem var(--gutter) 4rem;
+  }
+  h1 { font-size: clamp(3.6rem, 14vw, 9rem); line-height: .9; transform: rotate(-3deg); }
+  h1::first-line { color: var(--clay); }
+  p:not(.kicker) { font-size: 1.15rem; color: var(--ink-soft); max-width: 30rem; }
+</style>

@@ -1,0 +1,108 @@
+---
+// A painted brush stroke that zig-zags across the screen between pages (the
+// P(doom)-style "brush wipe"). The first visit in a session also shows a quote.
+// The head script in Layout decides whether we arrive covered; the reveal itself
+// is pure CSS, so a script error can never leave the page hidden.
+---
+
+<div id="wipe" aria-hidden="true">
+  <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+    <path class="stroke" pathLength="1"
+      d="M-20 6 L120 0 L-20 28 L120 22 L-20 52 L120 46 L-20 76 L120 70 L-20 100 L120 94" />
+  </svg>
+  <p class="wipe-quote" id="wipeQuote">Serenity now!</p>
+</div>
+
+<script is:inline>
+  (function () {
+    var q = [
+      'Serenity now!', 'Yada yada yada', 'No soup for you!', 'Hello, Newman.',
+      'These pretzels are making me thirsty!', 'Not that there’s anything wrong with that',
+      'A Festivus for the rest of us!', 'Moving mountains…', 'Giddy up!',
+    ];
+    var el = document.getElementById('wipeQuote');
+    if (el) el.textContent = q[Math.floor(Math.random() * q.length)];
+  })();
+</script>
+
+<script>
+  const root = document.documentElement;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  document.addEventListener('click', (e) => {
+    if (reduce.matches || e.defaultPrevented || e.button !== 0) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const a = (e.target as Element).closest?.('a');
+    if (!a || a.target || a.hasAttribute('download')) return;
+    const url = new URL(a.href, location.href);
+    if (url.origin !== location.origin) return;
+    if (url.pathname === location.pathname) return; // hash links scroll normally
+    e.preventDefault();
+    try { sessionStorage.setItem('wipe', '1'); } catch {}
+    root.classList.remove('wipe-in', 'wipe-intro');
+    root.classList.add('wipe-out');
+    setTimeout(() => { location.href = url.href; }, 460);
+  });
+
+  // Coming back through the bfcache: uncover.
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted) root.classList.remove('wipe-out', 'wipe-in', 'wipe-intro');
+  });
+</script>
+
+<style is:global>
+  #wipe {
+    position: fixed; inset: 0;
+    z-index: 200;
+    pointer-events: none;
+    visibility: hidden;
+  }
+  #wipe svg { width: 100%; height: 100%; overflow: visible; }
+  #wipe .stroke {
+    fill: none;
+    stroke: var(--clay);
+    stroke-width: 34;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1 1;
+    stroke-dashoffset: 1;
+    filter: url(#rough-lg);
+  }
+  .wipe-quote {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%) rotate(-4deg);
+    font-family: var(--marker);
+    font-size: clamp(1.8rem, 6vw, 4rem);
+    color: var(--ink);
+    text-align: center;
+    width: min(90vw, 900px);
+    line-height: 1.05;
+    opacity: 0;
+  }
+
+  /* arriving: start covered, then un-paint from the first stroke onwards */
+  html.wipe-in #wipe { visibility: visible; animation: wipe-hide 0s linear .9s forwards; }
+  html.wipe-in #wipe .stroke { stroke-dashoffset: 0; animation: unpaint .6s cubic-bezier(.7,0,.3,1) .2s forwards; }
+
+  html.wipe-intro #wipe { animation-delay: 1.75s; }
+  html.wipe-intro #wipe .stroke { animation-delay: 1.05s; }
+  html.wipe-intro .wipe-quote { animation: quote 1.1s ease forwards; }
+
+  /* leaving: paint the stroke across the screen */
+  html.wipe-out #wipe { visibility: visible; }
+  html.wipe-out #wipe .stroke { animation: paint .45s cubic-bezier(.7,0,.3,1) forwards; }
+
+  @keyframes paint { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+  @keyframes unpaint { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -1; } }
+  @keyframes wipe-hide { to { visibility: hidden; } }
+  @keyframes quote {
+    0% { opacity: 0; transform: translate(-50%, -50%) rotate(-4deg) scale(.6); }
+    18% { opacity: 1; transform: translate(-50%, -50%) rotate(-4deg) scale(1.06); }
+    26%, 80% { opacity: 1; transform: translate(-50%, -50%) rotate(-3deg) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) rotate(-3deg) scale(1); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #wipe { display: none !important; }
+  }
+</style>

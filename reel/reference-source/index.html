@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rasmus Schlünsen — reel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; height: 100%; background: #e9e5dc; }
+  body { display: grid; place-items: center; font-family: 'JetBrains Mono', monospace; }
+  .stage { position: relative; width: min(100vw, 177.78vh); aspect-ratio: 16 / 9; }
+  canvas { width: 100%; height: 100%; display: block; }
+  button { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font: 500 16px 'JetBrains Mono', monospace; letter-spacing: .08em;
+    padding: 16px 28px; border-radius: 99px; border: 1px solid #181614; background: #faf7f2; color: #181614; cursor: pointer; }
+  button:hover { background: #a06b2c; border-color: #a06b2c; color: #faf7f2; }
+  button[hidden] { display: none; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <canvas id="c" width="1920" height="1080"></canvas>
+  <button id="play" type="button">▶ PLAY WITH SOUND</button>
+</div>
+<script src="timeline.js"></script>
+<script src="world.js"></script>
+<script src="audio.js"></script>
+<script src="anim.js"></script>
+<script>
+  const cv = document.getElementById('c'), ctx = cv.getContext('2d'), btn = document.getElementById('play');
+  window.__frame = (f) => { drawFrame(ctx, f / RST.FPS); return cv.toDataURL('image/jpeg', 0.94); };
+  window.__ready = document.fonts.ready
+    .then(() => Promise.all(['800 40px Archivo', '700 40px Archivo', '400 20px Inter', '400 20px "JetBrains Mono"', '500 20px "JetBrains Mono"'].map((f) => document.fonts.load(f))))
+    .then(() => { drawFrame(ctx, 56.5); return true; });
+  let ac = null, buffer = null, start = 0, raf = 0;
+  btn.addEventListener('click', async () => {
+    btn.hidden = true;
+    ac = ac || new AudioContext();
+    if (!buffer) { const { L, R, sr } = renderAudio(ac.sampleRate); buffer = ac.createBuffer(2, L.length, sr); buffer.copyToChannel(L, 0); buffer.copyToChannel(R, 1); }
+    const src = ac.createBufferSource(); src.buffer = buffer; src.connect(ac.destination);
+    start = ac.currentTime + 0.05; src.start(start);
+    cancelAnimationFrame(raf);
+    const tick = () => { const t = ac.currentTime - start; drawFrame(ctx, Math.max(0, Math.min(RST.DUR, t))); if (t < RST.DUR) raf = requestAnimationFrame(tick); else { btn.textContent = '↻ PLAY AGAIN'; btn.hidden = false; } };
+    tick();
+  });
+</script>
+</body>
+</html>

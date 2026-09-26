@@ -2,3 +2,9 @@
 node_modules/
 dist/
 .astro/
+reel/node_modules/
+reel/out/
+reel/vendor/
+.DS_Store
+reel/riso/node_modules/
+reel/riso/out/

@@ -1,77 +1,102 @@
 ---
 interface Props {
-  page?: 'home';
+  page?: 'home' | 'likes' | 'other';
 }
-
 const { page = 'home' } = Astro.props;
+const home = page === 'home' ? '' : '/';
+const links = [
+  { href: `${home}#reel`, label: 'Reel' },
+  { href: `${home}#work`, label: 'Work' },
+  { href: `${home}#story`, label: 'Story' },
+  { href: `${home}#about`, label: 'About' },
+  { href: '/likes', label: 'Likes', current: page === 'likes' },
+];
 ---
 
-<nav class="top-nav" id="topNav">
-  <a href="/" class="nav-logo">Rasmus Schlunsen</a>
-  <div class="nav-links">
-    <a href="/#about">About</a>
-    <a href="/likes">Likes</a>
-  </div>
-</nav>
+<header class="top" id="top">
+  <a href="/" class="logo marker" aria-label="Rasmus Schlünsen, home">
+    <span class="logo-dot" aria-hidden="true"></span>Rasmus Schlünsen
+  </a>
+  <nav aria-label="Main">
+    <ul>
+      {links.map((l) => (
+        <li><a href={l.href} aria-current={l.current ? 'page' : undefined}>{l.label}</a></li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const top = document.getElementById('top');
+  const onScroll = () => top?.classList.toggle('scrolled', window.scrollY > 24);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
 
 <style>
-  .top-nav {
+  .top {
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 50;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem clamp(2rem, 5vw, 6rem);
-    transition: all 0.4s;
+    gap: 1rem;
+    padding: .9rem var(--gutter);
+    transition: background .3s, box-shadow .3s, padding .3s;
+  }
+  .top.scrolled {
+    background: color-mix(in srgb, var(--paper) 92%, transparent);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding-top: .6rem; padding-bottom: .6rem;
+    box-shadow: 0 2px 0 var(--ink);
   }
 
-  .top-nav.scrolled {
-    background: rgba(10, 11, 16, 0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-logo {
-    display: flex;
-    align-items: center;
+  .logo {
+    display: inline-flex; align-items: center; gap: .55rem;
+    font-size: 1.2rem;
     text-decoration: none;
-    font-family: 'Inter', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--text);
-    letter-spacing: -0.02em;
-    transition: color 0.3s;
+    white-space: nowrap;
   }
-
-  .nav-logo:hover { color: var(--accent-hover); }
-
-  .nav-links {
-    display: flex;
-    gap: 0.25rem;
-    align-items: center;
+  .logo-dot {
+    width: 16px; height: 16px;
+    background: var(--clay);
+    border: 2px solid var(--ink);
+    border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+    transition: transform .3s cubic-bezier(.3,1.6,.5,1);
   }
+  .logo:hover .logo-dot { transform: rotate(160deg) scale(1.2); }
 
-  .nav-links a {
-    color: var(--muted);
+  ul { list-style: none; display: flex; gap: .15rem; }
+  nav a {
+    display: block;
+    font-family: var(--mono);
+    font-size: .78rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
     text-decoration: none;
-    font-size: 0.82rem;
-    font-weight: 500;
-    padding: 0.45rem 1rem;
-    border-radius: 100px;
-    transition: all 0.3s;
-    letter-spacing: 0.02em;
+    padding: .4rem .7rem;
+    border-radius: 999px;
+    position: relative;
   }
-
-  .nav-links a:hover {
-    color: var(--text);
-    background: rgba(99, 102, 241, 0.08);
+  nav a::after {
+    content: '';
+    position: absolute; left: .7rem; right: .7rem; bottom: .15rem;
+    height: 3px;
+    background: var(--clay);
+    border-radius: 3px;
+    transform: scaleX(0) rotate(-1deg);
+    transform-origin: left;
+    transition: transform .25s ease;
   }
+  nav a:hover::after, nav a[aria-current='page']::after { transform: scaleX(1) rotate(-1deg); }
 
-  @media (max-width: 900px) {
-    .top-nav { padding: 0.75rem 1.25rem; }
-    .nav-logo { font-size: 0.95rem; }
-    .nav-links a { font-size: 0.75rem; padding: 0.35rem 0.75rem; }
+  @media (max-width: 720px) {
+    .top { flex-direction: column; align-items: flex-start; gap: .25rem; padding-top: .7rem; padding-bottom: .5rem; }
+    .top.scrolled { padding-top: .45rem; padding-bottom: .35rem; }
+    .logo { font-size: 1.05rem; }
+    ul { margin-left: -.55rem; flex-wrap: wrap; }
+    nav a { font-size: .7rem; padding: .3rem .55rem; }
   }
 </style>
