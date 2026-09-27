@@ -5,8 +5,19 @@ every drawing, engraves Rasmus, and rides back to the top of the frame at the en
 (frame 0 and the last frame are the same: the ember on black inside the crop marks).
 
 Medium: canvas 2D, copied kit in `src/` (core.js: palette, fonts, fuse/glow/spark helpers; me.js; scenes/career.js).
-Every shot is a pure function of time. 30 fps, over `../assets/lofi.wav` (80 bpm, a beat every 0.75 s). Hard cuts
-land on beats.
+Every shot is a pure function of time. 30 fps, 80 bpm (a beat every 0.75 s); hard cuts land on beats.
+
+Music: its own score, synthesised by `score.mjs` → `assets/score.wav` (run `node score.mjs` first; the wav is not
+committed). D minor. A low D/A drone is the ember and runs the whole reel; a burin tick on the sixteenths; FM bells
+for drawn lines; a felt thud for every rubber stamp. Per plate: open = drone, bells on the headline words, the
+burin engraving him; security = a careful low pulse, thud on 2010, metal clank as the shackle opens; Unity = no
+bass, bright celesta arpeggio (paper plate, airy); agency = sixteenth-note drive; OrbiSCADA = wind, then Dm–C–Bb–A
+stacking up with the count into a riser, a hit on 1,500+ and an A-major stab on the Gazelle stamp; Clovr = Dm→Eb
+(phrygian) with a rising ping per hop and a thud on FOUND; n0 = typing clicks, then Fadd9 opens on ⏎; workshop =
+the groove (Dm Bb F C) with a tick per card and nine SHIPPED thuds; end = Bb F C Dm under a slow bell line, the
+burin ticks back up and the drone carries into the loop. The mix is circular (tails wrap to 0 s, filters and reverb
+warmed on the tail), so the loop point has no seam. Integrated ≈ −18 LUFS.
+
 Palette: ink blacks (#0A0A0B / #151517 / #1E1E21), graphite, ash, bone paper (#EEE9DF), one signal orange
 (#FF4D12) with an ember glow, blood red for the odd stamp. The Unity and Workshop plates invert to bone paper and ink.
 Lettering: Archivo (static width/weight instances, black and condensed) for headlines, Cormorant Garamond italic for
@@ -47,8 +58,11 @@ Shots (text in reading order):
                       text fades, the spark un-engraves him bottom-up and parks at the loop point.
 
 Render (streamed, no frame folders):
+  node score.mjs
   node render.mjs --clip --crf=12 --preset=fast --abr=128k --out=out/master.mp4
-  ffmpeg -i out/master.mp4 -c:v libx264 -preset slow -crf 20 -pix_fmt yuv420p -c:a aac -b:a 128k \
+  ffmpeg -i out/master.mp4 -c:v libx264 -preset slow -crf 20 -pix_fmt yuv420p -c:a aac -b:a 160k \
     -movflags +faststart out/reel-plates.mp4
 Poster: `node render.mjs --stills=58 --out=out/stills`, converted to `out/reel-plates-poster.jpg`. Delete the master after.
+Music only (picture unchanged): remux with
+  ffmpeg -i out/reel-plates.mp4 -i assets/score.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 160k -shortest out/new.mp4
 Checks: `node render.mjs --sheet=0.5,2.5,… --cols=4 --w=480 --out=out/check/sheet.jpg`.
