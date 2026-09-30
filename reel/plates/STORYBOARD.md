@@ -51,7 +51,7 @@ Shots (text in reading order):
                       then the n0 workspace: people, agents and apps settle into one grid.
                       "People, agents and apps. One place." / nzero.pro
   WORKSHOP  45–53.25  Contact sheet on paper: nine cards drop in (n0, Claude Agent SDK Go, Gource Viewer, Gitilla,
-                      Codex SDK Go, wee.cat, Donna, The Agentic Crew, Hefty), then SHIPPED is stamped across each.
+                      Codex SDK Go, wee.cat (learn to read), Donna, The Agentic Crew, Hefty), then SHIPPED is stamped across each.
                       "Always building. Always shipping." / "Nine of them, anyway. The rest are on GitHub."
   END       53.25–60  End card: Rasmus engraved inside the orbit mark. "Serious code. Clear thinking." /
                       "Rasmus Schlünsen" / "Barcelona · schlunsen.com" / "Plate IX of IX. Fin, for now." Then the

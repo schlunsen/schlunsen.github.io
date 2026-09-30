@@ -105,12 +105,19 @@ const repoSlug = (url?: string) => url?.replace('https://github.com/', '') ?? ''
             </header>
 
             {p.shots.length > 0 ? (
+              <div class="media">
               <button type="button" class:list={['shots', { books: p.books }]} data-shots={JSON.stringify(p.shots)} data-name={p.name} aria-label={`Open ${p.shots.length} image${p.shots.length > 1 ? 's' : ''} of ${p.name}`}>
                 {p.books
                   ? p.shots.map((s, k) => <img src={s} alt="" loading="lazy" decoding="async" style={`--k:${k}`} />)
                   : <img src={p.shots[0]} alt="" loading="lazy" decoding="async" />}
                 {!p.books && p.shots.length > 1 && <span class="more">+{p.shots.length - 1} more</span>}
               </button>
+              {p.video && (
+                <button type="button" class="film marker" data-reel-src={p.video.src} data-reel-poster={p.video.poster} data-reel-label={p.video.about}>
+                  <span class="film-play" aria-hidden="true">▶</span>{p.video.label}
+                </button>
+              )}
+              </div>
             ) : p.private ? (
               <div class="classified" aria-hidden="true">
                 <span class="redact" style="width:78%"></span><span class="redact" style="width:52%"></span><span class="redact" style="width:66%"></span><span class="redact" style="width:40%"></span>
@@ -126,6 +133,7 @@ const repoSlug = (url?: string) => url?.replace('https://github.com/', '') ?? ''
             <p class="desc">{p.desc}</p>
             <p class="links">
               {p.private && <span class="kicker">Private · ask me</span>}
+              {p.video && <a href={p.video.src} data-reel-src={p.video.src} data-reel-poster={p.video.poster} data-reel-label={p.video.about}>{p.video.label} <span aria-hidden="true">▶</span></a>}
               {p.site && <a href={p.site} target="_blank" rel="noopener">Visit <span aria-hidden="true">↗</span></a>}
               {p.repo && <a href={p.repo} target="_blank" rel="noopener">Code <span aria-hidden="true">↗</span></a>}
             </p>
@@ -249,10 +257,12 @@ const repoSlug = (url?: string) => url?.replace('https://github.com/', '') ?? ''
     }, { threshold: 0.35 }).observe(reel);
   }
   const bigSource = big?.querySelector('source');
-  const openReel = (e?: Event, src = REEL.src, poster = REEL.poster) => {
+  const reelLabel = big?.getAttribute('aria-label') ?? '';
+  const openReel = (e?: Event, src = REEL.src, poster = REEL.poster, label = reelLabel) => {
     if (!modal || !big) return;
     e?.preventDefault();
     reel?.pause();
+    big.setAttribute('aria-label', label);
     if (bigSource && bigSource.getAttribute('src') !== src) {
       bigSource.setAttribute('src', src);
       big.poster = poster;
@@ -267,7 +277,7 @@ const repoSlug = (url?: string) => url?.replace('https://github.com/', '') ?? ''
   document.getElementById('reelPlay')?.addEventListener('click', (e) => openReel(e));
   document.querySelectorAll('[data-reel-open]').forEach((a) => a.addEventListener('click', (e) => openReel(e)));
   document.querySelectorAll<HTMLElement>('[data-reel-src]').forEach((b) =>
-    b.addEventListener('click', (e) => openReel(e, b.dataset.reelSrc!, b.dataset.reelPoster!)));
+    b.addEventListener('click', (e) => openReel(e, b.dataset.reelSrc!, b.dataset.reelPoster!, b.dataset.reelLabel || reelLabel)));
   modal?.addEventListener('click', (e) => { if (e.target === modal) modal.close(); });
   modal?.addEventListener('close', () => {
     big?.pause();
@@ -589,6 +599,21 @@ const repoSlug = (url?: string) => url?.replace('https://github.com/', '') ?? ''
     transform: rotate(calc(var(--r) * -1.2));
     transition: transform .3s ease;
   }
+  .media { position: relative; }
+  .film {
+    position: absolute; left: .7rem; bottom: .7rem; z-index: 2;
+    display: inline-flex; align-items: center; gap: .5rem;
+    padding: .35rem .85rem .35rem .4rem;
+    font-size: .9rem; color: var(--ink); cursor: pointer;
+    background: var(--cream); border: 2.5px solid var(--ink); border-radius: 999px;
+    box-shadow: 3px 4px 0 var(--ink); transform: rotate(-2deg);
+    transition: transform .2s cubic-bezier(.3,1.6,.5,1), box-shadow .2s;
+  }
+  .film-play {
+    display: grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%;
+    background: var(--t); color: var(--cream); border: 2px solid var(--ink); font-size: .7rem; padding-left: .12rem;
+  }
+  .film:hover, .film:focus-visible { transform: rotate(0) translateY(-2px); box-shadow: 5px 6px 0 var(--ink); }
   .shots img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform .5s ease; }
   .shots:hover img { transform: scale(1.04); }
   .shots:hover { transform: rotate(0deg); }

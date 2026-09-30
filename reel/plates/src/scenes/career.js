@@ -570,7 +570,7 @@
   // ======================================================= WORKSHOP 45–53.25 · contact sheet (paper)
   const CARDS = [
     ['n0', 'the AI workspace for teams'], ['Claude Agent SDK Go', 'Claude agents, in Go'], ['Gource Viewer', 'repo history as a film'],
-    ['Gitilla', 'your GitHub as a city'], ['Codex SDK Go', 'the Codex agent, in Go'], ['wee.cat', 'Catalan supermarket prices'],
+    ['Gitilla', 'your GitHub as a city'], ['Codex SDK Go', 'the Codex agent, in Go'], ['wee.cat', 'learn to read, the fun way'],
     ['Donna', 'autonomous AI pentesting'], ['The Agentic Crew', 'three free books'], ['Hefty', 'what’s eating your disk'],
   ];
   function shotWorkshop(T, lt) {

@@ -8,6 +8,8 @@ export interface Project {
   books?: boolean;
   /** Shown in the terminal doodle when there are no screenshots. */
   install?: string;
+  /** A short film, played in the big-screen player (label is the button text, about is its accessible description). */
+  video?: { src: string; poster: string; label: string; about: string };
   /** Not public yet: no links, shown with a stamp. */
   private?: boolean;
   /** A PAL colour name, used for the card's tape and number. */
@@ -57,15 +59,16 @@ export const projects: Project[] = [
     site: 'https://pkg.go.dev/github.com/schlunsen/codex-sdk-go',
     shots: [],
     install: 'go get github.com/schlunsen/codex-sdk-go',
-    tint: 'violet',
+    tint: 'indigo',
   },
   {
     name: 'wee.cat',
-    desc: 'Supermarket prices across Catalonia. Compare daily deals, track price history, get groceries delivered in the Priorat.',
-    tags: ['Groceries', 'Data', 'Delivery'],
+    desc: 'Learn to read, the fun way. Ten reading games for ages 5 to 12, in three worlds that grow with the child. Adaptive, dyslexia-friendly, Catalan first.',
+    tags: ['EdTech', 'Games', 'Kids'],
     site: 'https://wee.cat',
-    shots: ['/wee-cat-home.webp', '/wee-cat-delivery.webp', '/wee-cat-mobile.webp'],
-    tint: 'clay',
+    shots: ['/wee-home.webp', '/wee-worlds.webp', '/wee-games.webp', '/wee-mobile.webp'],
+    video: { src: '/media/wee/tour.mp4', poster: '/media/wee/tour-poster.webp', label: 'Watch the tour', about: 'A one-minute tour of wee: the three worlds and a few of the ten reading games.' },
+    tint: 'violet',
   },
   {
     name: 'Donna',
