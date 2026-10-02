@@ -10,15 +10,16 @@
     <path class="stroke" pathLength="1"
       d="M-20 6 L120 0 L-20 28 L120 22 L-20 52 L120 46 L-20 76 L120 70 L-20 100 L120 94" />
   </svg>
-  <p class="wipe-quote" id="wipeQuote">Serenity now!</p>
+  <p class="wipe-quote" id="wipeQuote">Glad you’re here.</p>
 </div>
 
 <script is:inline>
   (function () {
+    // a little good news on the way in
     var q = [
-      'Serenity now!', 'Yada yada yada', 'No soup for you!', 'Hello, Newman.',
-      'These pretzels are making me thirsty!', 'Not that there’s anything wrong with that',
-      'A Festivus for the rest of us!', 'Moving mountains…', 'Giddy up!',
+      'Glad you’re here.', 'Hello, you. Good to see you.', 'You’re doing great.',
+      'Make something you love today.', 'Today’s a good day to build.', 'Small steps, big things.',
+      'Go make something wonderful.', 'You’ve got this.', 'Moving mountains…',
     ];
     var el = document.getElementById('wipeQuote');
     if (el) el.textContent = q[Math.floor(Math.random() * q.length)];
