@@ -67,7 +67,7 @@ export const projects: Project[] = [
     tags: ['EdTech', 'Games', 'Kids'],
     site: 'https://wee.cat',
     shots: ['/wee-home.webp', '/wee-worlds.webp', '/wee-games.webp', '/wee-mobile.webp'],
-    video: { src: '/media/wee/tour.mp4', poster: '/media/wee/tour-poster.webp', label: 'Watch the tour', about: 'A one-minute tour of wee: the three worlds and a few of the ten reading games.' },
+    video: { src: '/media/wee/tour.mp4', poster: '/media/wee/tour-poster.webp', label: 'Watch the tour', about: 'A one-minute tour of wee, narrated in English: the three worlds and a few of the ten reading games.' },
     tint: 'violet',
   },
   {
