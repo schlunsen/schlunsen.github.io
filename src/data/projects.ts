@@ -22,7 +22,7 @@ export const projects: Project[] = [
     desc: 'Your photograph at the scale of a wall. Pieces built from A3 sheets in any shape, framed by hand in Catalunya and shipped worldwide.',
     tags: ['Photography', 'Print', 'Catalunya'],
     site: 'https://amplada.com',
-    shots: [],
+    shots: ['/amplada-hero.webp', '/amplada-panorama.webp'],
     tint: 'ochre',
   },
   {
