@@ -18,6 +18,14 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    name: 'Amplada',
+    desc: 'Your photograph at the scale of a wall. Pieces built from A3 sheets in any shape, framed by hand in Catalunya and shipped worldwide.',
+    tags: ['Photography', 'Print', 'Catalunya'],
+    site: 'https://amplada.com',
+    shots: [],
+    tint: 'ochre',
+  },
+  {
     name: 'n0',
     desc: 'The AI workspace for teams, built at Clovr Labs. Chat, files, calendar, automations and agents in one private, encrypted space.',
     tags: ['AI', 'Workspace', 'Agents'],
